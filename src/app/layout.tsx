@@ -8,7 +8,7 @@ import Footer from "@/components/ui/Footer";
 //   src: "./fonts/GeistMonoVF.woff",
 //   variable: "--font-geist-mono",
 //   weight: "100 900",
-// })
+// });
 
 export const metadata: Metadata = {
   title: "Klic Online Church",
