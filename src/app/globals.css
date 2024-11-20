@@ -2,20 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+@layer base {
+  :root {
+    /* Typography Sizes */
+    --heading-1: 64px;
+    --heading-2: 48px;
+    --heading-3: 40px;
+    --heading-4: 32px;
+    --heading-5: 24px;
+    --heading-6: 16px;
+  
+
+    /* Color Palette */
+    --color-black: hsl(240, 5%, 10%);
+    --color-orange: hsl(33, 75%, 75%);
+    --color-light-orange: hsl(33, 50%, 90%);
+    --color-white: hsl(0, 0%, 98%);
+
+    /* Button Colors */
+    --button-primary-bg: var(--color-orange);
+    --button-primary-text: var(--color-black);
+    --button-secondary-bg: var(--color-black);
+    --button-secondary-text: var(--color-white);
+    --button-hover-bg: var(--color-light-orange);
+
+    /*Color scheme*/
+    --primary:: #FFD2A4
+  }
+
+  body {
+    @apply text-foreground;
+    background-color: var(--color-white);
+    color: var(--color-black);
+  }
+  
+
+  h1 {
+    font-size: var(--heading-1);
+  }
+  h2 {
+    font-size: var(--heading-2);
+  }
+  h3 {
+    font-size: var(--heading-3);
+  }
+  h4 {
+    font-size: var(--heading-4);
+  }
+  h5 {
+    font-size: var(--heading-5);
+  }
+  h6 {
+    font-size: var(--heading-6);
+  }
+
+  /* Button Styles */
+  .button {
+    @apply rounded py-2 px-4;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .button-primary {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+  }
+  .button-primary:hover {
+    background-color: var(--button-hover-bg);
+  }
+  .button-secondary {
+    background-color: var(--button-secondary-bg);
+    color: var(--button-secondary-text);
+  }
+  .button-secondary:hover {
+    background-color: var(--button-hover-bg);
+  }
 }
