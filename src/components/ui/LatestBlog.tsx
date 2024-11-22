@@ -1,0 +1,69 @@
+"use client";
+import Image from "next/image";
+import React from "react";
+
+export interface BlogPost {
+  date: string;
+  author: string;
+  title: string;
+  excerpt: string;
+  image: string;
+}
+
+export const latestPost: BlogPost = {
+  date: "Tuesday 13 May, 2022",
+  author: "John Hinauj Deo",
+  title: "Church Was Doing What He Often Did When Dropped an Oracle",
+  excerpt:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  image: "hero-img.svg", // Replace with actual image path
+};
+
+const LatestBlog: React.FC = () => {
+  const { date, author, title, excerpt, image } = latestPost;
+
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-5xl flex flex-col gap-1 mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-lg uppercase text-gray-600  text-start lg:text-center">
+          Our Blog
+        </h2>
+        <h1 className="text-3xl font-bold mt-2 uppercase  text-start lg:text-center">
+          Most Recent Post
+        </h1>
+        <div className="bg-white rounded-lg pt-[2rem] shadow-md grid lg:grid-cols-5  overflow-hidden">
+          <div className="h-full w-full flex lg:col-span-2">
+            {" "}
+            <Image
+              width={2000}
+              height={2000}
+              src={image}
+              alt={title}
+              className="w-full  h-full object-cover"
+            />
+          </div>
+
+          <div className="p-6 flex flex-col justify-between lg:col-span-3">
+            <div>
+              <p className="text-sm text-gray-500">
+                {date} <span className="mx-2">|</span> By {author}
+              </p>
+              <h2 className="text-2xl font-bold text-gray-800 mt-4">{title}</h2>
+              <p className="text-gray-600 mt-4">{excerpt}</p>
+            </div>
+            <div className="mt-6">
+              <a
+                href="#"
+                className="inline-block bg-orange-500 text-white font-bold py-2 px-4 rounded hover:bg-orange-600"
+              >
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default LatestBlog;

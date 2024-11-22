@@ -6,12 +6,12 @@ import { Button } from "./button";
 const OurBranches: React.FC = () => {
   return (
     <section
-      className=" bg-cover flex items-center justify-center bg-center h-[46rem] "
+      className=" bg-cover  flex items-center justify-center bg-center max- lg:h-[46rem]  "
       style={{
         backgroundImage: `url('/hero-img.svg')`,
       }}
     >
-      <div className="bg-white relative flex flex-col gap-4 max-w-3xl mx-auto py-[3rem] px-[4em] rounded-md shadow-md">
+      <div className="bg-white relative flex flex-col gap-4 max-w-3xl mx-auto py-[3rem] px-[4em] rounded-md shadow-md ">
         <div className="grid lg:grid-cols-2">
           <div className="">
             <h2 className="text-3xl font-bold mb-4 flex flex-col gap-2">
@@ -30,7 +30,7 @@ const OurBranches: React.FC = () => {
               Find a Branch Near You
             </Button>
           </div>
-          <div className=" flex items-center">
+          <div className=" flex items-center lg:pt-0 pt-4">
             <Image width={1009} height={665} src="/world.svg" alt="map" />
           </div>
         </div>

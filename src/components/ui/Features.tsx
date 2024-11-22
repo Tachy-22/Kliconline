@@ -25,10 +25,10 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-12 md:max-w-[80rem] mx-auto  bg-white text-center">
+    <section className="py-12 md:max-w-[80rem] mx-auto bg-white text-center">
       {/* Sub-headline */}
-      <h2 className="text-lg uppercase text-gray-600">Sub-Headline</h2>
-      <h1 className="text-3xl font-bold mt-2">A Church That&#39;s Relevant</h1>
+      <h2 className="text-lg uppercase text-gray-600">Our Onions</h2>
+      <h1 className="text-3xl font-bold mt-2 mx-auto uppercase max-w-[80%] w-full" >A Church That&#39;s Relevant</h1>
 
       {/* Features Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 px-6 md:px-12">

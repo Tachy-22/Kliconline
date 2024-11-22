@@ -4,7 +4,7 @@ import { Button } from "./button";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#161722] text-gray-300 py-10">
+    <footer className="bg-[#161722] text-gray-300 py-10 h-full flex z-230">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left Section: Brand and Contact */}
         <div className="flex flex-col gap-3">

@@ -4,20 +4,20 @@ import { Button } from "./button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const UpcomingSermons = () => {
+const LatestSermon = () => {
   return (
     <section className="bg-gray-50 py-16 flex flex-col gap-[3rem] ">
       <div className="text-center flex flex-col gap-3">
-        <p className="text-lg uppercase text-gray-600">UPCOMING SERMONS</p>
+        <p className="text-lg uppercase text-gray-600">LIVE EVENT</p>
         <h2 className="text-3xl font-bold mx-auto text-gray-800 uppercase max-w-[30rem] ">
           join us and become part of something great
         </h2>
       </div>
-      <div className="max-w-7xl mx-auto w-full gap flex flex-col lg:flex-row items-center justify-between  h-[30rem]">
+      <div className="max-w-7xl mx-auto w-full gap flex flex-col lg:flex-row items-center justify-between  lg:h-[30rem]">
         {/* Left: Event Details */}
         <div className="bg-[#FFF5EB]  rounded-lg p-6 px-[3rem] py-[2rem] w-full lg:w-1/3 flex flex-col justify-center  min-h-full h-full relative gap-6">
           <div className="text-sm text-orange-600 uppercase font-medium  ">
-            Upcoming Event
+            SPONTANEOUS WORSHIP{" "}
           </div>
           <div className="flex items-center gap-2 -4 ">
             <div className=" flex flex-col justify-end items-end font-semibold text-lg rounded-lg px-4 py-2 uppercase absolute top-0 right-0 m-3">
@@ -76,15 +76,15 @@ const UpcomingSermons = () => {
             <span>No 233 Main St. New York, United States</span>
           </div>
           {/* Register Button */}
-          <Button className="bg-black text-[#FFD2A4] hover:bg-black/90 rounded">
-            Register
+          <Button className="bg-black p-6 text-[#FFD2A4] hover:bg-black/90 rounded">
+            Listen
           </Button>
         </div>
 
         {/* Right: Image */}
-        <div className="relative w-full lg:w-2/3 min-h-full h-full">
+        <div className="relative w-full lg:w-2/3 lg:min-h-full lg:h-full h-fit">
           <Image
-            src="/hero-img.svg" // Replace with your image path
+            src="/sermon-img.svg" // Replace with your image path
             alt="Upcoming Sermons"
             width={800}
             height={450}
@@ -107,4 +107,4 @@ const UpcomingSermons = () => {
   );
 };
 
-export default UpcomingSermons;
+export default LatestSermon;

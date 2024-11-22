@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import ContactHero from "../ui/ContactHero";
+import ContactForm from "../ui/ContactForm";
 
 const Contact = () => {
   return (
-    <div>Contact</div>
-  )
-}
+    <div className="flex flex-col">
+      <ContactHero />
+      <ContactForm />
+    </div>
+  );
+};
 
-export default Contact
+export default Contact;

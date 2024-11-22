@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="max-h-screen">
+    <html lang="en" className="max-h-screen ">
       <body
         className={`antialiased min-h-full h-full max-w-screen w-full overflow-y-auto  bg-white`}
       >

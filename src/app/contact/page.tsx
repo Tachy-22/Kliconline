@@ -1,9 +1,8 @@
-import React from 'react'
+import Contact from "@/components/layouts/Contact";
+import React from "react";
 
 const page = () => {
-  return (
-    <div>page</div>
-  )
-}
+  return <Contact />;
+};
 
-export default page
+export default page;
