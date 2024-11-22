@@ -1,5 +1,9 @@
 "use client";
 
+import Image from "next/image";
+import React from "react";
+import { Facebook, Twitter, Linkedin } from "lucide-react";
+
 export interface Pastors {
   name: string;
   role: string;
@@ -54,9 +58,6 @@ export const team: Pastors[] = [
   },
 ];
 
-import Image from "next/image";
-import React from "react";
-
 const AboutPastors: React.FC = () => {
   return (
     <section className="py-[6rem] bg-gray-50">
@@ -87,19 +88,19 @@ const AboutPastors: React.FC = () => {
                   href={member.socialLinks.facebook}
                   className="text-gray-500 hover:text-gray-900"
                 >
-                  <i className="fab fa-facebook-f"></i>
+                  <Facebook size={18} />
                 </a>
                 <a
                   href={member.socialLinks.twitter}
                   className="text-gray-500 hover:text-gray-900"
                 >
-                  <i className="fab fa-twitter"></i>
+                  <Twitter size={18} />
                 </a>
                 <a
                   href={member.socialLinks.linkedin}
                   className="text-gray-500 hover:text-gray-900"
                 >
-                  <i className="fab fa-linkedin-in"></i>
+                  <Linkedin size={18} />
                 </a>
               </div>
             </div>

@@ -43,9 +43,8 @@ const events: Event[] = [
 ];
 
 const EventsList: React.FC = () => {
-
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 px-[4.5rem] ">
       <h2 className="text-3xl font-bold mx-auto text-gray-800 uppercase max-w-[30rem]">
         UPCOMING EVENTS
       </h2>

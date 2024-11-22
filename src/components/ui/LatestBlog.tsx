@@ -23,15 +23,15 @@ const LatestBlog: React.FC = () => {
   const { date, author, title, excerpt, image } = latestPost;
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-5xl flex flex-col gap-1 mx-auto px-4 sm:px-6 lg:px-8">
+    <section className=" ">
+      <div className=" flex flex-col gap-5 max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-lg uppercase text-gray-600  text-start lg:text-center">
           Our Blog
         </h2>
         <h1 className="text-3xl font-bold mt-2 uppercase  text-start lg:text-center">
           Most Recent Post
         </h1>
-        <div className="bg-white rounded-lg pt-[2rem] shadow-md grid lg:grid-cols-5  overflow-hidden">
+        <div className="bg-white rounded-lg  shadow-md grid lg:grid-cols-5  overflow-hidden">
           <div className="h-full w-full flex lg:col-span-2">
             {" "}
             <Image

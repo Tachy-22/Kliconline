@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Clock, MapPin } from "lucide-react";
 
 interface EventSummaryProps {
   date: Date;  // Changed from string to Date
@@ -33,13 +34,13 @@ const EventSummaryCard: React.FC<EventSummaryProps> = ({
       </div>
       <h3 className="text-lg font-semibold text-gray-800 mt-4">{title}</h3>
       <p className="text-gray-600 text-sm mt-2">{description}</p>
-      <div className="mt-4">
-        <div className="flex items-center gap-2 text-gray-600 text-sm">
-          <span>🕒</span>
+      <div className="mt-4 font-semibold">
+        <div className="flex items-start gap-2 text-gray-600 text-sm">
+          <Clock className="w-6 h-6" />
           <p>{time}</p>
         </div>
-        <div className="flex items-center gap-2 text-gray-600 text-sm mt-2">
-          <span>📍</span>
+        <div className="flex items-start gap-2 text-gray-600 text-sm mt-2">
+          <MapPin className="w-7 h-7" />
           <p>{location}</p>
         </div>
       </div>

@@ -4,7 +4,7 @@ import BlogList from "../ui/BlogList";
 
 const Blogs = () => {
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className=" bg-gray-50    py-[3rem] mx-auto">
       <LatestBlog />
       <BlogList />
     </div>

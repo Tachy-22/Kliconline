@@ -96,4 +96,122 @@ body {
   .button-secondary:hover {
     background-color: var(--button-hover-bg);
   }
+
+  /* Blog Content Styles */
+  .prose {
+    @apply text-gray-800;
+  }
+
+  .prose h1 {
+    @apply text-4xl font-bold mb-6 mt-8 text-gray-900;
+  }
+
+  .prose h2 {
+    @apply text-3xl font-semibold mb-4 mt-8 text-gray-900;
+  }
+
+  .prose h3 {
+    @apply text-2xl font-semibold mb-3 mt-6 text-gray-900;
+  }
+
+  .prose h4 {
+    @apply text-xl font-semibold mb-2 mt-4 text-gray-900;
+  }
+
+  .prose p {
+    @apply mb-4 leading-relaxed text-base;
+  }
+
+  .prose img {
+    @apply my-8 rounded-lg shadow-md w-full max-w-3xl min-h-[25rem] mx-auto object-cover;
+  }
+
+  .prose blockquote {
+    @apply pl-4 py-2 my-6 border-l-4 border-orange-300 bg-orange-50 italic text-gray-700 rounded;
+  }
+
+  .prose ul {
+    @apply list-disc list-inside mb-4 ml-4 space-y-2;
+  }
+
+  .prose ol {
+    @apply list-decimal list-inside mb-4 ml-4 space-y-2;
+  }
+
+  .prose li {
+    @apply mb-1 text-base;
+  }
+
+  .prose a {
+    @apply text-blue-600 hover:text-blue-800 underline transition-colors;
+  }
+
+  .prose strong {
+    @apply font-semibold;
+  }
+
+  .prose em {
+    @apply italic;
+  }
+
+  .prose code {
+    @apply bg-gray-100 rounded px-1 py-0.5 text-sm font-mono;
+  }
+
+  .prose pre {
+    @apply bg-gray-100 rounded p-4 my-4 overflow-x-auto;
+  }
+
+  .prose hr {
+    @apply my-8 border-gray-200;
+  }
+
+  .prose table {
+    @apply w-full my-6 border-collapse;
+  }
+
+  .prose th, .prose td {
+    @apply border border-gray-300 px-4 py-2;
+  }
+
+  .prose th {
+    @apply bg-gray-50 font-semibold;
+  }
+
+  @media (max-width: 768px) {
+    .prose h1 {
+      @apply text-3xl;
+    }
+    .prose h2 {
+      @apply text-2xl;
+    }
+    .prose h3 {
+      @apply text-xl;
+    }
+    .prose blockquote {
+      @apply text-sm;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .prose {
+      @apply text-gray-200;
+    }
+    .prose h1, .prose h2, .prose h3, .prose h4 {
+      @apply text-gray-100;
+    }
+    .prose blockquote {
+      @apply bg-gray-800 border-gray-600 text-gray-300;
+    }
+    .prose code {
+      @apply bg-gray-800;
+    }
+    .prose pre {
+      @apply bg-gray-800;
+    }
+    .prose a {
+      @apply text-blue-400 hover:text-blue-300;
+    }
+  }
 }

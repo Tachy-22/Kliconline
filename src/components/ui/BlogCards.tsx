@@ -11,7 +11,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
 
   return (
     <Link
-      href={`blog/${blog.title}`}
+      href={`blogs/${blog.title}`}
       className="bg-white relative rounded-lg shadow-md group py-10 flex flex-col gap-1 justify-between overflow-hidden hover:shadow-lg"
     >
       <p className="text-sm  px-8 text-orange-500 font-semibold uppercase">

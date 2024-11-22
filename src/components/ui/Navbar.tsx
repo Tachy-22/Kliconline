@@ -5,19 +5,21 @@ import React, { useState } from "react";
 import { Button } from "./button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const Navbar = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
     { name: "About Us", href: "/about-us" },
     { name: "Events", href: "/events" },
-
     { name: "Sermons", href: "/sermons" },
     { name: "Blogs", href: "/blogs" },
   ];
+
+  const isActiveLink = (href: string) => pathname === href;
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -43,7 +45,9 @@ const Navbar = () => {
             <Link
               key={index}
               href={link.href}
-              className="hover:underline text-white/75 hover:text-[#FFD2A4] font-extralight"
+              className={`hover:underline hover:text-[#FFD2A4] font-extralight ${
+                isActiveLink(link.href) ? 'text-[#FFD2A4]' : 'text-white/75'
+              }`}
             >
               {link.name}
             </Link>
@@ -75,14 +79,16 @@ const Navbar = () => {
           >
             <div className="flex items-center justify-between p-6">
               <h1 className="text-xl font-bold">Klic</h1>
-              {/* <X className="text-2xl cursor-pointer" onClick={toggleSidebar} /> */}
+            
             </div>
             <nav className="flex flex-col gap-4 px-6 mt-4 uppercase text-sm">
               {navLinks.map((link, index) => (
                 <Link
                   key={index}
                   href={link.href}
-                  className="hover:underline text-white/75 hover:text-[#FFD2A4] font-extralight"
+                  className={`hover:underline hover:text-[#FFD2A4] font-extralight ${
+                    isActiveLink(link.href) ? 'text-[#FFD2A4]' : 'text-white/75'
+                  }`}
                   onClick={toggleSidebar} // Close sidebar when a link is clicked
                 >
                   {link.name}

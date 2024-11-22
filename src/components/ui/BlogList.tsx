@@ -96,11 +96,11 @@ import BlogCard from "./BlogCards";
 
 const BlogList: React.FC = () => {
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-extrabold text-gray-900 mb-12 text-center">
+    <section className=" max-w-7xl mx-auto py-16 ">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-[2rem]">
+        <h1 className="text-3xl font-bold mt-2 uppercase  text-start lg:text-center">
           All Blog Posts
-        </h2>
+        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {blogs.map((blog, index) => (
             <BlogCard key={index} blog={blog} />
