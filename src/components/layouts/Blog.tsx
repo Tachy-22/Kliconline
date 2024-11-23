@@ -1,5 +1,5 @@
 import React from "react";
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 
 interface BlogProps {
   blogData: {
@@ -12,7 +12,8 @@ interface BlogProps {
 }
 
 const Blog = ({ blogData }: BlogProps) => {
-  const { title, author, date, content,category } = blogData;
+  const { title, author, date, content, category } = blogData;
+  const parsedContent = parse(content);
 
   return (
     <article className="max-w-3xl mx-auto px-4 sm:px-8 py-12 sm:py-16">
@@ -29,9 +30,7 @@ const Blog = ({ blogData }: BlogProps) => {
           <time className="text-gray-500">{date}</time>
         </div>
       </header>
-      <div className="prose prose-lg max-w-none">
-        {ReactHtmlParser(content)}
-      </div>
+      <div className="prose prose-lg max-w-none">{parsedContent} </div>
     </article>
   );
 };
