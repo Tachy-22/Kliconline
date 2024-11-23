@@ -1,7 +1,7 @@
 import Blog from "@/components/layouts/Blog";
 import React from "react";
 
-const page = ({ params }: { params: { blogId: string } }) => {
+const page = ({ params }: { params: Promise<{ blogId: string }> }) => {
   const blogData = {
     title: "Faith in the Bible: A Journey of Trust and Belief",
     author: "Pastor John Smith",
