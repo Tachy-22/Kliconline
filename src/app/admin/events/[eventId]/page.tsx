@@ -2,12 +2,11 @@ import React from "react";
 import { fetchDocument } from "@/actions/fetchDocument";
 import { fetchCollection } from "@/actions/fetchCollection";
 import RegisteredParticipantsTable from "@/components/tables/RegisteredParticipantsTable";
-import { Event, Participant } from "@/types";
 
 const page = async ({ params }: { params: Promise<{ eventId: string }> }) => {
   const { eventId } = await params;
-  const event = await fetchDocument<Event>("events", eventId);
-  const participants = await fetchCollection<Participant>(
+  const event = await fetchDocument<EventT>("events", eventId);
+  const participants = await fetchCollection<ParticipantT>(
     "registered-participants", [["eventId", "==", event && !("code" in event) ? event.id : ""]]
   );
 
