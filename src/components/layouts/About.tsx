@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import AboutHero from "../ui/AboutHero";
 import Values from "../ui/Values";

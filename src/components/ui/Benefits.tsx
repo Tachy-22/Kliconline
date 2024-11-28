@@ -1,3 +1,4 @@
+"use client";
 
 import { CalendarCheck, HandHeart, Heart, Users } from "lucide-react";
 import Image from "next/image";
@@ -18,7 +19,7 @@ const benefits: Benefit[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     image: "/hero-img.svg",
-    icon: Heart
+    icon: Heart,
   },
   {
     id: 2,
@@ -26,7 +27,7 @@ const benefits: Benefit[] = [
     description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     image: "/hero-img.svg",
-    icon: Users
+    icon: Users,
   },
   {
     id: 3,
@@ -34,7 +35,7 @@ const benefits: Benefit[] = [
     description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     image: "/hero-img.svg",
-    icon: CalendarCheck
+    icon: CalendarCheck,
   },
   {
     id: 4,
@@ -42,7 +43,7 @@ const benefits: Benefit[] = [
     description:
       "Connect with a supportive community that encourages growth and positive impact in your life.",
     image: "/hero-img.svg",
-    icon: HandHeart
+    icon: HandHeart,
   },
 ];
 
@@ -66,7 +67,7 @@ const Benefits: React.FC = () => {
             <div className="w-full text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
                 {React.createElement(benefit.icon, {
-                  className: "w-8 h-8 text-gray-800"
+                  className: "w-8 h-8 text-gray-800",
                 })}
                 <h3 className="text-2xl md:text-3xl uppercase font-semibold">
                   {benefit.title}

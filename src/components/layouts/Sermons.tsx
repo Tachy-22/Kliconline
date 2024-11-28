@@ -1,14 +1,16 @@
-import React from "react";
+"use client"
 import SermonHero from "../ui/SermonHero";
 import LatestSermon from "../ui/LatestSermon";
 import SermonList from "../ui/SermonList";
 
-const Sermons = () => {
+const Sermons = ({ sermons }: { sermons: SermonT[] }) => {
+
+
   return (
     <div className="flex flex-col">
       <SermonHero />
-      <LatestSermon />
-      <SermonList />
+      <LatestSermon sermons={sermons} />
+      <SermonList sermons={sermons} />
     </div>
   );
 };

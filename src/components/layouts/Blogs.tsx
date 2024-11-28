@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import LatestBlog from "../ui/LatestBlog";
 import BlogList from "../ui/BlogList";

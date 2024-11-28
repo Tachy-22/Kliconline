@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import ContactHero from "../ui/ContactHero";
 import ContactForm from "../ui/ContactForm";

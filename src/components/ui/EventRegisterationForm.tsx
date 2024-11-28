@@ -1,19 +1,64 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { MapPin, Clock } from 'lucide-react'
+import React, { useState } from "react";
+import { MapPin, Clock } from "lucide-react";
+import { addDocument } from "@/actions/addDocument";
+import { usePathname } from "next/navigation";
+import SubmitButton from "./SubmitButton";
 
-const EventRegisterationForm = () => {
-  const eventDate = new Date(2022, 7, 25)
-  const formattedDate = eventDate.toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  })
+interface RegistrationData extends Record<string, unknown> {
+  name: string;
+  email: string;
+  phone: string;
+  eventId: string;
+  registrationDate: string;
+}
+
+interface EventProps {
+  event: EventT;
+}
+
+const EventRegisterationForm = ({ event }: EventProps) => {
+  const path = usePathname();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  const eventDate = event.date;
+  const eventId = event.id;
+  const formattedDate = eventDate instanceof Date 
+    ? eventDate.toLocaleDateString()
+    : new Date(eventDate.seconds * 1000).toLocaleDateString()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const registrationData: RegistrationData = {
+      ...formData,
+      eventId,
+      registrationDate: new Date().toISOString(),
+    };
+
+    const result = await addDocument(
+      "registered-participants",
+      registrationData,
+      path as string
+    );
+    if ("code" in result) {
+      // Handle error
+      console.error(result.message);
+    } else {
+      // Handle success
+      console.log("Registration successful");
+    }
+  };
 
   return (
     <div className="bg-[#F7F8FA] shadow-md p-10 rounded-md h-fit">
-      <h3 className="text-2xl capitalize font-bold text-gray-800">Register Now</h3>
+      <h3 className="text-2xl capitalize font-bold text-gray-800">
+        Register Now
+      </h3>
       <div className="mt-6 flex text-gray-600 gap-5 justify-between">
         <p className="flex items-center space-x-3">
           <MapPin size={18} />
@@ -24,7 +69,7 @@ const EventRegisterationForm = () => {
           <span>{formattedDate}</span>
         </p>
       </div>
-      <form className="mt-8 space-y-6">
+      <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Full Name
@@ -32,6 +77,10 @@ const EventRegisterationForm = () => {
           <input
             type="text"
             placeholder="Leonard John"
+            value={formData.name}
+            onChange={(e) =>
+              setFormData({ ...formData, name: e.target.value })
+            }
             className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
           />
         </div>
@@ -42,18 +91,36 @@ const EventRegisterationForm = () => {
           <input
             type="email"
             placeholder="admin@abc.com"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
           />
         </div>
-        <button
-          type="submit"
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            placeholder="+1234567890"
+            value={formData.phone}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
+            className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
+          />
+        </div>
+        <SubmitButton
+          loadingText="Registering..."
           className="w-full py-3 mt-4 bg-orange-500 text-white font-medium rounded hover:bg-orange-600"
         >
           Register Now
-        </button>
+        </SubmitButton>
       </form>
     </div>
   );
-}
+};
 
-export default EventRegisterationForm
+export default EventRegisterationForm;

@@ -24,7 +24,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = (props) => {
       {...props} // Spread the additional props
     >
       {pending && <Loader2 className="animate-spin" />}
-      {pending ? "loadingText" : props.children || "submit"}
+      {pending ? props.loadingText : props.children || "submiting..."}
     </Button>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Blog } from "./BlogList";
 import Link from "next/link";
