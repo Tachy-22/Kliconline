@@ -1,39 +1,39 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { Button } from "./button";
+//import { Button } from "./button";
+import Link from "next/link";
 
 const Values = () => {
-  const images = [
-    "hero-img.svg", // Replace with actual image paths
-    "hero-img.svg",
-    "hero-img.svg",
-  ];
+  const images = ["/hero-img.svg", "/contacthero-img.svg", "/sermon-img.svg"];
 
   return (
     <section className="py-12 pb-20 bg-white text-center max-w-screen md:max-w-[80rem] mx-auto  lg:px-[4.5rem] px-[2rem] flex flex-col gap-2 overflow-hidden">
       {/* Sub-Headline */}
       <h2 className="text-lg uppercase text-gray-600  text-start lg:text-center">
-        WHAT ARE WE ABOUT?
+        OUR CORE VALUES
       </h2>
       <h1 className="text-3xl font-bold mt-2 uppercase  text-start lg:text-center">
-        Love and Compassion
+        Faith, Love, and Service
       </h1>
 
       {/* Description */}
       <p className="mt-4 text-gray-600 max-w-3xl mx-auto text-start lg:text-center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Quis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur.
+        At Kingdom Life International Church, we are built on the foundations of
+        unwavering faith in God&apos;s Word, unconditional love for all people,
+        and dedicated service to our community. We believe in creating an
+        atmosphere where people can experience God&apos;s presence and discover
+        their divine purpose through worship, fellowship, and ministry.
       </p>
 
       {/* Button */}
       <div className="mt-6">
-        <Button className="px-4 py-2 bg-[#FFD2A4] text-black font-light rounded hover:bg-[#FFD2A4]/90 uppercase w-fit">
+        <Link
+          href="/blogs/2"
+          className="px-4 py-2 bg-[#FFD2A4] text-black font-light rounded hover:bg-[#FFD2A4]/90 uppercase w-fit"
+        >
           READ MORE{" "}
-        </Button>
+        </Link>
       </div>
 
       {/* Image Grid */}

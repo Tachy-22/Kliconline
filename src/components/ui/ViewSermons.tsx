@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
 
-const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
+const ViewSermons = ({ sermons }: { sermons: SermonT[] }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const getLatestSermon = () => {
@@ -72,9 +74,13 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
           </div>
 
           <div className="gap-3 flex flex-col">
-            <h3 className="text-xl font-bold text-gray-800">{latestSermon.title}</h3>
+            <h3 className="text-xl font-bold text-gray-800">
+              {latestSermon.title}
+            </h3>
             <p className="text-gray-500">{latestSermon.description}</p>
-            <p className="text-gray-600 italic">Speaker: {latestSermon.preacher}</p>
+            <p className="text-gray-600 italic">
+              Speaker: {latestSermon.preacher}
+            </p>
           </div>
 
           <audio
@@ -103,9 +109,17 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
         </div>
       </div>
 
-  
+      <div className="text-right max-w-7xl w-full mx-auto p-4">
+        <Link
+          href="/sermons"
+          className="text-black hover:text-orange-600 text-sm font-medium hover:underline flex items-center justify-end gap-1"
+        >
+          View all Sermons
+          <ArrowRight />
+        </Link>
+      </div>
     </section>
   );
 };
 
-export default LatestSermon;
+export default ViewSermons;

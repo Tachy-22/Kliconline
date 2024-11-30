@@ -13,14 +13,16 @@ const MissionAndVision: React.FC = () => {
               Our Mission & Vision
             </h3>
             <h2 className="text-2xl font-bold text-gray-800 mt-2">
-              Striving for a Better Tomorrow
+              Advancing God&apos;s Kingdom
             </h2>
             <p className="text-gray-600 mt-4 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum.
+              At Kingdom Life International Church, our mission is to spread the
+              gospel of Jesus Christ, making disciples of all nations. We
+              envision a church that transforms lives through the power of
+              God&apos;s Word, raising Spirit-filled believers who impact their
+              communities and nations for Christ. Our vision is to be a light in
+              Nigeria and beyond, bringing hope, healing, and restoration
+              through Christ&apos;s love.
             </p>
           </div>
 
@@ -30,14 +32,16 @@ const MissionAndVision: React.FC = () => {
               What We Do
             </h3>
             <h2 className="text-2xl font-bold text-gray-800 mt-2">
-              Bringing Peace and Joy to the World
+              Building Lives, Restoring Hope
             </h2>
             <p className="text-gray-600 mt-4 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum.
+              We are committed to spiritual growth through dynamic worship,
+              sound biblical teaching, and impactful community outreach. Our
+              ministries include vibrant worship services, discipleship
+              programs, youth empowerment, marriage and family counseling, and
+              humanitarian services. Through these initiatives, we&apos;re
+              helping people discover their purpose in Christ and live
+              fulfilling lives that glorify God.
             </p>
           </div>
         </div>

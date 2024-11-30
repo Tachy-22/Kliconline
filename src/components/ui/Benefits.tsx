@@ -15,34 +15,37 @@ type Benefit = {
 const benefits: Benefit[] = [
   {
     id: 1,
-    title: "Find Fulfillment and Joy",
+    title: "Spirit-Filled Worship",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Experience powerful, life-transforming worship services where God's presence is manifested through anointed praise, worship, and the teaching of God's Word.",
     image: "/hero-img.svg",
     icon: Heart,
   },
   {
     id: 2,
-    title: "Shared Values",
+    title: "Strong Fellowship",
     description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Be part of a loving community of believers who support, encourage, and pray for one another. Our small groups and fellowship programs help build lasting spiritual relationships.",
     image: "/hero-img.svg",
+    //image: "/fellowship.jpg",
     icon: Users,
   },
   {
     id: 3,
-    title: "Charity Events",
+    title: "Kingdom Programs",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Participate in our various spiritual development programs, including Bible study, leadership training, youth ministry, and special events designed to strengthen your faith.",
     image: "/hero-img.svg",
+    //image: "/bible-study.jpg",
     icon: CalendarCheck,
   },
   {
     id: 4,
-    title: "Community Support",
+    title: "Community Impact",
     description:
-      "Connect with a supportive community that encourages growth and positive impact in your life.",
+      "Join our outreach initiatives that touch lives through humanitarian services, educational support, and community development projects, demonstrating Christ's love in practical ways.",
     image: "/hero-img.svg",
+    //image: "/community-outreach.jpg",
     icon: HandHeart,
   },
 ];

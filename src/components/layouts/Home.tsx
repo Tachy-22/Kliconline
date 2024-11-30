@@ -9,8 +9,9 @@ import WhyUs from "../ui/WhyUs";
 //import LatestSermon from "../ui/LatestSermon";
 import OurBlogs from "../ui/OurBlogs";
 import OurBranches from "../ui/OurBranches";
+import ViewSermons from "../ui/ViewSermons";
 
-const Home = () => {
+const Home = ({ sermons }: { sermons: SermonT[] }) => {
   return (
     <div className="flex flex-col ">
       <Hero />
@@ -19,7 +20,7 @@ const Home = () => {
         <Values />
         <CTA />
         <WhyUs />
-        {/* <LatestSermon sermon={sermon} /> */}
+        <ViewSermons sermons={sermons} />
         <OurBranches />
         <OurBlogs />
       </div>
