@@ -1,19 +1,18 @@
-//import { fetchCollection } from "@/actions/fettchCollection";
-//import Events from "@/components/layouts/Events";
+import { fetchCollection } from "@/actions/fettchCollection";
+import Events from "@/components/layouts/Events";
 import React from "react";
 
-
-
 const Page = async () => {
-  // const events = await fetchCollection("events");
-  
-  // const validEvents = "items" in events 
-  //   ? (events.items as EventT[]).filter(event => event && event.date)
-  //   : [];
+  const events = await fetchCollection("events");
 
-  // return <Events events={validEvents} />;
+  const validEvents =
+    "items" in events
+      ? (events.items as EventT[]).filter((event) => event && event.date)
+      : [];
 
-  return <div>Events page</div>
+  return <Events events={validEvents} />;
+
+  // return <div>Events page</div>
 };
 
 export default Page;

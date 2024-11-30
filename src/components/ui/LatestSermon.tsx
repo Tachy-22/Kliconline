@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download } from "lucide-react";
-import { downloadSermon } from "@/actions/download";
-import SubmitButton from "./SubmitButton";
+import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
 
 const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const getLatestSermon = () => {
     const today = new Date();
@@ -29,32 +29,13 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
   };
 
   const latestSermon = getLatestSermon();
+  console.log({ latestSermon });
+
+  if (!latestSermon) {
+    return <p>No sermons available.</p>;
+  }
 
   const { date } = latestSermon;
-
-  const handleDownload = async () => {
-    if (!latestSermon.audioUrl) return;
-
-    try {
-      const result = await downloadSermon(latestSermon.audioUrl, latestSermon.title);
-      if (!result.ok) throw new Error(result.error);
-
-      if (!result.blob) throw new Error("Blob is undefined");
-      const blobUrl = window.URL.createObjectURL(result.blob);
-      const a = document.createElement("a");
-      a.style.display = "none";
-      a.href = blobUrl;
-      a.download = result.filename;
-
-      document.body.appendChild(a);
-      a.click();
-
-      window.URL.revokeObjectURL(blobUrl);
-      document.body.removeChild(a);
-    } catch (error) {
-      console.error("Download failed:", error);
-    }
-  };
 
   // Convert Firebase timestamp or Date object to Date
   const sermonDate =
@@ -80,7 +61,7 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
       </div>
       <div className="max-w-7xl mx-auto w-full gap flex flex-col lg:flex-row items-center justify-between lg:h-[25rem]">
         <div className="bg-[#FFF5EB] rounded-lg p-6 px-[3rem] py-[2rem] w-full lg:w-1/3 flex flex-col justify-between min-h-full h-full relative gap-6">
-          <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full">
+          <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full !text-black">
             <span className="font-bold">{dayFormatter.format(sermonDate)}</span>
             <span>
               {monthFormatter.format(sermonDate)},{" "}
@@ -98,25 +79,28 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
             <p className="text-gray-600 italic">Speaker: {latestSermon.preacher}</p>
           </div>
 
-          <form action={handleDownload} className="w-full">
-            <SubmitButton
-              loadingText="Downloading..."
-              disabled={!latestSermon.audioUrl}
-              className="bg-black flex text-[#FFD2A4] hover:bg-black/90 rounded-xl p-6 w-full items-center"
-            >
-              Download
-              <Download />
-            </SubmitButton>
-          </form>
+          <audio
+            ref={audioRef}
+            controls
+            className="w-full focus:outline-none rounded-full [&::-webkit-media-controls-panel]:bg-orange-50 border border-orange-800/50 [&::-webkit-media-controls-current-time-display]:text-black [&::-webkit-media-controls-time-remaining-display]:text-black"
+            preload="metadata"
+          >
+            <source
+              className="w-full focus:outline-none rounded-lg"
+              src={latestSermon.audioUrl}
+              type="audio/mpeg"
+            />
+            Your browser does not support the audio element.
+          </audio>
         </div>
 
         <div className="relative w-full lg:w-2/3 lg:min-h-full lg:h-full h-fit">
           <Image
             src={latestSermon.thumbnailUrl || "/sermon-img.svg"}
             alt={latestSermon.title}
-            width={800}
-            height={450}
-            className="rounded-lg object-cover w-full h-full"
+            width={2000}
+            height={1000}
+            className="rounded-lg object-cover w-full h-full bg-gray-300"
           />
         </div>
       </div>

@@ -14,10 +14,10 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event }) => {
     <div className="flex flex-col gap-4">
       <div className="relative w-full h-[20rem]">
         <Image
-          src={event?.images[0] || "/sermon-img.svg"}
+          src={event.images[0] || "/sermon-img.svg"}
           alt={event.title || "Upcoming Event"}
-          width={800}
-          height={450}
+          width={2000}
+          height={1000}
           className=" object-cover w-full h-full bg-gray-300 rounded"
         />
       </div>

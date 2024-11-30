@@ -1,9 +1,8 @@
 "use client";
-import React from "react";
-import { Download } from "lucide-react";
-//import { download } from "@/actions/download";
-import SubmitButton from "./SubmitButton";
-import { downloadSermon } from "@/actions/download";
+import React, { useRef } from "react";
+// remove Download import since we won't use it
+//import { Download } from "lucide-react";
+
 
 const SermonCard: React.FC<SermonT> = ({
   title,
@@ -14,50 +13,32 @@ const SermonCard: React.FC<SermonT> = ({
   category,
   // times = [],
 }) => {
-  const handleDownload = async () => {
-    if (!audioUrl) return;
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-    try {
-      const result = await downloadSermon(audioUrl, title);
-      if (!result.ok) throw new Error(result.error);
-
-      // Create a download link for the blob
-      if (!result.blob) throw new Error("Blob is undefined");
-      const blobUrl = window.URL.createObjectURL(result.blob);
-      const a = document.createElement("a");
-      a.style.display = "none";
-      a.href = blobUrl;
-      a.download = result.filename;
-
-      document.body.appendChild(a);
-      a.click();
-
-      // Cleanup
-      window.URL.revokeObjectURL(blobUrl);
-      document.body.removeChild(a);
-    } catch (error) {
-      console.error("Download failed:", error);
-    }
-  };
+  // Remove handleDownload function since we won't need it
 
   // Convert Firebase timestamp or Date object to Date
   const sermonDate =
     "seconds" in date ? new Date(date.seconds * 1000) : new Date(date);
 
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', {
-      month: 'long',
-      day: '2-digit',
-      year: 'numeric'
-    });
-  };
 
-  const formattedDate = formatDate(sermonDate);
-
+  const monthFormatter = new Intl.DateTimeFormat("en-US", {
+    month: "long", // Options: 'long' (e.g., "November"), 'short' (e.g., "Nov"), or 'narrow' (e.g., "N")
+  });
+  const dayFormatter = new Intl.DateTimeFormat("en-US", {
+    day: "2-digit", // Options: 'long' (e.g., "November"), 'short' (e.g., "Nov"), or 'narrow' (e.g., "N")
+  });
+  const yearFormatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+  });
   return (
-    <div className="bg-[#FFF5EB] group overflow-hidden shadow rounded-lg pt-2 px-[2rem] pb-[4rem] w-full flex flex-col justify-between min-h-full h-full relative gap-6">
-      <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full">
-        <span>{formattedDate}</span>
+    <div className="bg-[#FFF5EB] group overflow-hidden shadow rounded-lg  px-[2rem] py-[2rem] w-full flex flex-col justify-between min-h-full h-full relative gap-6">
+      <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full !text-black">
+        <span className="font-bold">{dayFormatter.format(sermonDate)}</span>
+        <span>
+          {monthFormatter.format(sermonDate)},{" "}
+          {yearFormatter.format(sermonDate)}
+        </span>
       </div>
       <div className="text-sm text-orange-600 uppercase font-medium">
         {category}
@@ -69,16 +50,22 @@ const SermonCard: React.FC<SermonT> = ({
           <p className="text-gray-600 italic">Speaker: {preacher}</p>
         </div>
       </div>
-    
-      <form action={handleDownload} className="w-full">
-        <SubmitButton
-          disabled={!audioUrl}
-          className="bg-black flex text-[#FFD2A4] hover:bg-black/90 rounded-xl p-6 w-full items-center"
-        >
-          Download
-          <Download />
-        </SubmitButton>
-      </form>
+
+      <audio
+        ref={audioRef}
+        controls
+        className="w-full focus:outline-none rounded-full [&::-webkit-media-controls-panel]:bg-orange-50 border border-orange-800 [&::-webkit-media-controls-current-time-display]:text-black [&::-webkit-media-controls-time-remaining-display]:text-black h-[3rem]"
+        preload="metadata"
+      >
+        <source
+          className="w-full focus:outline-none   rounded-lg"
+          src={audioUrl}
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
+
+      {/* Remove the form and button */}
 
       <div className="w-full h-3 bg-[#ffd2a4] absolute bottom-0 left-0 transition-all duration-300"></div>
     </div>
