@@ -71,7 +71,7 @@ export function DeleteConfirmationModal({
           </AlertDialogCancel>
           <form action={handleDelete} className="">
             <SubmitButton
-              loadingText="deleting..."
+              loadingtext="deleting..."
               className="bg-red-500 rounded-xl text-white hover:bg-red-600"
             >
               Delete
