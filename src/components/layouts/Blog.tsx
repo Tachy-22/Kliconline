@@ -3,6 +3,7 @@
 import React from "react";
 import parse from "html-react-parser";
 import Image from "next/image";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 const Blog = ({ blogData }: { blogData: BlogT }) => {
   const { title, author, date, content, category, imageUrls } = blogData;
@@ -20,11 +21,7 @@ const Blog = ({ blogData }: { blogData: BlogT }) => {
         <div className="flex items-center justify-center space-x-4 text-gray-600 text-sm sm:text-base">
           <span className="font-medium">{author}</span>
           <span>•</span>
-          <time className="text-gray-500">
-            {date instanceof Date
-              ? date.toLocaleDateString()
-              : new Date(date.seconds * 1000).toLocaleDateString()}
-          </time>
+          <time className="text-gray-500">{formatToMonthDayYear(date)}</time>
         </div>
         <div className="h-full w-full flex lg:col-span-2">
           {" "}

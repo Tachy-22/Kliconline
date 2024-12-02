@@ -7,7 +7,6 @@ import { Search } from "lucide-react";
 import { DatePickerWithRange } from "./DatePickerWithRange";
 import { DateRange } from "react-day-picker";
 
-
 interface SermonListProps {
   sermons: SermonT[];
 }
@@ -29,12 +28,10 @@ const SermonList: React.FC<SermonListProps> = ({ sermons: initialSermons }) => {
   };
 
   function filterDataByDateRange(data: SermonT[], range: DateRange) {
-    return data.filter(
-      (item) => {
-        const itemDate = item.date instanceof Date ? item.date : new Date(item.date.seconds * 1000);
-        return itemDate >= (range.from as Date) && itemDate <= (range.to as Date);
-      }
-    );
+    return data.filter((item) => {
+      const itemDate = new Date(item.date);
+      return itemDate >= (range.from as Date) && itemDate <= (range.to as Date);
+    });
   }
 
   // Search sermons based on the title or description

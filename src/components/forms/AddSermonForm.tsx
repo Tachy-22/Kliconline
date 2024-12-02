@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {  CardContent, CardHeader } from "@/components/ui/card";
+import { CardContent, CardHeader } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/popover";
 import { CalendarIcon, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+//import { format } from "date-fns";
 import {
   Select,
   SelectContent,
@@ -36,6 +36,7 @@ import { updateDocument } from "@/actions/updateDocument";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { FileInput } from "../ui/FileInput";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 // interface SermonFormData {
 //   title: string;
@@ -71,7 +72,7 @@ export default function AddSermonForm({
         ? {
             title: sermon.title || "",
             description: sermon.description || "",
-            date: sermon.date || new Date(),
+            date: sermon.date || new Date().toLocaleDateString("en-US"),
             preacher: sermon.preacher || "",
             videoUrl: sermon.videoUrl || "",
             audioUrl: sermon.audioUrl || "",
@@ -82,7 +83,7 @@ export default function AddSermonForm({
         : {
             title: "",
             description: "",
-            date: new Date(),
+            date: new Date().toLocaleDateString("en-US"),
             preacher: "",
             videoUrl: "",
             audioUrl: "",
@@ -150,164 +151,148 @@ export default function AddSermonForm({
             transition={{ duration: 0.5, ease: "anticipate" }}
             style={{ overflow: "hidden" }}
           >
-            
-              <CardContent>
-                <Form {...form}>
-                  <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-4"
-                  >
-                    <FormField
-                      control={form.control}
-                      name="title"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-gray-900">Title</FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-slate-700  placeholder:text-gray-500 rounded"
-                              placeholder="Sermon title"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+            <CardContent>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4"
+                >
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-900">Title</FormLabel>
+                        <FormControl>
+                          <Input
+                            className="border-slate-700  placeholder:text-gray-500 rounded"
+                            placeholder="Sermon title"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                    <FormField
-                      control={form.control}
-                      name="description"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-gray-900">
-                            Description
-                          </FormLabel>
-                          <FormControl>
-                            <Textarea
-                              className="rounded placeholder:text-gray-500"
-                              placeholder="Sermon description"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                  <FormField
+                    control={form.control}
+                    name="description"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-900">
+                          Description
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea
+                            className="rounded placeholder:text-gray-500"
+                            placeholder="Sermon description"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                    <FormField
-                      control={form.control}
-                      name="date"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-gray-900">Date</FormLabel>
-                          <Popover>
-                            <PopoverTrigger className="rounded" asChild>
-                              <FormControl>
-                                <Button
-                                  variant="outline"
-                                  className={cn(
-                                    "w-full justify-start text-left font-normal",
-                                    !field.value && "text-muted-foreground"
-                                  )}
-                                >
-                                  <CalendarIcon className="mr-2 h-4 w-4" />
-                                  {field.value ? (
-                                    format(
-                                      field.value instanceof Date
-                                        ? field.value
-                                        : new Date(field.value.seconds * 1000),
-                                      "PPP"
-                                    )
-                                  ) : (
-                                    <span>Pick a date</span>
-                                  )}
-                                </Button>
-                              </FormControl>
-                            </PopoverTrigger>
-                            <PopoverContent
-                              className="w-auto p-0"
-                              align="start"
-                            >
-                              <Calendar
-                                className="bg-white"
-                                mode="single"
-                                selected={
-                                  field.value instanceof Date
-                                    ? field.value
-                                    : field.value
-                                    ? new Date(field.value.seconds * 1000)
-                                    : undefined
-                                }
-                                onSelect={field.onChange}
-                                disabled={(date) =>
-                                  date <
-                                  new Date(new Date().setHours(0, 0, 0, 0))
-                                }
-                              />
-                            </PopoverContent>
-                          </Popover>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="preacher"
-                      render={({ field }) => (
-                        <FormItem className="rounded">
-                          <FormLabel className="text-gray-900">
-                            Preacher
-                          </FormLabel>
-                          <FormControl>
-                            <Input
-                              className="border-slate-700  placeholder:text-gray-500 rounded"
-                              placeholder="Preacher name"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="category"
-                      render={({ field }) => (
-                        <FormItem className="rounded">
-                          <FormLabel className="text-gray-900">
-                            Category
-                          </FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
+                  <FormField
+                    control={form.control}
+                    name="date"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-900">Date</FormLabel>
+                        <Popover>
+                          <PopoverTrigger className="rounded" asChild>
                             <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select a category" />
-                              </SelectTrigger>
+                              <Button
+                                variant="outline"
+                                className={cn(
+                                  "w-full justify-start text-left font-normal",
+                                  !field.value && "text-muted-foreground"
+                                )}
+                              >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {field.value ? (
+                                  formatToMonthDayYear(field.value)
+                                ) : (
+                                  <span>Pick a date</span>
+                                )}
+                              </Button>
                             </FormControl>
-                            <SelectContent>
-                              <SelectItem value="sunday-service">
-                                Sunday Service
-                              </SelectItem>
-                              <SelectItem value="bible-study">
-                                Bible Study
-                              </SelectItem>
-                              <SelectItem value="special-service">
-                                Special Service
-                              </SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <Calendar
+                              className="bg-white"
+                              mode="single"
+                              selected={new Date(field.value)}
+                              onSelect={field.onChange}
+                              disabled={(date) =>
+                                date < new Date(new Date().setHours(0, 0, 0, 0))
+                              }
+                            />
+                          </PopoverContent>
+                        </Popover>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                    <div className="grid grid-cols-1 gap-4">
-                      {/* <FormField
+                  <FormField
+                    control={form.control}
+                    name="preacher"
+                    render={({ field }) => (
+                      <FormItem className="rounded">
+                        <FormLabel className="text-gray-900">
+                          Preacher
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            className="border-slate-700  placeholder:text-gray-500 rounded"
+                            placeholder="Preacher name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="category"
+                    render={({ field }) => (
+                      <FormItem className="rounded">
+                        <FormLabel className="text-gray-900">
+                          Category
+                        </FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a category" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="sunday-service">
+                              Sunday Service
+                            </SelectItem>
+                            <SelectItem value="bible-study">
+                              Bible Study
+                            </SelectItem>
+                            <SelectItem value="special-service">
+                              Special Service
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <div className="grid grid-cols-1 gap-4">
+                    {/* <FormField
                         control={form.control}
                         name="videoUrl"
                         render={({ field }) => (
@@ -327,51 +312,18 @@ export default function AddSermonForm({
                         )}
                       /> */}
 
-                      <FormField
-                        control={form.control}
-                        name="audioUrl"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-gray-900">
-                              Audio File
-                            </FormLabel>
-                            <FormControl>
-                              <FileInput
-                                className="rounded"
-                                accept="audio/*"
-                                multiple={false}
-                                maxSize={1}
-                                initialFiles={field.value ? [field.value] : []}
-                                onUploadComplete={(files) => {
-                                  if (files.length > 0) {
-                                    field.onChange(files[0].url);
-                                  }
-                                }}
-                                onError={(error) => {
-                                  form.setError("audioUrl", {
-                                    type: "manual",
-                                    message: error,
-                                  });
-                                }}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
                     <FormField
                       control={form.control}
-                      name="thumbnailUrl"
+                      name="audioUrl"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-gray-900">
-                            Thumbnail image
+                            Audio File
                           </FormLabel>
                           <FormControl>
                             <FileInput
-                              accept="image/*"
+                              className="rounded"
+                              accept="audio/*"
                               multiple={false}
                               maxSize={1}
                               initialFiles={field.value ? [field.value] : []}
@@ -381,7 +333,7 @@ export default function AddSermonForm({
                                 }
                               }}
                               onError={(error) => {
-                                form.setError("thumbnailUrl", {
+                                form.setError("audioUrl", {
                                   type: "manual",
                                   message: error,
                                 });
@@ -392,41 +344,74 @@ export default function AddSermonForm({
                         </FormItem>
                       )}
                     />
+                  </div>
 
-                    <FormField
-                      control={form.control}
-                      name="isPublished"
-                      render={({ field }) => (
-                        <FormItem className="flex items-center justify-between rounded border p-3">
-                          <div className="space-y-0.5">
-                            <FormLabel className="text-gray-900">
-                              Published
-                            </FormLabel>
-                          </div>
-                          <FormControl>
-                            <Switch
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
-                            />
-                          </FormControl>
-                        </FormItem>
-                      )}
-                    />
+                  <FormField
+                    control={form.control}
+                    name="thumbnailUrl"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-900">
+                          Thumbnail image
+                        </FormLabel>
+                        <FormControl>
+                          <FileInput
+                            accept="image/*"
+                            multiple={false}
+                            maxSize={1}
+                            initialFiles={field.value ? [field.value] : []}
+                            onUploadComplete={(files) => {
+                              if (files.length > 0) {
+                                field.onChange(files[0].url);
+                              }
+                            }}
+                            onError={(error) => {
+                              form.setError("thumbnailUrl", {
+                                type: "manual",
+                                message: error,
+                              });
+                            }}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                    <Button
-                      type="submit"
-                      disabled={submitting}
-                      className=" bg-orange-500 text-white  hover:bg-orange-600 transition-colors duration-300 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded w-full"
-                    >
-                      {submitting
-                        ? "Submitting..."
-                        : update
-                        ? "Update Sermon"
-                        : "Add Sermon"}
-                    </Button>
-                  </form>
-                </Form>
-              </CardContent>
+                  <FormField
+                    control={form.control}
+                    name="isPublished"
+                    render={({ field }) => (
+                      <FormItem className="flex items-center justify-between rounded border p-3">
+                        <div className="space-y-0.5">
+                          <FormLabel className="text-gray-900">
+                            Published
+                          </FormLabel>
+                        </div>
+                        <FormControl>
+                          <Switch
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+
+                  <Button
+                    type="submit"
+                    disabled={submitting}
+                    className=" bg-orange-500 text-white  hover:bg-orange-600 transition-colors duration-300 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded w-full"
+                  >
+                    {submitting
+                      ? "Submitting..."
+                      : update
+                      ? "Update Sermon"
+                      : "Add Sermon"}
+                  </Button>
+                </form>
+              </Form>
+            </CardContent>
           </motion.div>
         )}
       </AnimatePresence>

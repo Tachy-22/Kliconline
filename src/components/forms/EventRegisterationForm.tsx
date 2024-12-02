@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import { MapPin, Clock } from "lucide-react";
 import { addDocument } from "@/actions/addDocument";
 import { usePathname } from "next/navigation";
-import SubmitButton from "./SubmitButton";
+import SubmitButton from "../ui/SubmitButton";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 interface RegistrationData extends Record<string, unknown> {
   name: string;
@@ -28,9 +29,9 @@ const EventRegisterationForm = ({ event }: EventProps) => {
 
   const eventDate = event.date;
   const eventId = event.id;
-  const formattedDate = eventDate instanceof Date 
-    ? eventDate.toLocaleDateString()
-    : new Date(eventDate.seconds * 1000).toLocaleDateString()
+  const formattedDate = formatToMonthDayYear(eventDate);
+
+    
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,9 +79,7 @@ const EventRegisterationForm = ({ event }: EventProps) => {
             type="text"
             placeholder="Leonard John"
             value={formData.name}
-            onChange={(e) =>
-              setFormData({ ...formData, name: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
           />
         </div>

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import EventDetails from "../ui/EventDetails";
-import EventRegisterationForm from "../ui/EventRegisterationForm";
+import EventRegisterationForm from "../forms/EventRegisterationForm";
 import EventsList from "../ui/EventsList";
 
 interface EventsProps {
@@ -11,15 +11,16 @@ interface EventsProps {
 const Events = ({ events }: EventsProps) => {
   const success = Array.isArray(events) || "items" in events;
   const error = !success ? "Failed to load events" : null;
-  
+
   // Get the most recent event by date
-  const mostRecentEvent = success && events.length > 0 
-    ? events.reduce((latest, current) => {
-        const latestDate = new Date('seconds' in latest.date ? latest.date.seconds * 1000 : latest.date);
-        const currentDate = new Date('seconds' in current.date ? current.date.seconds * 1000 : current.date);
-        return currentDate > latestDate ? current : latest;
-      }, events[0])
-    : null;
+  const mostRecentEvent =
+    success && events.length > 0
+      ? events.reduce((latest, current) => {
+          const latestDate = new Date(latest.date);
+          const currentDate = new Date(current.date);
+          return currentDate > latestDate ? current : latest;
+        }, events[0])
+      : null;
 
   console.log({ events });
   return (

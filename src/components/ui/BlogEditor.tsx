@@ -37,7 +37,7 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
 
   const path = usePathname();
   const [blogData, setBlogData] = useState<BlogT>(
-    update && blog ? (blog as BlogT) : (defaultBlogData as BlogT)
+    update && blog ? (blog as BlogT) : (defaultBlogData as unknown as BlogT)
   );
   const [isFormOpen, setIsFormOpen] = useState(update);
   const [uploadedFiles, setUploadedFiles] = useState<string[]>(
@@ -84,7 +84,7 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
         onClose?.();
       } else {
         await addDocument("blogs", blogData, path as string);
-        setBlogData(defaultBlogData as BlogT);
+        setBlogData(defaultBlogData as unknown as BlogT);
         setIsFormOpen(false);
       }
     } catch (error) {

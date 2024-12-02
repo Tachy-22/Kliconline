@@ -1,8 +1,8 @@
 "use client";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 import React, { useRef } from "react";
 // remove Download import since we won't use it
 //import { Download } from "lucide-react";
-
 
 const SermonCard: React.FC<SermonT> = ({
   title,
@@ -18,27 +18,12 @@ const SermonCard: React.FC<SermonT> = ({
   // Remove handleDownload function since we won't need it
 
   // Convert Firebase timestamp or Date object to Date
-  const sermonDate =
-    "seconds" in date ? new Date(date.seconds * 1000) : new Date(date);
+  const sermonDate = formatToMonthDayYear(date);
 
-
-  const monthFormatter = new Intl.DateTimeFormat("en-US", {
-    month: "long", // Options: 'long' (e.g., "November"), 'short' (e.g., "Nov"), or 'narrow' (e.g., "N")
-  });
-  const dayFormatter = new Intl.DateTimeFormat("en-US", {
-    day: "2-digit", // Options: 'long' (e.g., "November"), 'short' (e.g., "Nov"), or 'narrow' (e.g., "N")
-  });
-  const yearFormatter = new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-  });
   return (
     <div className="bg-[#FFF5EB] group overflow-hidden shadow rounded-lg  px-[2rem] py-[2rem] w-full flex flex-col justify-between min-h-full h-full relative gap-6">
       <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full !text-black">
-        <span className="font-bold">{dayFormatter.format(sermonDate)}</span>
-        <span>
-          {monthFormatter.format(sermonDate)},{" "}
-          {yearFormatter.format(sermonDate)}
-        </span>
+        {sermonDate}
       </div>
       <div className="text-sm text-orange-600 uppercase font-medium">
         {category}

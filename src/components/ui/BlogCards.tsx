@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 interface BlogCardProps {
   blog: BlogT;
@@ -23,9 +24,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
       <div className="pt-7  text-gray-500  font-semibold px-8">
         By {author}
         <br />
-        {date instanceof Date
-          ? date.toLocaleDateString()
-          : new Date(date.seconds * 1000).toLocaleDateString()}
+        {formatToMonthDayYear(date)}
       </div>
       {/* Bottom Accent */}
       <div className="w-full h-3 bg-[#ffd2a4] absolute bottom-0 group-hover:translate-y-0 translate-y-[50%] left-0 transition-all duration-300"></div>{" "}

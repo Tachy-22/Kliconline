@@ -19,7 +19,7 @@ const EventSummaryCard: React.FC<EventT> = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const eventDate = date instanceof Date ? date : new Date(date.seconds * 1000); // Convert Timestamp to Date
+  const eventDate = new Date(date); // Convert Timestamp to Date
   const isPastEvent = eventDate < new Date();
 
   const dayFormatter = new Intl.DateTimeFormat('en', { day: 'numeric' });

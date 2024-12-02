@@ -73,15 +73,13 @@ interface EventsListProps {
 const EventsList: React.FC<EventsListProps> = ({ events }) => {
   const now = new Date();
   const pastEvents = events.filter(({ date }) => {
-    const eventDate =
-      date instanceof Date ? date : new Date(date.seconds * 1000); // Convert Timestamp to Date
+    const eventDate = new Date(date); // Convert Timestamp to Date
     const yes = eventDate < now;
     console.log({ eventDate, yes, now });
     return eventDate < now;
   });
   const upcomingEvents = events.filter(({ date }) => {
-    const eventDate =
-      date instanceof Date ? date : new Date(date.seconds * 1000); // Convert Timestamp to Date
+    const eventDate = new Date(date); // Convert Timestamp to Date
     console.log({ eventDate });
     return eventDate >= now;
   });

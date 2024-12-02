@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/popover";
 import { CalendarIcon, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+//import { format } from "date-fns";
 import {
   Select,
   SelectContent,
@@ -36,6 +36,7 @@ import { updateDocument } from "@/actions/updateDocument";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { FileInput, FileMetadata } from "../ui/FileInput";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 interface AddEventFormProps {
   update?: boolean;
@@ -46,7 +47,7 @@ interface AddEventFormProps {
 type FormData = {
   title: string;
   description: string;
-  date: Date | { seconds: number; nanoseconds: number };
+  date: string;
   time: string;
   location: string;
   category: string;
@@ -243,12 +244,7 @@ export default function AddEventForm({
                                 )}
                               >
                                 {field.value ? (
-                                  format(
-                                    field.value instanceof Date
-                                      ? field.value
-                                      : new Date(field.value.seconds * 1000),
-                                    "PPP"
-                                  )
+                                  formatToMonthDayYear(field.value)
                                 ) : (
                                   <span>Pick a date</span>
                                 )}
@@ -260,13 +256,7 @@ export default function AddEventForm({
                             <Calendar
                               className="bg-white"
                               mode="single"
-                              selected={
-                                field.value instanceof Date
-                                  ? field.value
-                                  : field.value
-                                  ? new Date(field.value.seconds * 1000)
-                                  : undefined
-                              }
+                              selected={new Date(field.value)}
                               onSelect={field.onChange}
                               disabled={(date) =>
                                 date < new Date(new Date().setHours(0, 0, 0, 0))
