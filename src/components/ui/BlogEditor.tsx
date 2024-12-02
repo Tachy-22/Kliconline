@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import  { ContentEditableEvent } from "react-simple-wysiwyg";
+//import  { ContentEditableEvent } from "react-simple-wysiwyg";
 import Blog from "../layouts/Blog";
 import SubmitButton from "./SubmitButton";
 import { usePathname } from "next/navigation";
@@ -66,10 +66,7 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
     setBlogData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleEditorChange = (e: ContentEditableEvent) => {
-    setBlogData((prev) => ({ ...prev, content: e.target.value }));
-  };
-
+ 
   const handleJEditorChange = (contentString: string) => {
     setBlogData((prev) => ({ ...prev, content: contentString }));
   };
