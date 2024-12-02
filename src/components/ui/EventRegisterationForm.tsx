@@ -113,7 +113,7 @@ const EventRegisterationForm = ({ event }: EventProps) => {
           />
         </div>
         <SubmitButton
-          loadingText="Registering..."
+          loadingtext="Registering..."
           className="w-full py-3 mt-4 bg-orange-500 text-white font-medium rounded hover:bg-orange-600"
         >
           Register Now
