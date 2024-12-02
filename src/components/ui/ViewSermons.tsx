@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 const ViewSermons = ({ sermons }: { sermons: SermonT[] }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -11,15 +12,9 @@ const ViewSermons = ({ sermons }: { sermons: SermonT[] }) => {
   const getLatestSermon = () => {
     const today = new Date();
     return sermons.reduce((closest, sermon) => {
-      const sermonDate =
-        "seconds" in sermon.date
-          ? new Date(sermon.date.seconds * 1000)
-          : new Date(sermon.date);
+      const sermonDate = new Date(sermon.date);
 
-      const closestDate =
-        "seconds" in closest.date
-          ? new Date(closest.date.seconds * 1000)
-          : new Date(closest.date);
+      const closestDate = new Date(closest.date);
 
       const diffCurrent = Math.abs(today.getTime() - sermonDate.getTime());
       const diffClosest = Math.abs(today.getTime() - closestDate.getTime());
@@ -38,18 +33,9 @@ const ViewSermons = ({ sermons }: { sermons: SermonT[] }) => {
   const { date } = latestSermon;
 
   // Convert Firebase timestamp or Date object to Date
-  const sermonDate =
-    "seconds" in date ? new Date(date.seconds * 1000) : new Date(date);
+  const sermonDate = formatToMonthDayYear(date);
 
-  const monthFormatter = new Intl.DateTimeFormat("en-US", {
-    month: "long", // Options: 'long' (e.g., "November"), 'short' (e.g., "Nov"), or 'narrow' (e.g., "N")
-  });
-  const dayFormatter = new Intl.DateTimeFormat("en-US", {
-    day: "2-digit", // Options: 'long' (e.g., "November"), 'short' (e.g., "Nov"), or 'narrow' (e.g., "N")
-  });
-  const yearFormatter = new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-  });
+  
 
   return (
     <section className="bg-gray-50 py-16 flex flex-col gap-[3rem]">
@@ -62,11 +48,7 @@ const ViewSermons = ({ sermons }: { sermons: SermonT[] }) => {
       <div className="max-w-7xl mx-auto w-full gap flex flex-col lg:flex-row items-center justify-between lg:h-[25rem]">
         <div className="bg-[#FFF5EB] rounded-lg p-6 px-[3rem] py-[2rem] w-full lg:w-1/3 flex flex-col justify-between min-h-full h-full relative gap-6">
           <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full !text-black">
-            <span className="font-bold">{dayFormatter.format(sermonDate)}</span>
-            <span>
-              {monthFormatter.format(sermonDate)},{" "}
-              {yearFormatter.format(sermonDate)}
-            </span>
+            {sermonDate}
           </div>
 
           <div className="text-sm text-orange-600 uppercase font-medium">

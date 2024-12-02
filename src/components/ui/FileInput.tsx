@@ -252,7 +252,7 @@ export function FileInput({
                 <div
                   className={cn(
                     "h-2 rounded-full",
-                    file.error ? "bg-red-500" : "bg-blue-500"
+                    file.error ? "bg-red-500" : "bg-black"
                   )}
                   style={{ width: `${file.progress}%` }}
                 />

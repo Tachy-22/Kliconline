@@ -1,4 +1,4 @@
-"use sever";
+"use server";
 
 import {
   collection,
@@ -8,9 +8,9 @@ import {
   orderBy,
   limit,
   QueryConstraint,
+  Timestamp,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { FirebaseError } from "./addDocument";
 
 export type QueryOptions = {
   whereClause?: [
@@ -22,6 +22,12 @@ export type QueryOptions = {
   orderDirection?: "asc" | "desc";
   limitTo?: number;
 };
+
+export type FirebaseError = {
+  code: string;
+  message: string;
+};
+
 export async function fetchCollection<T>(
   collectionName: string,
   options?: QueryOptions
@@ -51,10 +57,33 @@ export async function fetchCollection<T>(
     const q = query(collection(db, collectionName), ...constraints);
     const querySnapshot = await getDocs(q);
 
-    const items = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as T[];
+    const items = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+
+      // Transform data to ensure all fields are plain objects or primitives
+      const transformedData = Object.entries(data).reduce(
+        (acc, [key, value]) => {
+          if (value instanceof Timestamp) {
+            acc[key] = value.toDate().toISOString(); // Convert Timestamp to ISO string
+          } else if (typeof value === "object" && value !== null) {
+            // Recursively handle nested objects if needed
+            acc[key] = JSON.parse(JSON.stringify(value));
+          } else {
+            acc[key] = value; // Keep primitive values as-is
+          }
+          return acc;
+        },
+        {} as Record<string, unknown>
+      );
+      console.log({
+        id: doc.id,
+        ...transformedData,
+      });
+      return {
+        id: doc.id,
+        ...transformedData,
+      };
+    }) as T[];
 
     return { items, count: items.length };
   } catch (error) {

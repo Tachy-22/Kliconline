@@ -1,4 +1,5 @@
 "use client";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -24,15 +25,8 @@ const LatestBlog = ({ blogs }: { blogs: BlogT[] }) => {
   const getLatestBlog = () => {
     const today = new Date();
     return blogs.reduce((closest, blog) => {
-      const blogDate =
-        "seconds" in blog.date
-          ? new Date(blog.date.seconds * 1000)
-          : new Date(blog.date);
-
-      const closestDate =
-        "seconds" in closest.date
-          ? new Date(closest.date.seconds * 1000)
-          : new Date(closest.date);
+      const blogDate = new Date(blog.date); // Assumes `blog.date` is an ISO string or valid date format
+      const closestDate = new Date(closest.date);
 
       const diffCurrent = Math.abs(today.getTime() - blogDate.getTime());
       const diffClosest = Math.abs(today.getTime() - closestDate.getTime());
@@ -40,7 +34,6 @@ const LatestBlog = ({ blogs }: { blogs: BlogT[] }) => {
       return diffCurrent < diffClosest ? blog : closest;
     }, blogs[0]);
   };
-
   const latestBlog = getLatestBlog();
   const { date, author, title, excerpt, imageUrls, id } = latestBlog;
 
@@ -70,10 +63,8 @@ const LatestBlog = ({ blogs }: { blogs: BlogT[] }) => {
           <div className="p-6 flex flex-col justify-between lg:col-span-3">
             <div>
               <p className="text-sm text-gray-500">
-                {date instanceof Date
-                  ? date.toLocaleDateString()
-                  : new Date(date.seconds * 1000).toLocaleDateString()}{" "}
-                <span className="mx-2">|</span> By {author}
+                {formatToMonthDayYear(date)} <span className="mx-2">|</span> By{" "}
+                {author}
               </p>
               <h2 className="text-2xl font-bold text-gray-800 mt-4">{title}</h2>
               <p className="text-gray-600 mt-4">{excerpt}</p>

@@ -20,6 +20,7 @@ import { EditModal } from "../modals/EditModal";
 import { DeleteConfirmationModal } from "../modals/DeleteConfirmationModal";
 import AddEventForm from "../forms/AddEventForm";
 import Link from "next/link";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 //import Image from "next/image";
 //import { deleteDocument } from "@/actions/deleteDocument";
 
@@ -120,13 +121,7 @@ const EventsTable = ({ events }: { events: EventT[] }) => {
                     </TableCell>
                     <TableCell className="font-medium">{event.title}</TableCell>
                     <TableCell>{event.description}</TableCell>
-                    <TableCell>
-                      {event.date instanceof Date
-                        ? event.date.toLocaleDateString()
-                        : new Date(
-                            event.date.seconds * 1000
-                          ).toLocaleDateString()}
-                    </TableCell>
+                    <TableCell>{formatToMonthDayYear(event.date)}</TableCell>
                     <TableCell>{event.location}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">

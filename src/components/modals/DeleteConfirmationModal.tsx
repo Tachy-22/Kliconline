@@ -56,7 +56,7 @@ export function DeleteConfirmationModal({
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the
+            This action cannot be undone. This will permanently delete the {""}
             {name}.
           </AlertDialogDescription>
         </AlertDialogHeader>

@@ -16,6 +16,7 @@ import { Alert, AlertDescription } from "../ui/alert";
 import { EditModal } from "../modals/EditModal";
 import { DeleteConfirmationModal } from "../modals/DeleteConfirmationModal";
 import BlogEditor from "../ui/BlogEditor";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 const BlogsTable = ({ blogs }: { blogs: BlogT[] }) => {
   const slideIn = {
@@ -58,13 +59,7 @@ const BlogsTable = ({ blogs }: { blogs: BlogT[] }) => {
                   <TableRow key={index}>
                     <TableCell className="font-medium">{blog.title}</TableCell>
                     <TableCell>{blog.author}</TableCell>
-                    <TableCell>
-                      {blog.date instanceof Date
-                        ? blog.date.toLocaleDateString()
-                        : new Date(
-                            blog.date.seconds * 1000
-                          ).toLocaleDateString()}
-                    </TableCell>
+                    <TableCell>{formatToMonthDayYear(blog.date)}</TableCell>
                     <TableCell>{blog.category}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">

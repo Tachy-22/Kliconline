@@ -15,6 +15,7 @@ import { Alert, AlertDescription } from "../ui/alert";
 import { EditModal } from "../modals/EditModal";
 import { DeleteConfirmationModal } from "../modals/DeleteConfirmationModal";
 import AddSermonForm from "../forms/AddSermonForm";
+import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
   const success = Array.isArray(sermons);
@@ -93,13 +94,7 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
                       {sermon.title}
                     </TableCell>
                     <TableCell>{sermon.preacher}</TableCell>
-                    <TableCell>
-                      {sermon.date instanceof Date
-                        ? sermon.date.toLocaleDateString()
-                        : new Date(
-                            sermon.date.seconds * 1000
-                          ).toLocaleDateString()}
-                    </TableCell>
+                    <TableCell>{formatToMonthDayYear(sermon.date)}</TableCell>
                     <TableCell>{sermon.category}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">

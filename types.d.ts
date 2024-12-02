@@ -1,6 +1,6 @@
 interface EventT {
   id: string;
-  date: Date | { seconds: number; nanoseconds: number };
+  date: string;
   title: string;
   description: string;
   time: string;
@@ -18,7 +18,7 @@ interface Sermon {
   id: string;
   title: string;
   description: string;
-  date: Date | { seconds: number; nanoseconds: number };
+  date: string;
   times: string[];
   location: string;
   type: string;
@@ -33,7 +33,7 @@ interface SermonT {
 
   description: string;
 
-  date: Date | { seconds: number; nanoseconds: number };
+  date: string;
 
   preacher: string;
 
@@ -56,7 +56,7 @@ interface BlogT {
   author: string;
   excerpt: string;
   imageUrls: string[];
-  date: Date | { seconds: number; nanoseconds: number };
+  date: string;
   images?: string[];
   content: string;
   slug?: string;
@@ -78,5 +78,5 @@ interface ParticipantT {
   name: string;
   email: string;
   phone: string;
-  registrationDate: Date | { seconds: number; nanoseconds: number };
+  registrationDate: string;
 }
