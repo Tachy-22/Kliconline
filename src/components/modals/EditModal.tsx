@@ -18,9 +18,10 @@ import React from "react";
 
 interface EditModalProps {
   children: React.ReactElement;
+  title?: string;
 }
 
-export function EditModal({  children }: EditModalProps) {
+export function EditModal({ children, title }: EditModalProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -33,10 +34,10 @@ export function EditModal({  children }: EditModalProps) {
         {" "}
         <Pencil className="h-4 w-4" />
       </AlertDialogTrigger>
-      <AlertDialogContent className="max-w-3xl z-50  class rounded- bg-white">
+      <AlertDialogContent className="max-w-7xl z-50  class rounded- bg-white">
         <AlertDialogHeader className="w-full !flex justify-between">
           <AlertDialogTitle className="w-full flex justify-between items-center">
-            Edit Event
+            {title || "Edit "}
             <AlertDialogCancel
               onClick={() => {
                 setIsOpen(false);
@@ -47,11 +48,9 @@ export function EditModal({  children }: EditModalProps) {
             </AlertDialogCancel>
           </AlertDialogTitle>
         </AlertDialogHeader>
-        <AlertDialogDescription className="max-h-[80vh] overflow-auto">
-          <div className=" ">
+        <div className="max-h-[80vh] overflow-auto">
             {React.cloneElement(children, { onClose: () => setIsOpen(false) })}
-          </div>
-        </AlertDialogDescription>
+        </div>
         <AlertDialogFooter></AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

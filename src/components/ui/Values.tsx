@@ -29,7 +29,7 @@ const Values = () => {
       {/* Button */}
       <div className="mt-6">
         <Link
-          href="/blogs/2"
+          href="/blogs/llD6PDyPRahtUgTS19sL"
           className="px-4 py-2 bg-[#FFD2A4] text-black font-light rounded hover:bg-[#FFD2A4]/90 uppercase w-fit"
         >
           READ MORE{" "}

@@ -2,7 +2,7 @@
 
 import React from "react";
 import ContactHero from "../ui/ContactHero";
-import ContactForm from "../ui/ContactForm";
+import ContactForm from "../forms/ContactForm";
 
 const Contact = () => {
   return (

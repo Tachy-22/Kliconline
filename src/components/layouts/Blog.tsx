@@ -2,23 +2,14 @@
 
 import React from "react";
 import parse from "html-react-parser";
+import Image from "next/image";
 
-interface BlogProps {
-  blogData: {
-    title: string;
-    author: string;
-    date: string;
-    content: string;
-    category: string;
-  };
-}
-
-const Blog = ({ blogData }: BlogProps) => {
-  const { title, author, date, content, category } = blogData;
+const Blog = ({ blogData }: { blogData: BlogT }) => {
+  const { title, author, date, content, category, imageUrls } = blogData;
   const parsedContent = parse(content);
 
   return (
-    <article className="max-w-3xl mx-auto px-4 sm:px-8 py-12 sm:py-16">
+    <article className="max-w-[65rem] mx-auto px-2 sm:px-4 py-6 sm:py-12">
       <header className="mb-8 sm:mb-12 flex flex-col gap-5">
         <h2 className="text-lg text-orange-500 font-bold  uppercase max-w-[30rem] mx-auto text-center">
           {category}{" "}
@@ -29,7 +20,21 @@ const Blog = ({ blogData }: BlogProps) => {
         <div className="flex items-center justify-center space-x-4 text-gray-600 text-sm sm:text-base">
           <span className="font-medium">{author}</span>
           <span>•</span>
-          <time className="text-gray-500">{date}</time>
+          <time className="text-gray-500">
+            {date instanceof Date
+              ? date.toLocaleDateString()
+              : new Date(date.seconds * 1000).toLocaleDateString()}
+          </time>
+        </div>
+        <div className="h-full w-full flex lg:col-span-2">
+          {" "}
+          <Image
+            width={2000}
+            height={2000}
+            src={imageUrls[0] || "/hero-img.svg"}
+            alt={title}
+            className="w-full  h-[20rem] object-cover bg-gray-300"
+          />
         </div>
       </header>
       <div className="prose prose-lg max-w-none">{parsedContent} </div>

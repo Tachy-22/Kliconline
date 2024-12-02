@@ -9,7 +9,7 @@ import { useFormStatus } from "react-dom";
 // Define additional props for SubmitButton
 interface SubmitButtonProps extends ButtonProps {
   // Add any additional props specific to SubmitButton
-  loadingText?: string;
+  loadingtext?: string;
 }
 
 const SubmitButton: React.FC<SubmitButtonProps> = (props) => {
@@ -24,7 +24,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = (props) => {
       {...props} // Spread the additional props
     >
       {pending && <Loader2 className="animate-spin" />}
-      {pending ? props.loadingText : props.children || "submiting..."}
+      {pending ? props.loadingtext : props.children || "submiting..."}
     </Button>
   );
 };

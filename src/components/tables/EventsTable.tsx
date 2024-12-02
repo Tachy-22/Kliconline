@@ -19,6 +19,7 @@ import { Alert, AlertDescription } from "../ui/alert";
 import { EditModal } from "../modals/EditModal";
 import { DeleteConfirmationModal } from "../modals/DeleteConfirmationModal";
 import AddEventForm from "../forms/AddEventForm";
+import Link from "next/link";
 //import Image from "next/image";
 //import { deleteDocument } from "@/actions/deleteDocument";
 
@@ -129,14 +130,20 @@ const EventsTable = ({ events }: { events: EventT[] }) => {
                     <TableCell>{event.location}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
-                        <EditModal>
+                        <EditModal title="Edite Event">
                           <AddEventForm update event={event} />
                         </EditModal>
                         <DeleteConfirmationModal
-                          data={event}
+                          id={event.id}
                           collection="events"
                           name="event"
                         />
+                        <Link
+                          href={`/admin/events/${event.id}`}
+                          className="text-orange-500 hover:underline"
+                        >
+                          Participants
+                        </Link>
                       </div>
                     </TableCell>
                   </TableRow>

@@ -1,19 +1,18 @@
 "use client";
 
 import React from "react";
-import { Blog } from "./BlogList";
 import Link from "next/link";
 
 interface BlogCardProps {
-  blog: Blog;
+  blog: BlogT;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
-  const { category, title, excerpt, author, date } = blog;
+  const { category, title, author, date, excerpt } = blog;
 
   return (
     <Link
-      href={`blogs/${blog.title}`}
+      href={`blogs/${blog.id}`}
       className="bg-white relative rounded-lg shadow-md group py-10 flex flex-col gap-1 justify-between overflow-hidden hover:shadow-lg"
     >
       <p className="text-sm  px-8 text-orange-500 font-semibold uppercase">
@@ -24,7 +23,9 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
       <div className="pt-7  text-gray-500  font-semibold px-8">
         By {author}
         <br />
-        {date}
+        {date instanceof Date
+          ? date.toLocaleDateString()
+          : new Date(date.seconds * 1000).toLocaleDateString()}
       </div>
       {/* Bottom Accent */}
       <div className="w-full h-3 bg-[#ffd2a4] absolute bottom-0 group-hover:translate-y-0 translate-y-[50%] left-0 transition-all duration-300"></div>{" "}

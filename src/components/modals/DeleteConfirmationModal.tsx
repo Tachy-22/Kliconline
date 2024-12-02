@@ -3,7 +3,7 @@
 import { deleteDocument } from "@/actions/deleteDocument";
 import {
   AlertDialog,
-//  AlertDialogAction,
+  //  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -20,14 +20,14 @@ import SubmitButton from "../ui/SubmitButton";
 import { useState } from "react";
 
 interface DeleteConfirmationModalProps {
-  data: { id: string };
+  id: string;
   collection: string;
   name?: string;
   title?: string;
 }
 
 export function DeleteConfirmationModal({
-  data,
+  id,
   collection,
   name = "item",
   title = "Are you sure?",
@@ -38,8 +38,8 @@ export function DeleteConfirmationModal({
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleDelete = async () => {
-    if (data) {
-      await deleteDocument(collection, data.id, path as string);
+    if (id) {
+      await deleteDocument(collection, id, path as string);
       setIsOpen(false);
     }
   };

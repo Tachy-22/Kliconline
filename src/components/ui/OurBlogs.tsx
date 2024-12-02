@@ -10,7 +10,7 @@ const OurBlogs: React.FC = () => {
         "Discover practical ways to deepen your connection with God through daily prayer.",
       author: "Pastor Sarah Williams",
       date: "Sunday 12 November, 2024",
-      blogId: "1",
+      blogId: "llD6PDyPRahtUgTS19sL",
     },
     {
       category: "Community",
@@ -19,7 +19,9 @@ const OurBlogs: React.FC = () => {
         "Explore how serving in your local community reflects God’s love and purpose.",
       author: "Brother James Carter",
       date: "Friday 8 November, 2024",
-      blogId: "2",
+            blogId: "llD6PDyPRahtUgTS19sL",
+
+      //blogId: "2",
     },
     {
       category: "Worship",
@@ -28,7 +30,9 @@ const OurBlogs: React.FC = () => {
         "Learn how worship can uplift your spirit and strengthen your faith during tough times.",
       author: "Sister Grace Lee",
       date: "Tuesday 5 November, 2024",
-      blogId: "1",
+            blogId: "llD6PDyPRahtUgTS19sL",
+
+      //blogId: "1",
     },
     {
       category: "Events",
@@ -37,7 +41,9 @@ const OurBlogs: React.FC = () => {
         "Join us for a joyful Christmas service and community celebration this December!",
       author: "Church Admin Team",
       date: "Monday 20 November, 2024",
-      blogId: "1",
+            blogId: "llD6PDyPRahtUgTS19sL",
+
+      //blogId: "1",
     },
   ];
 

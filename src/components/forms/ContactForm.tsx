@@ -1,12 +1,11 @@
 "use client";
 
 import React from "react";
-import { Input } from "./input";
+import { Input } from "../ui/input";
 import { Facebook, Twitter, Linkedin } from "lucide-react";
-import SubmitButton from "./SubmitButton";
+import SubmitButton from "../ui/SubmitButton";
 
 const ContactForm = () => {
-
   const handleSubmit = async (formData: FormData) => {
     const dataObj = Object.fromEntries(formData);
     console.log("formData : ", dataObj);
@@ -93,7 +92,7 @@ const ContactForm = () => {
 
             {/* Submit Button */}
             <SubmitButton
-              loadingText="Sending..."
+              loadingtext="Sending..."
               className="w-full bg-orange-200 text-black py-6 rounded text-sm font-semibold hover:bg-orange-300 transition"
             >
               SEND MESSAGE

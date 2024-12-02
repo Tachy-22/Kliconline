@@ -431,7 +431,7 @@ export default function AddEventForm({
                     <Button
                       className={`  transition-colors duration-300 focus:ring-2 focus:ring-offset-2 rounded py-6 w-full hover:text-white ${
                         isFormOpen
-                          ? "bg-red-500 text-white   hover:bg-red-600 focus:ring-red-500 "
+                          ? "bg-orange-500 text-white   hover:bg-orange-600 focus:ring-orange-500 "
                           : "bg-orange-500 text-white  hover:bg-orange-600 focus:ring-orange-500 "
                       }`}
                       disabled={submitting}

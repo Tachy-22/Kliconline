@@ -150,12 +150,7 @@ export default function AddSermonForm({
             transition={{ duration: 0.5, ease: "anticipate" }}
             style={{ overflow: "hidden" }}
           >
-            <Card className="mt-4">
-              <CardHeader>
-                <h3 className="text-lg font-semibold">
-                  {update ? "Update" : "Add New"} Sermon
-                </h3>
-              </CardHeader>
+            
               <CardContent>
                 <Form {...form}>
                   <form
@@ -170,7 +165,7 @@ export default function AddSermonForm({
                           <FormLabel className="text-gray-900">Title</FormLabel>
                           <FormControl>
                             <Input
-                              className="placeholder:text-gray-500 rounded"
+                              className="border-slate-700  placeholder:text-gray-500 rounded"
                               placeholder="Sermon title"
                               {...field}
                             />
@@ -267,7 +262,7 @@ export default function AddSermonForm({
                           </FormLabel>
                           <FormControl>
                             <Input
-                              className="placeholder:text-gray-500 rounded"
+                              className="border-slate-700  placeholder:text-gray-500 rounded"
                               placeholder="Preacher name"
                               {...field}
                             />
@@ -311,8 +306,8 @@ export default function AddSermonForm({
                       )}
                     />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
+                    <div className="grid grid-cols-1 gap-4">
+                      {/* <FormField
                         control={form.control}
                         name="videoUrl"
                         render={({ field }) => (
@@ -330,7 +325,7 @@ export default function AddSermonForm({
                             <FormMessage />
                           </FormItem>
                         )}
-                      />
+                      /> */}
 
                       <FormField
                         control={form.control}
@@ -372,13 +367,13 @@ export default function AddSermonForm({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-gray-900">
-                            Thumbnail
+                            Thumbnail image
                           </FormLabel>
                           <FormControl>
                             <FileInput
                               accept="image/*"
                               multiple={false}
-                              maxSize={4}
+                              maxSize={1}
                               initialFiles={field.value ? [field.value] : []}
                               onUploadComplete={(files) => {
                                 if (files.length > 0) {
@@ -432,7 +427,6 @@ export default function AddSermonForm({
                   </form>
                 </Form>
               </CardContent>
-            </Card>
           </motion.div>
         )}
       </AnimatePresence>

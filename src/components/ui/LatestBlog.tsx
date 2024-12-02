@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export interface BlogPost {
@@ -10,17 +11,40 @@ export interface BlogPost {
   image: string;
 }
 
-export const latestPost: BlogPost = {
-  date: "Tuesday 13 May, 2022",
-  author: "John Hinauj Deo",
-  title: "Church Was Doing What He Often Did When Dropped an Oracle",
-  excerpt:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  image: "hero-img.svg", // Replace with actual image path
-};
+// export const latestPost: BlogPost = {
+//   date: "Tuesday 13 May, 2022",
+//   author: "John Hinauj Deo",
+//   title: "Church Was Doing What He Often Did When Dropped an Oracle",
+//   excerpt:
+//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+//   image: "hero-img.svg", // Replace with actual image path
+// };
 
-const LatestBlog: React.FC = () => {
-  const { date, author, title, excerpt, image } = latestPost;
+const LatestBlog = ({ blogs }: { blogs: BlogT[] }) => {
+  const getLatestBlog = () => {
+    const today = new Date();
+    return blogs.reduce((closest, blog) => {
+      const blogDate =
+        "seconds" in blog.date
+          ? new Date(blog.date.seconds * 1000)
+          : new Date(blog.date);
+
+      const closestDate =
+        "seconds" in closest.date
+          ? new Date(closest.date.seconds * 1000)
+          : new Date(closest.date);
+
+      const diffCurrent = Math.abs(today.getTime() - blogDate.getTime());
+      const diffClosest = Math.abs(today.getTime() - closestDate.getTime());
+
+      return diffCurrent < diffClosest ? blog : closest;
+    }, blogs[0]);
+  };
+
+  const latestBlog = getLatestBlog();
+  const { date, author, title, excerpt, imageUrls, id } = latestBlog;
+
+  console.log({ latestBlog });
 
   return (
     <section className=" ">
@@ -37,27 +61,30 @@ const LatestBlog: React.FC = () => {
             <Image
               width={2000}
               height={2000}
-              src={image}
+              src={imageUrls[0]}
               alt={title}
-              className="w-full  h-full object-cover"
+              className="w-full  h-full object-cover bg-gray-300"
             />
           </div>
 
           <div className="p-6 flex flex-col justify-between lg:col-span-3">
             <div>
               <p className="text-sm text-gray-500">
-                {date} <span className="mx-2">|</span> By {author}
+                {date instanceof Date
+                  ? date.toLocaleDateString()
+                  : new Date(date.seconds * 1000).toLocaleDateString()}{" "}
+                <span className="mx-2">|</span> By {author}
               </p>
               <h2 className="text-2xl font-bold text-gray-800 mt-4">{title}</h2>
               <p className="text-gray-600 mt-4">{excerpt}</p>
             </div>
             <div className="mt-6">
-              <a
-                href="#"
+              <Link
+                href={`/blogs/${id}`}
                 className="inline-block bg-orange-500 text-white font-bold py-2 px-4 rounded hover:bg-orange-600"
               >
                 Read More
-              </a>
+              </Link>
             </div>
           </div>
         </div>

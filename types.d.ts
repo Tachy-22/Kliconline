@@ -27,7 +27,7 @@ interface Sermon {
 }
 
 interface SermonT {
-  id: string;
+  id?: string;
 
   title: string;
 
@@ -50,17 +50,20 @@ interface SermonT {
   [key: string]: unknown;
 }
 
-interface Blog {
-  id: string;
+interface BlogT {
+  id?: string;
   title: string;
   author: string;
+  excerpt: string;
+  imageUrls: string[];
   date: Date | { seconds: number; nanoseconds: number };
-  images: string[];
+  images?: string[];
   content: string;
-  slug: string;
+  slug?: string;
   category: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
+  [key: string]: unknown;
 }
 
 interface FileMetadata {
@@ -70,7 +73,6 @@ interface FileMetadata {
   type: string;
   lastModified: number;
 }
-
 
 interface ParticipantT {
   name: string;

@@ -107,7 +107,7 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
                           <AddSermonForm update sermon={sermon} />
                         </EditModal>
                         <DeleteConfirmationModal
-                          data={sermon}
+                          id={sermon?.id as string}
                           collection="sermons"
                           name="sermon"
                         />

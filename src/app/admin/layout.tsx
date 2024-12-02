@@ -1,3 +1,4 @@
+import AdminHeader from "@/components/ui/AdminHeader";
 import { AdminSidebar } from "@/components/ui/AdminSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
@@ -13,7 +14,7 @@ export default function AdminLayout({
         <div className="w-full h-full">
           <SidebarTrigger />
           <div className="p-4 max-w-7xl mx-auto w-full h-full ">
-            {" "}
+            <AdminHeader />
             {children}
           </div>
         </div>

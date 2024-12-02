@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Button } from "./button";
+import Link from "next/link";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -39,9 +40,12 @@ const Hero = () => {
           <span>our community</span>
         </h1>
         <div className="my-[1rem]">
-          <Button className="px-4 py-2 bg-[#FFD2A4] text-black font-light rounded hover:bg-[#FFD2A4]/90 uppercase w-fit">
+          <Link
+            href="/about-us"
+            className="px-4 py-2 bg-[#FFD2A4] text-black font-light rounded hover:bg-[#FFD2A4]/90 uppercase w-fit"
+          >
             Learn More
-          </Button>
+          </Link>
         </div>
         <span className="max-w-[80%] text-white/90 text-sm font-light pt-[1rem]">
           - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.
