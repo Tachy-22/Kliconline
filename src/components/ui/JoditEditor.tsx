@@ -1,6 +1,14 @@
+// JoditEditor.tsx
 "use client";
-import React, { useState, useRef, useMemo } from "react";
-import JoditEditor from "jodit-react";
+import React, { useMemo, useRef } from "react";
+import dynamic from "next/dynamic";
+
+//import JoditEditor from "jodit-react";
+
+const JoditEditor = dynamic(() => import("jodit-react"), {
+  ssr: false,
+  loading: () => <div>Loading editor...</div>,
+});
 
 const JEditor = ({
   placeholder,
@@ -12,32 +20,26 @@ const JEditor = ({
   onChange: (contentString: string) => void;
 }) => {
   const editor = useRef(null);
-  const [content, setContent] = useState(value);
 
   const config = useMemo(
     () => ({
-      readonly: false, // all options from https://xdsoft.net/jodit/docs/,
-      placeholder: placeholder || "Start typings...",
+      readonly: false,
+      placeholder: placeholder || "Start typing...",
     }),
     [placeholder]
   );
+  console.log({ placeholder, value, onChange, config, editor });
+  if (typeof window === "undefined") {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <>
-      {/* {content} */}
-      <JoditEditor
-        ref={editor}
-        value={content}
-        config={config}
-        //   tabIndex={1} // tabIndex of textarea
-        //  onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-       
-        onChange={(newContent) => {
-          setContent(newContent);
-          onChange(newContent);
-        }}
-      />
-    </>
+    <JoditEditor
+      ref={editor}
+      value={value}
+      config={config}
+      onChange={onChange}
+    />
   );
 };
 

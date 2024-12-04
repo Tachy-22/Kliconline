@@ -67,9 +67,9 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
   };
 
  
-  const handleJEditorChange = (contentString: string) => {
-    setBlogData((prev) => ({ ...prev, content: contentString }));
-  };
+   const handleJEditorChange = (contentString: string) => {
+     setBlogData((prev) => ({ ...prev, content: contentString }));
+   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,11 +79,11 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
           "blogs",
           blog?.id as string,
           blogData,
-          path as string
+          path
         );
         onClose?.();
       } else {
-        await addDocument("blogs", blogData, path as string);
+        await addDocument("blogs", blogData, path);
         setBlogData(defaultBlogData as unknown as BlogT);
         setIsFormOpen(false);
       }
@@ -117,7 +117,10 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
         </Button>
       )}
       {isFormOpen && (
-        <form className=" flex flex-col gap-6 pt-[3rem]" onSubmit={handleSubmit}>
+        <form
+          className=" flex flex-col gap-6 pt-[3rem]"
+          onSubmit={handleSubmit}
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
             {/* Blog Form */}
             <div className="bg-white overflow-hidden h-full rounded-l-xl  flex flex-col min-h-full">
@@ -211,11 +214,13 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
                   </div>
                 </div>
               </div>
-              <JEditor
-                value={blogData.content}
-                placeholder="placeholder..."
-                onChange={handleJEditorChange}
-              />
+              {typeof window !== "undefined" && (
+                <JEditor
+                  value={blogData.content}
+                  placeholder="placeholder..."
+                  onChange={handleJEditorChange}
+                />
+              )}
             </div>
             {/* Blog Preview */}
             <div className="bg-white px-2  rounded-r-xl border-gray-400 border overflow-auto h-full">

@@ -19,44 +19,69 @@ import BlogEditor from "../ui/BlogEditor";
 import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 const BlogsTable = ({ blogs }: { blogs: BlogT[] }) => {
+  const success = Array.isArray(blogs) || "items" in blogs;
+  const error = !success ? "Failed to load blogs" : null;
+  const loading = !success && !error;
   const slideIn = {
     initial: { y: -20, opacity: 0 },
     animate: { y: 0, opacity: 1 },
     transition: { duration: 0.5, ease: "easeOut" },
   };
 
-  if (!blogs || blogs.length === 0) {
+  if (error) {
     return (
       <motion.div {...slideIn}>
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
-          <AlertDescription>No blogs found</AlertDescription>
+          <AlertDescription>{error}</AlertDescription>
         </Alert>
       </motion.div>
     );
   }
 
+  if (loading) {
+    return (
+      <motion.div {...slideIn}>
+        <Card className="min-w-full mx-auto !bg-white border-0">
+          <CardContent className="flex justify-center p-4">
+            Loading...
+          </CardContent>
+        </Card>
+      </motion.div>
+    );
+  }
+
   return (
-    <motion.div {...slideIn}>
+    <motion.div
+      initial={slideIn.initial}
+      animate={slideIn.animate}
+      transition={slideIn.transition}
+    >
       <Card className="min-w-full mx-auto !bg-white border-0">
         <CardHeader>
-          <CardTitle className="text-lg md:text-xl">All Blogs</CardTitle>
+          <CardTitle >All Blogs</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
-            <Table className="table-auto w-full">
-              <TableHeader>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Title</TableHead>
+                <TableHead>Author</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {blogs.length === 0 ? (
                 <TableRow>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Author</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+                  <TableCell colSpan={5} className="text-center">
+                    No blogs found
+                  </TableCell>
                 </TableRow>
-              </TableHeader>
-              <TableBody>
-                {blogs.map((blog, index) => (
-                  <TableRow key={index}>
+              ) : (
+                blogs.map((blog) => (
+                  <TableRow key={blog.id}>
                     <TableCell className="font-medium">{blog.title}</TableCell>
                     <TableCell>{blog.author}</TableCell>
                     <TableCell>{formatToMonthDayYear(blog.date)}</TableCell>
@@ -65,6 +90,7 @@ const BlogsTable = ({ blogs }: { blogs: BlogT[] }) => {
                       <div className="flex justify-end gap-2">
                         <EditModal title="Edit Blog">
                           <BlogEditor blog={blog} update />
+                          {/* <div>hi</div> */}
                         </EditModal>
                         <DeleteConfirmationModal
                           id={blog.id as string}
@@ -74,10 +100,10 @@ const BlogsTable = ({ blogs }: { blogs: BlogT[] }) => {
                       </div>
                     </TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
+                ))
+              )}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
     </motion.div>
