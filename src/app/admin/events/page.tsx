@@ -8,7 +8,10 @@ const page = async () => {
   console.log(events);
   return (
     <div className="w-full flex flex-col gap-4 ">
-      <EventsTable events={'items' in events ? events.items as EventT[] : []} />
+    
+      <EventsTable
+        events={"items" in events ? (events.items as EventT[]) : []}
+      />
       <AddEventForm />
     </div>
   );

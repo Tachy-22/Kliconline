@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
-import Navbar from "@/components/ui/Navbar";
-import Footer from "@/components/ui/Footer";
+//import Navbar from "@/components/ui/Navbar";
+//import Footer from "@/components/ui/Footer";
 
 export const metadata: Metadata = {
   title: "Klic Online Church",
@@ -27,9 +27,7 @@ export default function RootLayout({
           defaultTheme="light" // Optional: Specify a default theme
         >
           {" "}
-          <Navbar />
           <main>{children}</main>
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

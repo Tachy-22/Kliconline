@@ -1,17 +1,20 @@
-import Contact from "@/components/layouts/Contact";
 import Footer from "@/components/ui/Footer";
 import Navbar from "@/components/ui/Navbar";
 import React from "react";
 
-const page = () => {
+const layout = ({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) => {
   return (
     <div>
       {" "}
       <Navbar />
-      <Contact />
+      {children}
       <Footer />
     </div>
   );
 };
 
-export default page;
+export default layout;

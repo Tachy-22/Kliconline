@@ -1,5 +1,7 @@
 import { fetchCollection } from "@/actions/fettchCollection";
 import Sermons from "@/components/layouts/Sermons";
+import Footer from "@/components/ui/Footer";
+import Navbar from "@/components/ui/Navbar";
 import React from "react";
 
 const page = async () => {
@@ -8,7 +10,14 @@ const page = async () => {
   console.log({ sermons });
 
   if ("items" in sermons) {
-    return <Sermons sermons={sermons.items} />;
+    return (
+      <div>
+        {" "}
+        <Navbar />
+        <Sermons sermons={sermons.items} />
+        <Footer />
+      </div>
+    );
   }
   return <div>Error </div>;
 //  return <div>Sermons</div>

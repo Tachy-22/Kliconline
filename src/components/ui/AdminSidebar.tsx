@@ -47,9 +47,9 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar className="border-0">
-      <SidebarContent className="border-0">
-        <SidebarGroup className="py-[4rem]">
+    <Sidebar className="border-0 ">
+      <SidebarContent className="border-0 bg-white ">
+        <SidebarGroup className=" ">
           <SidebarGroupLabel>Categories</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>

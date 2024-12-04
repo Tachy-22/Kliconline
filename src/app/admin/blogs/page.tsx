@@ -10,7 +10,6 @@ const page = async () => {
     <div className="w-full flex flex-col gap-4 ">
       <BlogsTable blogs={"items" in blogs ? (blogs.items as BlogT[]) : []} />
       <BlogEditor />
-      hey
     </div>
   );
 };
