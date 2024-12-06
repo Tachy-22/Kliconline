@@ -5,29 +5,29 @@ import { PrayIcon } from "./icons";
 const Features = () => {
   const features = [
     {
-      title: "About Us",
+      title: "Our Community",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      icon: PrayIcon, // Replace with an appropriate icon
+        "Join our welcoming family of believers where everyone belongs. We create a space for authentic relationships, spiritual growth, and support through life's journey.",
+      icon: PrayIcon,
     },
     {
-      title: "Get Involved",
+      title: "Ministry & Service",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      icon: PrayIcon, // Replace with an appropriate icon
+        "Discover your purpose through our various ministries. From youth programs to community outreach, there are countless ways to serve God and others.",
+      icon: PrayIcon,
     },
     {
-      title: "Giving Back",
+      title: "Worship & Prayer",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      icon: PrayIcon, // Replace with an appropriate icon
+        "Experience powerful worship and prayer that connects hearts to God. Our services combine contemporary and traditional elements to create meaningful spiritual encounters.",
+      icon: PrayIcon,
     },
   ];
 
   return (
     <section className="py-12 md:max-w-[80rem] mx-auto bg-white text-center">
       {/* Sub-headline */}
-      <h2 className="text-lg uppercase text-gray-600">Our Onions</h2>
+      <h2 className="text-lg uppercase text-gray-600">Our Mission</h2>
       <h1 className="text-3xl font-bold mt-2 mx-auto uppercase max-w-[80%] w-full" >A Church That&#39;s Relevant</h1>
 
       {/* Features Grid */}

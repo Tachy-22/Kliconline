@@ -8,7 +8,7 @@ const Values = () => {
   const images = ["/hero-img.svg", "/contacthero-img.svg", "/sermon-img.svg"];
 
   return (
-    <section className="py-12 pb-20 bg-white text-center max-w-screen md:max-w-[80rem] mx-auto  lg:px-[4.5rem] px-[2rem] flex flex-col gap-2 overflow-hidden">
+    <section className="py-8 md:py-12 pb-16 md:pb-20 bg-white text-center max-w-full md:max-w-[80rem] mx-auto lg:px-[4.5rem] p-3 flex flex-col gap-2 overflow-hidden">
       {/* Sub-Headline */}
       <h2 className="text-lg uppercase text-gray-600  text-start lg:text-center">
         OUR CORE VALUES

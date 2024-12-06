@@ -41,7 +41,7 @@ const LatestBlog = ({ blogs }: { blogs: BlogT[] }) => {
 
   return (
     <section className=" ">
-      <div className=" flex flex-col gap-5 max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" flex flex-col gap-5 max-w-7xl  mx-auto px-3 sm:px-6 lg:px-8">
         <h2 className="text-lg uppercase text-gray-600  text-start lg:text-center">
           Our Blog
         </h2>

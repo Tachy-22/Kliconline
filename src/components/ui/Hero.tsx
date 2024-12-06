@@ -31,13 +31,17 @@ const Hero = () => {
       </div>
 
       {/* Content - will scroll over the fixed background */}
-      <div className="relative z-10 max-w-[80rem] mx-auto h-full flex flex-col justify-center gap-2 lg:px-[4.5rem] px-[2rem]">
+      <div className="relative z-10 max-w-[80rem] mx-auto h-full flex flex-col justify-center gap-2 lg:px-[4.5rem] px-[1rem]">
         <span className="uppercase text-white/80 text-sm tracking-tight font-semibold">
           Welcome to our CHURCH
         </span>
         <h1 className="text-4xl py-[0.5rem] font-bold flex flex-col gap-3 text-white uppercase">
-          <span>Become a part of</span>
-          <span>our community</span>
+          <span className="text-">
+            Become a part of <span className="lg:hidden block">our</span>
+          </span>
+          <span>
+            <span className="hidden lg:block">our</span> family
+          </span>
         </h1>
         <div className="my-[1rem]">
           <Link
@@ -48,7 +52,7 @@ const Hero = () => {
           </Link>
         </div>
         <span className="max-w-[80%] text-white/90 text-sm font-light pt-[1rem]">
-          - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.
+          - Bringing you the light of God&apos;s word in simple and clear terms.
         </span>
       </div>
     </div>

@@ -14,9 +14,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "About Us", href: "/about-us" },
-    { name: "Programmes", href: "/programmes" },
+    { name: "Events", href: "/events" },
     { name: "Sermons", href: "/sermons" },
     { name: "Blogs", href: "/blogs" },
+    { name: "Branches", href: "/branches" },
   ];
 
   const isActiveLink = (href: string) => pathname === href;
@@ -46,7 +47,7 @@ const Navbar = () => {
               key={index}
               href={link.href}
               className={`hover:underline hover:text-[#FFD2A4] font-extralight ${
-                isActiveLink(link.href) ? 'text-[#FFD2A4]' : 'text-white/75'
+                isActiveLink(link.href) ? "text-[#FFD2A4]" : "text-white/75"
               }`}
             >
               {link.name}
@@ -79,7 +80,6 @@ const Navbar = () => {
           >
             <div className="flex items-center justify-between p-6">
               <h1 className="text-xl font-bold">Klic</h1>
-            
             </div>
             <nav className="flex flex-col gap-4 px-6 mt-4 uppercase text-sm">
               {navLinks.map((link, index) => (
@@ -87,7 +87,7 @@ const Navbar = () => {
                   key={index}
                   href={link.href}
                   className={`hover:underline hover:text-[#FFD2A4] font-extralight ${
-                    isActiveLink(link.href) ? 'text-[#FFD2A4]' : 'text-white/75'
+                    isActiveLink(link.href) ? "text-[#FFD2A4]" : "text-white/75"
                   }`}
                   onClick={toggleSidebar} // Close sidebar when a link is clicked
                 >

@@ -17,8 +17,25 @@ import { EditModal } from "../modals/EditModal";
 import { DeleteConfirmationModal } from "../modals/DeleteConfirmationModal";
 import BlogEditor from "../ui/BlogEditor";
 import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
+import { useTableOperations } from "@/hooks/useTableOperations";
+import { SearchControls, PaginationControls } from "../TableControls";
 
 const BlogsTable = ({ blogs }: { blogs: BlogT[] }) => {
+  const {
+    paginatedData: displayedBlogs,
+    totalPages,
+    currentPage,
+    setCurrentPage,
+    searchQuery,
+    setSearchQuery,
+    pageSize,
+    setPageSize,
+  } = useTableOperations({
+    data: blogs,
+    searchFields: ['title', 'author', 'category'],
+    itemsPerPage: 10
+  });
+
   const success = Array.isArray(blogs) || "items" in blogs;
   const error = !success ? "Failed to load blogs" : null;
   const loading = !success && !error;
@@ -57,30 +74,35 @@ const BlogsTable = ({ blogs }: { blogs: BlogT[] }) => {
       animate={slideIn.animate}
       transition={slideIn.transition}
     >
-      <Card className="min-w-full mx-auto !bg-white border-0">
+      <Card className="min-w-full mx-auto bg-white text-black border border-black/20">
         <CardHeader>
-          <CardTitle >All Blogs</CardTitle>
+          <CardTitle className="text-black">All Blogs</CardTitle>
         </CardHeader>
         <CardContent>
+          <SearchControls
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+          />
+          
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Title</TableHead>
-                <TableHead>Author</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+              <TableRow className="border-black/20">
+                <TableHead className="text-black font-bold">Title</TableHead>
+                <TableHead className="text-black font-bold">Author</TableHead>
+                <TableHead className="text-black font-bold">Date</TableHead>
+                <TableHead className="text-black font-bold">Category</TableHead>
+                <TableHead className="text-black font-bold text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {blogs.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={5} className="text-center">
+              {displayedBlogs.length === 0 ? (
+                <TableRow className="border-black/20">
+                  <TableCell colSpan={5} className="text-center text-black">
                     No blogs found
                   </TableCell>
                 </TableRow>
               ) : (
-                blogs.map((blog) => (
+                displayedBlogs.map((blog) => (
                   <TableRow key={blog.id}>
                     <TableCell className="font-medium">{blog.title}</TableCell>
                     <TableCell>{blog.author}</TableCell>
@@ -104,6 +126,14 @@ const BlogsTable = ({ blogs }: { blogs: BlogT[] }) => {
               )}
             </TableBody>
           </Table>
+
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+            pageSize={pageSize}
+            onPageSizeChange={setPageSize}
+          />
         </CardContent>
       </Card>
     </motion.div>

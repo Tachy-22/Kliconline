@@ -56,11 +56,11 @@ const EventRegisterationForm = ({ event }: EventProps) => {
   };
 
   return (
-    <div className="bg-[#F7F8FA] shadow-md p-10 rounded-md h-fit">
+    <div className="bg-[#F7F8FA] shadow-md p-4 lg:p-10 rounded-md h-fit">
       <h3 className="text-2xl capitalize font-bold text-gray-800">
         Register Now
       </h3>
-      <div className="mt-6 flex text-gray-600 gap-5 justify-between">
+      <div className="mt-6 flex lg:flex-row flex-col text-gray-600 gap-5 justify-between">
         <p className="flex items-center space-x-3">
           <MapPin size={18} />
           <span>No 233 Main St. New York, United States</span>

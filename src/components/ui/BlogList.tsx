@@ -1,12 +1,5 @@
 "use client";
 import React from "react";
-export interface Blog {
-  category: string;
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-}
 
 // export const blogs: Blog[] = [
 //   {
@@ -92,7 +85,7 @@ export interface Blog {
 //   },
 // ];
 
-import BlogCard from "./BlogCards";
+import BlogCard from "./BlogCard";
 
 const BlogList = ({ blogs }: { blogs: BlogT[] }) => {
   return (

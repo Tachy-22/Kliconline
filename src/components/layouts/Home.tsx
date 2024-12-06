@@ -11,7 +11,7 @@ import OurBlogs from "../ui/OurBlogs";
 import OurBranches from "../ui/OurBranches";
 import ViewSermons from "../ui/ViewSermons";
 
-const Home = ({ sermons }: { sermons: SermonT[] }) => {
+const Home = ({ sermons, blogs }: { sermons: SermonT[]; blogs: BlogT[] }) => {
   return (
     <div className="flex flex-col ">
       <Hero />
@@ -22,7 +22,7 @@ const Home = ({ sermons }: { sermons: SermonT[] }) => {
         <WhyUs />
         <ViewSermons sermons={sermons} />
         <OurBranches />
-        <OurBlogs />
+        <OurBlogs blogs={blogs} />
       </div>
     </div>
   );

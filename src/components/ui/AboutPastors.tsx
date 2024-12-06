@@ -61,7 +61,7 @@ export const team: Pastors[] = [
 const AboutPastors: React.FC = () => {
   return (
     <section className="py-[6rem] bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="max-w-7xl mx-auto p-3 md:px-6 lg:px-8 text-center">
         <h2 className="text-lg font-semibold text-gray-600 uppercase">
           Church Members
         </h2>
@@ -72,7 +72,7 @@ const AboutPastors: React.FC = () => {
           {team.map((member, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md p-6 text-center"
+              className="bg-white rounded-lg shadow-md p-2 md:p-6 text-center"
             >
               <Image
                 width={2000}

@@ -21,7 +21,7 @@ const SermonCard: React.FC<SermonT> = ({
   const sermonDate = formatToMonthDayYear(date);
 
   return (
-    <div className="bg-[#FFF5EB] group overflow-hidden shadow rounded-lg  px-[2rem] py-[2rem] w-full flex flex-col justify-between min-h-full h-full relative gap-6">
+    <div className="bg-[#FFF5EB] group overflow-hidden shadow rounded-lg p-3 lg:px-[2rem] py-[2rem] w-full flex flex-col justify-between min-h-full h-full relative gap-6">
       <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full !text-black">
         {sermonDate}
       </div>

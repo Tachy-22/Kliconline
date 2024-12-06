@@ -38,12 +38,12 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
     <section className="bg-gray-50 py-16 flex flex-col gap-[3rem]">
       <div className="text-center flex flex-col gap-3">
         <p className="text-lg uppercase text-gray-600">LATEST SERMON</p>
-        <h2 className="text-3xl font-bold mx-auto text-gray-800 uppercase max-w-[30rem]">
+        <h2 className="text-3xl font-bold mx-auto text-gray-800 uppercase lg:max-w-[30rem] ">
           Download and Listen to Our Latest Sermon
         </h2>
       </div>
       <div className="max-w-7xl mx-auto w-full gap flex flex-col lg:flex-row items-center justify-between lg:h-[25rem]">
-        <div className="bg-[#FFF5EB] rounded-lg p-6 px-[3rem] py-[2rem] w-full lg:w-1/3 flex flex-col justify-between min-h-full h-full relative gap-6">
+        <div className="bg-[#FFF5EB] rounded-lg p-3 lg:px-[3rem] py-[2rem] w-full lg:w-1/3 flex flex-col justify-between min-h-full h-full relative gap-6">
           <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full !text-black">
             {sermonDate}
           </div>

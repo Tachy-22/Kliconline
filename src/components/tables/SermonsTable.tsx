@@ -16,8 +16,25 @@ import { EditModal } from "../modals/EditModal";
 import { DeleteConfirmationModal } from "../modals/DeleteConfirmationModal";
 import AddSermonForm from "../forms/AddSermonForm";
 import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
+import { useTableOperations } from "@/hooks/useTableOperations";
+import { SearchControls, PaginationControls } from "../TableControls";
 
 const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
+  const {
+    paginatedData: displayedSermons,
+    totalPages,
+    currentPage,
+    setCurrentPage,
+    searchQuery,
+    setSearchQuery,
+    pageSize,
+    setPageSize,
+  } = useTableOperations({
+    data: sermons,
+    searchFields: ['title', 'preacher', 'category'],
+    itemsPerPage: 10
+  });
+
   const success = Array.isArray(sermons);
   const error = !success ? "Failed to load sermons" : null;
   const loading = !success && !error;
@@ -53,32 +70,37 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
 
   return (
     <motion.div {...slideIn}>
-      <Card className="min-w-full mx-auto !bg-white border-0">
+      <Card className="min-w-full mx-auto bg-white text-black border border-black/20">
         <CardHeader>
-          <CardTitle>All Sermons</CardTitle>
+          <CardTitle className="text-black">All Sermons</CardTitle>
         </CardHeader>
         <CardContent>
+          <SearchControls
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+          />
+          
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Thumbnail</TableHead>
-                <TableHead>Title</TableHead>
-                <TableHead>Preacher</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+              <TableRow className="border-black/20">
+                <TableHead className="text-black font-bold">Thumbnail</TableHead>
+                <TableHead className="text-black font-bold">Title</TableHead>
+                <TableHead className="text-black font-bold">Preacher</TableHead>
+                <TableHead className="text-black font-bold">Date</TableHead>
+                <TableHead className="text-black font-bold">Category</TableHead>
+                <TableHead className="text-black font-bold text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {sermons.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={6} className="text-center">
+              {displayedSermons.length === 0 ? (
+                <TableRow className="border-black/20">
+                  <TableCell colSpan={6} className="text-center text-black">
                     No sermons found
                   </TableCell>
                 </TableRow>
               ) : (
-                sermons.map((sermon) => (
-                  <TableRow key={sermon.id}>
+                displayedSermons.map((sermon) => (
+                  <TableRow key={sermon.id} className="border-black/20">
                     <TableCell>
                       {sermon.thumbnailUrl ? (
                         <img
@@ -90,12 +112,12 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
                         <div className="w-10 h-10 bg-gray-200 rounded" />
                       )}
                     </TableCell>
-                    <TableCell className="font-medium">
+                    <TableCell className="font-medium text-black">
                       {sermon.title}
                     </TableCell>
-                    <TableCell>{sermon.preacher}</TableCell>
-                    <TableCell>{formatToMonthDayYear(sermon.date)}</TableCell>
-                    <TableCell>{sermon.category}</TableCell>
+                    <TableCell className="text-black">{sermon.preacher}</TableCell>
+                    <TableCell className="text-black">{formatToMonthDayYear(sermon.date)}</TableCell>
+                    <TableCell className="text-black">{sermon.category}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
                         <EditModal>
@@ -113,6 +135,14 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
               )}
             </TableBody>
           </Table>
+
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+            pageSize={pageSize}
+            onPageSizeChange={setPageSize}
+          />
         </CardContent>
       </Card>
     </motion.div>

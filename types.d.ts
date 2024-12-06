@@ -80,3 +80,60 @@ interface ParticipantT {
   phone: string;
   registrationDate: string;
 }
+
+interface ContactMessage {
+  id: string;
+  fullName: string;
+  email: string;
+  query: string;
+  message: string;
+  submissionDate: string;
+  replied: boolean;
+}
+
+interface SubscriberData {
+  email: string;
+  subscribedAt: string;
+  status: "active" | "pending" | "unsubscribed";
+}
+
+// ...existing code...
+
+type TestimonyT = {
+  id?: string;
+  author: string;
+  content: string;
+  date: string;
+  image?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  approved?: boolean;
+}
+
+interface SubscriberT {
+  id: string;
+  email: string;
+  name?: string;
+  status: "active" | "unsubscribed";
+  createdAt: string;
+}
+
+interface NewsletterHistoryT {
+  id: string;
+  subject: string;
+  content: string;
+  sentAt: string;
+  recipientCount: number;
+}
+
+type BranchT = {
+  id: string;
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+// ...existing code...

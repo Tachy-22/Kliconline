@@ -7,15 +7,16 @@ import React from "react";
 
 const page = async () => {
   const sermons = await fetchCollection<SermonT>("sermons");
+  const blogs = await fetchCollection<BlogT>("blogs", { limitTo: 3 });
 
   console.log({ sermons });
 
-  if ("items" in sermons) {
+  if ("items" in sermons && "items" in blogs) {
     return (
       <div>
         {" "}
         <Navbar />
-        <Home sermons={sermons.items} />
+        <Home sermons={sermons.items} blogs={blogs.items} />
         <Footer />
       </div>
     );

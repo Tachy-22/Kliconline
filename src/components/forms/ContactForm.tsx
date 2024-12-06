@@ -1,137 +1,242 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "../ui/input";
-import { Facebook, Twitter, Linkedin } from "lucide-react";
-import SubmitButton from "../ui/SubmitButton";
+import { Facebook, Linkedin, Twitter } from "lucide-react";
+import { addDocument } from "@/actions/addDocument";
+import { usePathname } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
+import { Textarea } from "../ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { Button } from "../ui/button";
+
+const formSchema = z.object({
+  fullName: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  query: z.string().min(2, "Query must be at least 2 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
 
 const ContactForm = () => {
-  const handleSubmit = async (formData: FormData) => {
-    const dataObj = Object.fromEntries(formData);
-    console.log("formData : ", dataObj);
+  const { toast } = useToast();
+  const path = usePathname();
+  const [isLoading, setIsLoading] = useState(false);
+
+  //  console.log(isLoading);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      query: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      setIsLoading(true);
+      const contactData = {
+        ...data,
+        submissionDate: new Date().toISOString(),
+        replied: false, // Add replied status
+      };
+
+      const result = await addDocument(
+        "contact-messages",
+        contactData,
+        path as string
+      );
+      if ("code" in result) {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description:
+            result.message || "Something went wrong. Please try again.",
+        });
+      } else {
+        form.reset();
+        toast({
+          title: "Success",
+          description: "Your message has been sent successfully!",
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+      });
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <section className="w-full py-12 bg-[#f9f4f0]">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-5">
-        {/* Contact Form */}
+    <section className="w-full py-6 lg:py-12 bg-[#f9f4f0]">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-3 lg:px-5">
         <div>
-          <h2 className="text-2xl font-bold mb-6">CONTACT FORM:</h2>
-          <form action={handleSubmit} className="space-y-6">
-            {/* Full Name */}
-            <div>
-              <label
-                htmlFor="fullName"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Your Full Name
-              </label>
-              <Input
-                id="fullName"
+          <h2 className="text-3xl font-bold mb-2 text-gray-900">Contact Us</h2>
+          <p className="text-gray-600 mb-8 text-sm">
+            Fill out the form below and we&apos;ll get back to you shortly.
+          </p>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
                 name="fullName"
-                type="text"
-                placeholder="Enter your full name"
-                className="w-full p-6 bg-white border-gray-300 rounded outline-none border-0 shadow-none  placeholder:text-gray-400"
-                required
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Your Full Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your full name"
+                        className={`w-full p-6 bg-white border-gray-300 rounded placeholder:text-gray-500 ${
+                          isLoading ? "cursor-not-allowed" : ""
+                        }`}
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+              <FormMessage className="text-sm text-red-500" />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            {/* Email */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Your Email
-              </label>
-              <Input
-                id="email"
+              <FormField
+                control={form.control}
                 name="email"
-                type="email"
-                placeholder="Enter your email"
-                className="w-full p-6 bg-white border-gray-300 rounded outline-none border-0 shadow-none  placeholder:text-gray-400"
-                required
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Your Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your email"
+                        type="email"
+                        className={`w-full p-6 bg-white border-gray-300 rounded placeholder:text-gray-500 ${
+                          isLoading ? "cursor-not-allowed" : ""
+                        }`}
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+              <FormMessage className="text-sm text-red-500" />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            {/* Query Related */}
-            <div>
-              <label
-                htmlFor="query"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Query Related
-              </label>
-              <Input
-                required
-                id="query"
+              <FormField
+                control={form.control}
                 name="query"
-                type="text"
-                placeholder="Specify your query"
-                className="w-full p-6 bg-white border-gray-300 rounded outline-none border-0 shadow-none placeholder:text-gray-400"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Query Related</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Specify your query"
+                        className={`w-full p-6 bg-white border-gray-300 rounded placeholder:text-gray-500 ${
+                          isLoading ? "cursor-not-allowed" : ""
+                        }`}
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+              <FormMessage className="text-sm text-red-500" />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            {/* Message */}
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Message
-              </label>
-              <textarea
-                required
-                id="message"
+              <FormField
+                control={form.control}
                 name="message"
-                placeholder="Write your message"
-                className="w-full p-6 bg-white border-gray-300 rounded outline-none border-0 shadow-none"
-                rows={5}
-              ></textarea>
-            </div>
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Message</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Write your message"
+                        className={`w-full p-6 bg-white border-gray-300 rounded placeholder:text-gray-500 ${
+                          isLoading ? "cursor-not-allowed" : ""
+                        }`}
+                        rows={5}
+                        disabled={isLoading}
+                        {...field}
+                      />
+                    </FormControl>
+              <FormMessage className="text-sm text-red-500" />
+                  </FormItem>
+                )}
+              />
 
-            {/* Submit Button */}
-            <SubmitButton
-              loadingtext="Sending..."
-              className="w-full bg-orange-200 text-black py-6 rounded text-sm font-semibold hover:bg-orange-300 transition"
-            >
-              SEND MESSAGE
-            </SubmitButton>
-          </form>
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-orange-300 font-semibold hover:bg-orange-200 text-black transition duration-300 focus:ring-2 focus:ring-black focus:ring-offset-2 rounded w-full"
+              >
+                {isLoading ? "SUBMITING..." : "SEND MESSAGE"}
+              </Button>
+            </form>
+          </Form>
         </div>
 
-        {/* Contact Details */}
-        <div className="flex flex-col space-y-6">
-          {/* Address */}
+        <div className="flex flex-col space-y-8 pt-4">
           <div>
-            <h3 className="text-lg font-bold">Address</h3>
-            <p className="text-sm text-gray-700 leading-6">
+            <h3 className="text-xl font-semibold mb-3 text-gray-900">
+              Address
+            </h3>
+            <p className="text-base text-gray-600 leading-relaxed">
               NH 234 PUBLIC SQUARE <br />
               SAN FRANCISCO 65368
             </p>
           </div>
 
-          {/* Contact Details */}
           <div>
-            <h3 className="text-lg font-bold">Contact Details</h3>
-            <p className="text-sm text-gray-700 leading-6">
-              (480) 555-0103 <br />
-              FINSWEET@EXAMPLE.COM
+            <h3 className="text-xl font-semibold mb-3 text-gray-900">
+              Contact Details
+            </h3>
+            <p className="text-base text-gray-600 leading-relaxed">
+              <span className="block hover:text-gray-900 transition-colors">
+                (480) 555-0103
+              </span>
+              <span className="block hover:text-gray-900 transition-colors">
+                FINSWEET@EXAMPLE.COM
+              </span>
             </p>
           </div>
 
-          {/* Social Media Links */}
           <div>
-            <h3 className="text-lg font-bold">Find us here</h3>
-            <div className="flex space-x-4 mt-2">
-              <a href="#" className="text-gray-600 hover:text-black transition">
-                <Facebook className="w-5 h-5" />
+            <h3 className="text-xl font-semibold mb-3 text-gray-900">
+              Find us here
+            </h3>
+            <div className="flex space-x-6 mt-2">
+              <a
+                href="#"
+                className="text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-600 hover:text-black transition">
-                <Twitter className="w-5 h-5" />
+              <a
+                href="#"
+                className="text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                <Twitter className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-600 hover:text-black transition">
-                <Linkedin className="w-5 h-5" />
+              <a
+                href="#"
+                className="text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                <Linkedin className="w-6 h-6" />
               </a>
             </div>
           </div>

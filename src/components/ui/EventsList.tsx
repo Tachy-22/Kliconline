@@ -85,8 +85,8 @@ const EventsList: React.FC<EventsListProps> = ({ events }) => {
   });
 
   return (
-    <div className="flex flex-col gap-[5rem] px-[4rem] ">
-      <div className="flex w-full flex-col items-center">
+    <div className="flex flex-col gap-[5rem] px-3 lg:px-[4rem] ">
+      <div className="flex w-full flex-col items-center gap-3 lg:gap-[2rem]">
         {" "}
         <h2 className="text-3xl font-bold mx-auto text-gray-800 uppercase max-w-[30rem]">
           PAST EVENTS
@@ -105,8 +105,8 @@ const EventsList: React.FC<EventsListProps> = ({ events }) => {
         )}
       </div>
 
-      <div className="flex w-full flex-col items-center gap-[2rem]">
-        <h2 className="text-3xl font-bold mx-auto text-gray-800 uppercase max-w-[30rem]">
+      <div className="flex w-full flex-col items-center gap-3 lg:gap-[2rem]">
+        <h2 className="text-3xl font-bold mx-auto text-gray-800 uppercase max-w-[30rem] ">
           UPCOMING EVENTS
         </h2>
         {upcomingEvents && (

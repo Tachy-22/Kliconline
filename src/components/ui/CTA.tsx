@@ -13,8 +13,8 @@ const CTA = () => {
 
       {/* Description */}
       <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        At Kingdom Life International Church, our mission is to spread the
+        gospel of Jesus Christ, making disciples of all nations.
       </p>
 
       {/* Read More Button */}

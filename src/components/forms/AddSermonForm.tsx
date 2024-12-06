@@ -120,10 +120,10 @@ export default function AddSermonForm({
       {!update && (
         <CardHeader className="px-0 ">
           <Button
-            className={`w-fit py-3  font-medium rounded-full ${
+            className={`w-fit py-3 font-medium rounded-xl ${
               isFormOpen
-                ? "border-red-500 border text-red-500 hover:border-red-600"
-                : "bg-orange-500 hover:bg-orange-600 text-white"
+                ? "border-black border text-black hover:bg-black hover:text-white"
+                : "bg-black hover:bg-gray-800 text-white"
             }`}
             onClick={() => setIsFormOpen((prev) => !prev)}
           >
@@ -170,7 +170,7 @@ export default function AddSermonForm({
                             {...field}
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-sm text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -190,7 +190,7 @@ export default function AddSermonForm({
                             {...field}
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-sm text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -232,7 +232,7 @@ export default function AddSermonForm({
                             />
                           </PopoverContent>
                         </Popover>
-                        <FormMessage />
+                        <FormMessage className="text-sm text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -252,7 +252,7 @@ export default function AddSermonForm({
                             {...field}
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-sm text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -279,14 +279,14 @@ export default function AddSermonForm({
                               Sunday Service
                             </SelectItem>
                             <SelectItem value="bible-study">
-                              Bible Study
+                              Spontaneous Worship 
                             </SelectItem>
                             <SelectItem value="special-service">
-                              Special Service
+                              IDBS Service
                             </SelectItem>
                           </SelectContent>
                         </Select>
-                        <FormMessage />
+                        <FormMessage className="text-sm text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -307,7 +307,7 @@ export default function AddSermonForm({
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage />
+                  <FormMessage className="text-sm text-red-500" />
                           </FormItem>
                         )}
                       /> */}
@@ -340,7 +340,7 @@ export default function AddSermonForm({
                               }}
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-sm text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -373,7 +373,7 @@ export default function AddSermonForm({
                             }}
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-sm text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -401,7 +401,7 @@ export default function AddSermonForm({
                   <Button
                     type="submit"
                     disabled={submitting}
-                    className=" bg-orange-500 text-white  hover:bg-orange-600 transition-colors duration-300 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded w-full"
+                    className="bg-black text-white hover:bg-gray-800 transition-colors duration-300 focus:ring-2 focus:ring-black focus:ring-offset-2 rounded w-full"
                   >
                     {submitting
                       ? "Submitting..."

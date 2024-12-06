@@ -96,17 +96,17 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
     <div className="h-full min-h-[90vh] flex flex-col gap-3">
       {!update && (
         <Button
-          className={`w-fit py-3  font-medium rounded-full ${
+          className={`w-fit py-3 font-medium rounded-xl ${
             isFormOpen
-              ? "border-red-500 border text-red-500 hover:border-red-600"
-              : "bg-orange-500 hover:bg-orange-600 text-white"
+              ? "border-black border text-black hover:bg-black hover:text-white"
+              : "bg-black hover:bg-gray-800 text-white"
           }`}
           onClick={() => setIsFormOpen((prev) => !prev)}
         >
           {!isFormOpen ? (
             <span className="flex  items-center justify-between gap-2">
               {" "}
-              Add New Sermon <Plus />
+              Add New Blog <Plus />
             </span>
           ) : (
             <span className="flex  items-center justify-between gap-2">
@@ -229,7 +229,7 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
           </div>
           <SubmitButton
             loadingtext="Uploading..."
-            className="w-full bg-orange-500 text-white py-6 rounded text-sm font-semibold hover:bg-orange-600 transition"
+            className="w-full bg-black text-white py-6 rounded text-sm font-semibold hover:bg-gray-800 transition"
           >
             Upload
           </SubmitButton>

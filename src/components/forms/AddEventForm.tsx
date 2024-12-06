@@ -130,10 +130,10 @@ export default function AddEventForm({
       {!update && (
         <CardHeader className="px-0 ">
           <Button
-            className={`w-fit py-3  font-medium rounded-full ${
+            className={`w-fit py-3 font-medium rounded-xl ${
               isFormOpen
-                ? "border-red-500 border text-red-500 hover:border-red-600"
-                : "bg-orange-500 hover:bg-orange-600 text-white"
+                ? "border-black border text-black hover:bg-black hover:text-white"
+                : "bg-black hover:bg-gray-800 text-white"
             }`}
             onClick={() => setIsFormOpen((prev) => !prev)}
           >
@@ -160,7 +160,7 @@ export default function AddEventForm({
             transition={{ duration: 0.5, ease: "anticipate" }}
             style={{ overflow: "hidden" }}
           >
-            <CardContent className="!bg-white rounded py-4">
+            <CardContent className="!bg-white rounded py-4 p-0">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -214,11 +214,12 @@ export default function AddEventForm({
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="MUSIC">Music</SelectItem>
-                            <SelectItem value="SPORTS">Sports</SelectItem>
-                            <SelectItem value="ARTS">Arts</SelectItem>
-                            <SelectItem value="FOOD">Food</SelectItem>
-                            <SelectItem value="OTHER">Other</SelectItem>
+                            <SelectItem value="SPONTANEOUS">
+                              Spontaneous Worship
+                            </SelectItem>
+                            <SelectItem value="IDBS">IDBS</SelectItem>
+                            <SelectItem value="KLC">KLC</SelectItem>
+
                           </SelectContent>
                         </Select>
                         <FormMessage className="text-red-500" />
@@ -419,10 +420,10 @@ export default function AddEventForm({
                   </div>
                   <div className="col-span-1 md:col-span-2">
                     <Button
-                      className={`  transition-colors duration-300 focus:ring-2 focus:ring-offset-2 rounded py-6 w-full hover:text-white ${
+                      className={`transition-colors duration-300 focus:ring-2 focus:ring-offset-2 rounded py-6 w-full ${
                         isFormOpen
-                          ? "bg-orange-500 text-white   hover:bg-orange-600 focus:ring-orange-500 "
-                          : "bg-orange-500 text-white  hover:bg-orange-600 focus:ring-orange-500 "
+                          ? "bg-black text-white hover:bg-gray-800 focus:ring-black"
+                          : "bg-black text-white hover:bg-gray-800 focus:ring-black"
                       }`}
                       disabled={submitting}
                     >

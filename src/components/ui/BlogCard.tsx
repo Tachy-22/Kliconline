@@ -14,14 +14,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   return (
     <Link
       href={`blogs/${blog.id}`}
-      className="bg-white relative rounded-lg shadow-md group py-10 flex flex-col gap-1 justify-between overflow-hidden hover:shadow-lg"
+      className="bg-white relative rounded-lg shadow-md group py-10 flex flex-col gap-1 justify-between p-3 lg:px-8 overflow-hidden hover:shadow-lg w-full"
     >
-      <p className="text-sm  px-8 text-orange-500 font-semibold uppercase">
+      <p className="text-sm  text-orange-500 font-semibold uppercase">
         {category}
       </p>
-      <h3 className="text-xl font-bold text-gray-800 mt-2  px-8">{title}</h3>
-      <p className="text-gray-600 mt-2  px-8">{excerpt}</p>
-      <div className="pt-7  text-gray-500  font-semibold px-8">
+      <h3 className="text-xl font-bold text-gray-800 mt-2  ">{title}</h3>
+      <p className="text-gray-600 mt-2 ">{excerpt}</p>
+      <div className="pt-7  text-gray-500  font-semibold">
         By {author}
         <br />
         {formatToMonthDayYear(date)}

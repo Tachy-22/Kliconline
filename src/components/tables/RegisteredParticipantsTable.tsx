@@ -76,46 +76,41 @@ const RegisteredParticipantsTable = ({
   return (
     <div>
       <div className="flex justify-between mb-4">
-        <h2 className="text-xl">Registered Participants</h2>
+        <h2 className="text-xl text-black font-bold">Registered Participants</h2>
         <Button
           onClick={exportToExcel}
-          variant="default"
-          className="bg-green-500 text-white rounded hover:bg-green-500/80"
+          variant="outline"
+          className="bg-black text-white hover:bg-black/90"
           disabled={participants.length === 0}
         >
           Export to Excel
         </Button>
       </div>
 
-      <div className="rounded-md border">
+      <div className="rounded-md border border-black/20 bg-white">
         <Table>
-          {/* <TableCaption>
-            {participants.length === 0 
-              ? "No participants registered yet." 
-              : `A list of ${participants.length} registered participants.`}
-          </TableCaption> */}
           <TableHeader>
-            <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Phone</TableHead>
-              <TableHead>Registration Date</TableHead>
+            <TableRow className="border-black/20">
+              <TableHead className="text-black font-bold">Name</TableHead>
+              <TableHead className="text-black font-bold">Email</TableHead>
+              <TableHead className="text-black font-bold">Phone</TableHead>
+              <TableHead className="text-black font-bold">Registration Date</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {participants.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={4} className="text-center h-24">
+              <TableRow className="border-black/20">
+                <TableCell colSpan={4} className="text-center text-black">
                   No participants found.
                 </TableCell>
               </TableRow>
             ) : (
               participants.map((participant) => (
-                <TableRow key={participant.id}>
-                  <TableCell>{participant.data.name}</TableCell>
-                  <TableCell>{participant.data.email}</TableCell>
-                  <TableCell>{participant.data.phone}</TableCell>
-                  <TableCell>{participant.data.registrationDate?.toString()}</TableCell>
+                <TableRow key={participant.id} className="border-black/20">
+                  <TableCell className="text-black">{participant.data.name}</TableCell>
+                  <TableCell className="text-black">{participant.data.email}</TableCell>
+                  <TableCell className="text-black">{participant.data.phone}</TableCell>
+                  <TableCell className="text-black">{participant.data.registrationDate?.toString()}</TableCell>
                 </TableRow>
               ))
             )}
