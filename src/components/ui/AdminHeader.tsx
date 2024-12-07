@@ -9,7 +9,7 @@ const AdminHeader = () => {
   const hidePreview = ['/admin/event', '/admin/messages'].includes(path);
   
   return (
-    <div className="flex justify-between items-center p-4 bg-black text-white shadow-md sticky top-0 w-full">
+    <div className="flex justify-between items-center p-4 z-50 bg-black text-white shadow-md sticky top-0 w-full">
       <div className="font-bold text-xl text-white/70 py-[2.5px] capitalize">
         {path.split("/").at(-1)}
       </div>

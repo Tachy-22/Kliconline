@@ -1,36 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { Branch } from "@/types/branch";
 import { Input } from "../ui/input";
 import BranchHero from "../ui/BranchHero";
 import { getNearestBranch } from "@/lib/helpers";
-import dynamic from "next/dynamic";
-import "leaflet/dist/leaflet.css";
-
-const MapContainer = dynamic(
-  () => import("react-leaflet").then((mod) => mod.MapContainer),
-  { ssr: false }
-);
-const TileLayer = dynamic(
-  () => import("react-leaflet").then((mod) => mod.TileLayer),
-  { ssr: false }
-);
-const Marker = dynamic(
-  () => import("react-leaflet").then((mod) => mod.Marker),
-  {
-    ssr: false,
-  }
-);
-const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
-  ssr: false,
-});
-const Polyline = dynamic(
-  () => import("react-leaflet").then((mod) => mod.Polyline),
-  { ssr: false }
-);
 import { useMap } from "react-leaflet";
 import { DivIcon } from "leaflet";
+import dynamic from "next/dynamic";
+
+const BranchMap = dynamic(() => import("../map/BranchMap"), {
+  ssr: false,
+});
+
+// Ensure Leaflet CSS is only imported on client side
+import "leaflet/dist/leaflet.css";
 
 interface SearchResult {
   display_name: string;
@@ -38,7 +22,7 @@ interface SearchResult {
   lon: string;
 }
 
-const Branches = ({ branchData }: { branchData: BranchT[] }) => {
+const Branches = ({ branchData }: { branchData: Branch[] }) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<Branch | null>(null);
@@ -48,8 +32,11 @@ const Branches = ({ branchData }: { branchData: BranchT[] }) => {
   ]);
   const [mapZoom, setMapZoom] = useState(16); // Increased default zoom
   const [userPosition, setUserPosition] = useState<[number, number] | null>(
-    null)
-  const [customIcon, setCustomIcon] = useState<((branch: Branch) => DivIcon) | null>(null);
+    null
+  );
+  const [customIcon, setCustomIcon] = useState<
+    ((branch: Branch) => DivIcon) | null
+  >(null);
   const [userIcon, setUserIcon] = useState<DivIcon | null>(null);
 
   // Add function to calculate distance
@@ -104,24 +91,34 @@ const Branches = ({ branchData }: { branchData: BranchT[] }) => {
     }
   }, [branchData]); // Add branches as dependency
 
-  // Add Leaflet initialization effect
+  // Modified Leaflet initialization effect
   useEffect(() => {
-    // Import Leaflet only on client side
-    import('leaflet').then((L) => {
-      setCustomIcon((branch: Branch) =>
-        L.divIcon({
-          className: "custom-icon",
-          html: `<div class="w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-xs">${branch.name}</div>`,
-        })
-      );
+    if (typeof window !== "undefined") {
+      import("leaflet").then((L) => {
+        // Fix Leaflet default icon issue
+        delete (L.Icon.Default.prototype as { _getIconUrl?: string })
+          ._getIconUrl;
+        L.Icon.Default.mergeOptions({
+          iconRetinaUrl: "/marker-icon-2x.png",
+          iconUrl: "/marker-icon.png",
+          shadowUrl: "/marker-shadow.png",
+        });
 
-      setUserIcon(
-        L.divIcon({
-          className: "custom-icon",
-          html: `<div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">You</div>`,
-        })
-      );
-    });
+        setCustomIcon((branch: Branch) =>
+          L.divIcon({
+            className: "custom-icon",
+            html: `<div class="w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-xs">${branch.name}</div>`,
+          })
+        );
+
+        setUserIcon(
+          L.divIcon({
+            className: "custom-icon",
+            html: `<div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">You</div>`,
+          })
+        );
+      });
+    }
   }, []);
 
   const searchLocation = async (query: string) => {
@@ -262,70 +259,23 @@ const Branches = ({ branchData }: { branchData: BranchT[] }) => {
           </div>
 
           {/* Map Section */}
-          <div className="bg-white sticky top-[10rem]  z-10 rounded-lg  h-[600px]">
-            <MapContainer
-              center={mapCenter}
-              zoom={mapZoom}
-              style={{ height: "100%", width: "100%" }}
-            >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          <div className="bg-white sticky top-[10rem] z-10 rounded-lg h-[600px]">
+            <Suspense fallback={<div>Loading map...</div>}>
+              <BranchMap
+                mapCenter={mapCenter}
+                mapZoom={mapZoom}
+                userPosition={userPosition}
+                userIcon={userIcon}
+                selectedLocation={selectedLocation}
+                branchData={branchData}
+                customIcon={customIcon}
               />
-              {userPosition && userIcon && (
-                <Marker position={userPosition} icon={userIcon}>
-                  <Popup>Your Location</Popup>
-                </Marker>
-              )}
-              {/* Add path to nearest branch */}
-              {userPosition && selectedLocation && (
-                <Polyline
-                  positions={[
-                    userPosition,
-                    [selectedLocation.latitude, selectedLocation.longitude],
-                  ]}
-                  color="blue"
-                  weight={3}
-                  opacity={0.7}
-                  dashArray="10, 10"
-                />
-              )}
-              {branchData.map((branch) => (
-                <Marker
-                  key={branch.id}
-                  position={[branch.latitude, branch.longitude]}
-                  icon={customIcon ? customIcon(branch) : undefined}
-                >
-                  <Popup>
-                    <div className="p-2">
-                      <h3 className="font-bold">{branch.name}</h3>
-                      <p>{branch.address}</p>
-                    </div>
-                  </Popup>
-                </Marker>
-              ))}
-              {selectedLocation && (
-                <SetViewOnSelect center={mapCenter} zoom={mapZoom} />
-              )}
-            </MapContainer>
+            </Suspense>
           </div>
         </div>
       </div>
     </div>
   );
 };
-
-// Helper component for updating map view
-function SetViewOnSelect({
-  center,
-  zoom,
-}: {
-  center: [number, number];
-  zoom: number;
-}) {
-  const map = useMap();
-  map.setView(center, zoom);
-  return null;
-}
 
 export default Branches;
