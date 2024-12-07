@@ -87,6 +87,7 @@ const MapView = ({
           }),
           visible: false,
           properties: { title: "Satellite" },
+          title: "Satellite",
         }),
         terrain: new TileLayer({
           source: new XYZ({
@@ -95,7 +96,8 @@ const MapView = ({
           }),
           visible: false,
           properties: { title: "Terrain" },
-          name: "Terrain",
+         // name: "Terrain",
+          title: "Terrain",
         }),
       };
 
@@ -307,7 +309,7 @@ const MapView = ({
           <option value="terrain">Terrain</option>
         </select>
       </div>
-      
+
       <div ref={mapRef} className="ol-map rounded-lg overflow-hidden" />
       <div ref={popupRef} className="ol-popup" />
     </div>
