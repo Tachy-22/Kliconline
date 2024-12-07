@@ -67,18 +67,15 @@ const MapView = ({
         osm: new TileLayer({
           source: new OSM(),
           visible: true,
-          title: "OpenStreetMap",
-          properties: { title: "OpenStreetMap" },
+          properties: { layerId: 'osm' },
         }),
-        // Replace the vector tile layer with a better street layer
         streets: new TileLayer({
           source: new XYZ({
             url: "https://{a-c}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
             attributions: "© OpenStreetMap contributors",
           }),
-          visible: true,
-          title: "Streets",
-          properties: { title: "Streets" },
+          visible: false,
+          properties: { layerId: 'streets' },
         }),
         satellite: new TileLayer({
           source: new XYZ({
@@ -86,8 +83,7 @@ const MapView = ({
             attributions: "Powered by Esri",
           }),
           visible: false,
-          properties: { title: "Satellite" },
-          title: "Satellite",
+          properties: { layerId: 'satellite' },
         }),
         terrain: new TileLayer({
           source: new XYZ({
@@ -95,9 +91,7 @@ const MapView = ({
             attributions: "Map tiles by Stamen Design",
           }),
           visible: false,
-          properties: { title: "Terrain" },
-         // name: "Terrain",
-          title: "Terrain",
+          properties: { layerId: 'terrain' },
         }),
       };
 
@@ -168,7 +162,8 @@ const MapView = ({
   const handleLayerChange = (layerId: string) => {
     if (!map.current) return;
     map.current.getLayers().forEach((layer: any) => {
-      layer.setVisible(layer.get("title")?.toLowerCase() === layerId);
+      const layerProperties = layer.getProperties();
+      layer.setVisible(layerProperties.layerId === layerId);
     });
     setActiveLayer(layerId);
   };
