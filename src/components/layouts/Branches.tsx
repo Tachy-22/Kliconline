@@ -6,7 +6,6 @@ import { Input } from "../ui/input";
 import BranchHero from "../ui/BranchHero";
 import { getNearestBranch } from "@/lib/helpers";
 import dynamic from "next/dynamic";
-import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const MapContainer = dynamic(
@@ -31,6 +30,7 @@ const Polyline = dynamic(
   { ssr: false }
 );
 import { useMap } from "react-leaflet";
+import { DivIcon } from "leaflet";
 
 interface SearchResult {
   display_name: string;
@@ -39,8 +39,6 @@ interface SearchResult {
 }
 
 const Branches = ({ branchData }: { branchData: BranchT[] }) => {
-  // const [branches, setBranches] = useState<BranchT[]>(branchData);
-  // const [error, setError] = useState<string | null>(null);
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<Branch | null>(null);
@@ -50,8 +48,9 @@ const Branches = ({ branchData }: { branchData: BranchT[] }) => {
   ]);
   const [mapZoom, setMapZoom] = useState(16); // Increased default zoom
   const [userPosition, setUserPosition] = useState<[number, number] | null>(
-    null
-  );
+    null)
+  const [customIcon, setCustomIcon] = useState<((branch: Branch) => DivIcon) | null>(null);
+  const [userIcon, setUserIcon] = useState<DivIcon | null>(null);
 
   // Add function to calculate distance
   const calculateDistance = (
@@ -72,23 +71,6 @@ const Branches = ({ branchData }: { branchData: BranchT[] }) => {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c; // Distance in km
   };
-
-  // useEffect(() => {
-  //   const loadBranches = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       const branchData = await getAllBranches();
-  //       setBranches(branchData);
-  //     } catch (error) {
-  //       setError(
-  //         error instanceof Error ? error.message : "Failed to load branches" window
-  //       );
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-  //   loadBranches();
-  // }, []);
 
   // Add useEffect for geolocation
   useEffect(() => {
@@ -121,6 +103,26 @@ const Branches = ({ branchData }: { branchData: BranchT[] }) => {
       );
     }
   }, [branchData]); // Add branches as dependency
+
+  // Add Leaflet initialization effect
+  useEffect(() => {
+    // Import Leaflet only on client side
+    import('leaflet').then((L) => {
+      setCustomIcon((branch: Branch) =>
+        L.divIcon({
+          className: "custom-icon",
+          html: `<div class="w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-xs">${branch.name}</div>`,
+        })
+      );
+
+      setUserIcon(
+        L.divIcon({
+          className: "custom-icon",
+          html: `<div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">You</div>`,
+        })
+      );
+    });
+  }, []);
 
   const searchLocation = async (query: string) => {
     setSearchInput(query);
@@ -270,17 +272,8 @@ const Branches = ({ branchData }: { branchData: BranchT[] }) => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
-              {/* Add user position marker */}
-              {userPosition && (
-                <Marker
-                  position={userPosition}
-                  icon={L.divIcon({
-                    className: "custom-icon",
-                    html: `<div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">
-                      You
-                    </div>`,
-                  })}
-                >
+              {userPosition && userIcon && (
+                <Marker position={userPosition} icon={userIcon}>
                   <Popup>Your Location</Popup>
                 </Marker>
               )}
@@ -301,12 +294,7 @@ const Branches = ({ branchData }: { branchData: BranchT[] }) => {
                 <Marker
                   key={branch.id}
                   position={[branch.latitude, branch.longitude]}
-                  icon={L.divIcon({
-                    className: "custom-icon",
-                    html: `<div class="w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-xs">
-                      ${branch.name}
-                    </div>`,
-                  })}
+                  icon={customIcon ? customIcon(branch) : undefined}
                 >
                   <Popup>
                     <div className="p-2">
