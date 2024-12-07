@@ -24,8 +24,8 @@ export function SearchControls({
   onStatusFilterChange,
 }: Omit<TableControlsProps, 'currentPage' | 'totalPages' | 'onPageChange' | 'pageSize' | 'onPageSizeChange'>) {
   return (
-    <div className="flex gap-4 mb-4">
-      <div className="relative  flex-1 max-w-sm">
+    <div className="flex gap-4 mb-4  flex-col  lg:flex-row">
+      <div className="relative  flex-1  lg:max-w-sm">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
         <Input
           placeholder="Search..."
@@ -58,11 +58,14 @@ export function PaginationControls({
   onPageSizeChange,
 }: Pick<TableControlsProps, 'currentPage' | 'totalPages' | 'onPageChange' | 'pageSize' | 'onPageSizeChange'>) {
   return (
-    <div className="flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6">
+    <div className="flex  flex-col gap-3 lg:flex-row lg:items-center justify-between border-t border-gray-200 px- py-3 sm:px-6">
       <div className="flex items-center gap-2">
         <span className="text-sm text-gray-700">Rows per page:</span>
-        <Select value={pageSize.toString()} onValueChange={(v) => onPageSizeChange(Number(v))}>
-          <SelectTrigger className="w-[70px]">
+        <Select
+          value={pageSize.toString()}
+          onValueChange={(v) => onPageSizeChange(Number(v))}
+        >
+          <SelectTrigger className="w-[70px] rounded-xl">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -74,17 +77,18 @@ export function PaginationControls({
           </SelectContent>
         </Select>
       </div>
-      
+
       <div className="flex gap-2 items-center">
         <Button
           variant="outline"
           size="sm"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
+          className="rounded-xl"
         >
           Previous
         </Button>
-        <span className="text-sm text-gray-700">
+        <span className="text-sm text-gray-700 text-nowrap">
           Page {currentPage} of {totalPages}
         </span>
         <Button
@@ -92,6 +96,7 @@ export function PaginationControls({
           size="sm"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
+          className="rounded-xl"
         >
           Next
         </Button>
