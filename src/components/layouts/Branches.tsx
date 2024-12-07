@@ -1,26 +1,21 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
 import { Branch } from "@/types/branch";
 import { Input } from "../ui/input";
 import BranchHero from "../ui/BranchHero";
 import { getNearestBranch } from "@/lib/helpers";
-import { useMap } from "react-leaflet";
-import { DivIcon } from "leaflet";
-import dynamic from "next/dynamic";
-
-const BranchMap = dynamic(() => import("../map/BranchMap"), {
-  ssr: false,
-});
 
 // Ensure Leaflet CSS is only imported on client side
-import "leaflet/dist/leaflet.css";
 
 interface SearchResult {
   display_name: string;
   lat: string;
   lon: string;
 }
+
+const MapView = dynamic(() => import("./MapView"), { ssr: false });
 
 const Branches = ({ branchData }: { branchData: Branch[] }) => {
   const [searchInput, setSearchInput] = useState("");
@@ -34,10 +29,6 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
   const [userPosition, setUserPosition] = useState<[number, number] | null>(
     null
   );
-  const [customIcon, setCustomIcon] = useState<
-    ((branch: Branch) => DivIcon) | null
-  >(null);
-  const [userIcon, setUserIcon] = useState<DivIcon | null>(null);
 
   // Add function to calculate distance
   const calculateDistance = (
@@ -65,9 +56,14 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
+          
+          // Add debug information
+          console.log('Geolocation:', { latitude, longitude });
+          
+          // Fix: Store coordinates in correct order
           setUserPosition([latitude, longitude]);
           setMapCenter([latitude, longitude]);
-          // Find nearest branch to user's location
+
           if (branchData.length > 0) {
             const nearest = await getNearestBranch(
               latitude,
@@ -85,41 +81,18 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
         },
         (error) => {
           console.error("Geolocation error:", error);
-          // Keep default coordinates if geolocation fails window
+          // Consider showing an error message to the user
+          alert("Could not get your location. Please check your browser settings.");
+        },
+        {
+          // Add more accurate geolocation options
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0
         }
       );
     }
   }, [branchData]); // Add branches as dependency
-
-  // Modified Leaflet initialization effect
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      import("leaflet").then((L) => {
-        // Fix Leaflet default icon issue
-        delete (L.Icon.Default.prototype as { _getIconUrl?: string })
-          ._getIconUrl;
-        L.Icon.Default.mergeOptions({
-          iconRetinaUrl: "/marker-icon-2x.png",
-          iconUrl: "/marker-icon.png",
-          shadowUrl: "/marker-shadow.png",
-        });
-
-        setCustomIcon((branch: Branch) =>
-          L.divIcon({
-            className: "custom-icon",
-            html: `<div class="w-6 h-6 bg-black rounded-full flex items-center justify-center text-white text-xs">${branch.name}</div>`,
-          })
-        );
-
-        setUserIcon(
-          L.divIcon({
-            className: "custom-icon",
-            html: `<div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">You</div>`,
-          })
-        );
-      });
-    }
-  }, []);
 
   const searchLocation = async (query: string) => {
     setSearchInput(query);
@@ -261,14 +234,12 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
           {/* Map Section */}
           <div className="bg-white sticky top-[10rem] z-10 rounded-lg h-[600px]">
             <Suspense fallback={<div>Loading map...</div>}>
-              <BranchMap
+              <MapView
                 mapCenter={mapCenter}
                 mapZoom={mapZoom}
                 userPosition={userPosition}
-                userIcon={userIcon}
                 selectedLocation={selectedLocation}
                 branchData={branchData}
-                customIcon={customIcon}
               />
             </Suspense>
           </div>

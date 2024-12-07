@@ -11,7 +11,7 @@ export default async function NewsletterPage() {
   const newsletters = "items" in newslettersResult ? newslettersResult.items : [];
 
   return (
-    <div className="max-w-7xl mx-auto py-8 space-y-12">
+    <div className="max-w-7xl mx-auto py-8 px-3 space-y-12">
       <div className="text-center">
         <h1 className="text-3xl font-bold text-gray-900">Newsletter Management</h1>
         <p className="mt-2 text-gray-600">Manage your newsletter campaigns and subscriber list in one place</p>
