@@ -12,16 +12,16 @@ export default async function AdminLayout({
   const stats = await getDashboardStats();
 
   return (
-    <div className={`bg-white h-full w-full ] flex`}>
+    <div className={`bg-white h-full w-full max-w-screen flex`}>
       <SidebarProvider>
         <AdminSidebar
           testimoniesCount={stats.testimonies}
           messagesCount={stats.messages}
         />
-        <div className="w-full flex flex-col max-w-full h-full">
+        <div className="w-full flex flex-col max-w-fulll flex-1 h-full overflow-hidden">
           <AdminHeader />
           <SidebarTrigger />
-          <div className="p-4 max-w-full lg:max-w-7xl mx-auto w-full h-full ">
+          <div className="lg:p-4 flex-1 lg:max-w-7x mx-auto w-full h-full  ">
             {children}
           </div>
         </div>

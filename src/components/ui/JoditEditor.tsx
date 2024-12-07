@@ -25,6 +25,17 @@ const JEditor = ({
     () => ({
       readonly: false,
       placeholder: placeholder || "Start typing...",
+      enableDragAndDropFileToEditor: true,
+      askBeforePasteHTML: false,
+      askBeforePasteFromWord: false,
+      defaultActionOnPaste: "insert_as_html" as const,
+      beautifyHTML: false,
+      paste: {
+        keepAttributes: ['style', 'class'],
+        clearFormatting: false,
+        useNativeClipboard: true,
+        forcePasteAsText: false
+      }
     }),
     [placeholder]
   );

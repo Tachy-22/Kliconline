@@ -4,17 +4,33 @@ import React, { useState, useEffect } from "react";
 import { Branch } from "@/types/branch";
 import { Input } from "../ui/input";
 import BranchHero from "../ui/BranchHero";
-import { getAllBranches, getNearestBranch } from "@/lib/helpers";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMap,
-  Polyline,
-} from "react-leaflet";
+import { getNearestBranch } from "@/lib/helpers";
+import dynamic from "next/dynamic";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  {
+    ssr: false,
+  }
+);
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
+});
+const Polyline = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Polyline),
+  { ssr: false }
+);
+import { useMap } from "react-leaflet";
 
 interface SearchResult {
   display_name: string;
@@ -22,9 +38,9 @@ interface SearchResult {
   lon: string;
 }
 
-const Branches = () => {
-  const [branches, setBranches] = useState<BranchT[]>([]);
-  const [error, setError] = useState<string | null>(null);
+const Branches = ({ branchData }: { branchData: BranchT[] }) => {
+  // const [branches, setBranches] = useState<BranchT[]>(branchData);
+  // const [error, setError] = useState<string | null>(null);
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<Branch | null>(null);
@@ -57,22 +73,22 @@ const Branches = () => {
     return R * c; // Distance in km
   };
 
-  useEffect(() => {
-    const loadBranches = async () => {
-      try {
-        setIsLoading(true);
-        const branchData = await getAllBranches();
-        setBranches(branchData);
-      } catch (error) {
-        setError(
-          error instanceof Error ? error.message : "Failed to load branches"
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    loadBranches();
-  }, []);
+  // useEffect(() => {
+  //   const loadBranches = async () => {
+  //     try {
+  //       setIsLoading(true);
+  //       const branchData = await getAllBranches();
+  //       setBranches(branchData);
+  //     } catch (error) {
+  //       setError(
+  //         error instanceof Error ? error.message : "Failed to load branches" window
+  //       );
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+  //   loadBranches();
+  // }, []);
 
   // Add useEffect for geolocation
   useEffect(() => {
@@ -83,11 +99,11 @@ const Branches = () => {
           setUserPosition([latitude, longitude]);
           setMapCenter([latitude, longitude]);
           // Find nearest branch to user's location
-          if (branches.length > 0) {
+          if (branchData.length > 0) {
             const nearest = await getNearestBranch(
               latitude,
               longitude,
-              branches
+              branchData
             );
             const distance = calculateDistance(
               latitude,
@@ -100,11 +116,11 @@ const Branches = () => {
         },
         (error) => {
           console.error("Geolocation error:", error);
-          // Keep default coordinates if geolocation fails
+          // Keep default coordinates if geolocation fails window
         }
       );
     }
-  }, [branches]); // Add branches as dependency
+  }, [branchData]); // Add branches as dependency
 
   const searchLocation = async (query: string) => {
     setSearchInput(query);
@@ -136,7 +152,7 @@ const Branches = () => {
     const lon = parseFloat(result.lon);
     setMapCenter([lat, lon]);
     setMapZoom(18); // Increased zoom level for street view
-    const nearest = await getNearestBranch(lat, lon, branches);
+    const nearest = await getNearestBranch(lat, lon, branchData);
     const distance = calculateDistance(
       lat,
       lon,
@@ -150,11 +166,11 @@ const Branches = () => {
     <div className="flex flex-col gsp-[1rem] lg:gap-[5rem]">
       <BranchHero />
       <div className="container mx-auto px-4 py-8">
-        {error && (
+        {/* {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             {error}
           </div>
-        )}
+        )} */}
 
         {/* Main Content Grid */}
         <div className="grid gap-8 lg:grid-cols-[350px,1fr] max-w-7xl w-full mx-auto items-start">
@@ -220,7 +236,7 @@ const Branches = () => {
             <div className="bg-white  rounded-lg ">
               <h2 className="text-xl font-semibold mb-4">All Branches</h2>
               <div className="space-y-4">
-                {branches.map((branch) => (
+                {branchData.map((branch) => (
                   <div
                     key={branch.id}
                     className=" rounded-lg border-b py-4  cursor-pointer transition-colors"
@@ -281,7 +297,7 @@ const Branches = () => {
                   dashArray="10, 10"
                 />
               )}
-              {branches.map((branch) => (
+              {branchData.map((branch) => (
                 <Marker
                   key={branch.id}
                   position={[branch.latitude, branch.longitude]}
