@@ -17,10 +17,8 @@ import {
   defaults as defaultControls,
   FullScreen,
   MousePosition,
-  OverviewMap,
   ScaleLine,
   ZoomSlider,
-  ZoomToExtent,
 } from "ol/control";
 import {
   defaults as defaultInteractions,
@@ -28,9 +26,7 @@ import {
   PinchRotate,
 } from "ol/interaction";
 import "ol/ol.css";
-import VectorTileLayer from "ol/layer/VectorTile";
-import VectorTileSource from "ol/source/VectorTile";
-import MVT from "ol/format/MVT";
+
 import { Coordinate } from "ol/coordinate";
 
 interface MapViewProps {
@@ -45,7 +41,6 @@ const MapView = ({
   mapCenter,
   mapZoom,
   userPosition,
-  selectedLocation,
   branchData,
 }: MapViewProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -67,7 +62,7 @@ const MapView = ({
         osm: new TileLayer({
           source: new OSM(),
           visible: true,
-          properties: { layerId: 'osm' },
+          properties: { layerId: "osm" },
         }),
         streets: new TileLayer({
           source: new XYZ({
@@ -75,7 +70,7 @@ const MapView = ({
             attributions: "© OpenStreetMap contributors",
           }),
           visible: false,
-          properties: { layerId: 'streets' },
+          properties: { layerId: "streets" },
         }),
         satellite: new TileLayer({
           source: new XYZ({
@@ -83,7 +78,7 @@ const MapView = ({
             attributions: "Powered by Esri",
           }),
           visible: false,
-          properties: { layerId: 'satellite' },
+          properties: { layerId: "satellite" },
         }),
         terrain: new TileLayer({
           source: new XYZ({
@@ -91,7 +86,7 @@ const MapView = ({
             attributions: "Map tiles by Stamen Design",
           }),
           visible: false,
-          properties: { layerId: 'terrain' },
+          properties: { layerId: "terrain" },
         }),
       };
 
