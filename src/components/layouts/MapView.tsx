@@ -28,6 +28,7 @@ import {
 import "ol/ol.css";
 
 import { Coordinate } from "ol/coordinate";
+import BaseLayer from "ol/layer/Base";
 
 interface MapViewProps {
   mapCenter: [number, number];
@@ -156,7 +157,7 @@ const MapView = ({
   // Layer switcher control
   const handleLayerChange = (layerId: string) => {
     if (!map.current) return;
-    map.current.getLayers().forEach((layer: any) => {
+    map.current.getLayers().forEach((layer: BaseLayer) => {
       const layerProperties = layer.getProperties();
       layer.setVisible(layerProperties.layerId === layerId);
     });
@@ -182,6 +183,7 @@ const MapView = ({
         original: userPosition,
         transformed: fromLonLat([userPosition[1], userPosition[0]]),
       });
+      //any
 
       userFeature.setStyle(
         new Style({
