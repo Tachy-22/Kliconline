@@ -179,10 +179,10 @@ const MapView = ({
       });
 
       // Add debug information to console
-      console.log("User Position:", {
-        original: userPosition,
-        transformed: fromLonLat([userPosition[1], userPosition[0]]),
-      });
+      // console.log("User Position:", {
+      //   original: userPosition,
+      //   transformed: fromLonLat([userPosition[1], userPosition[0]]),
+      // });
       //any
 
       userFeature.setStyle(

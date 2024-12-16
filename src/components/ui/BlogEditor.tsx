@@ -40,15 +40,9 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
     update && blog ? (blog as BlogT) : (defaultBlogData as unknown as BlogT)
   );
   const [isFormOpen, setIsFormOpen] = useState(update);
-  const [uploadedFiles, setUploadedFiles] = useState<string[]>(
-    update && blog ? blog?.imageUrls : []
-  );
-
-  console.log({ uploadedFiles });
 
   const handleUploadComplete = (files: FileMetadata[]) => {
     const urls = files.map((file) => file.url);
-    setUploadedFiles(urls); // Replace instead of append
     setBlogData((prev) => ({ ...prev, imageUrls: urls }));
   };
 
@@ -66,21 +60,15 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
     setBlogData((prev) => ({ ...prev, [name]: value }));
   };
 
- 
-   const handleJEditorChange = (contentString: string) => {
-     setBlogData((prev) => ({ ...prev, content: contentString }));
-   };
+  const handleJEditorChange = (contentString: string) => {
+    setBlogData((prev) => ({ ...prev, content: contentString }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       if (update && blog) {
-        await updateDocument(
-          "blogs",
-          blog?.id as string,
-          blogData,
-          path
-        );
+        await updateDocument("blogs", blog?.id as string, blogData, path);
         onClose?.();
       } else {
         await addDocument("blogs", blogData, path);
@@ -214,13 +202,16 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
                   </div>
                 </div>
               </div>
-              {typeof window !== "undefined" && (
-                <JEditor
-                  value={blogData.content}
-                  placeholder="placeholder..."
-                  onChange={handleJEditorChange}
-                />
-              )}
+              <div className="px-4">
+                {" "}
+                {typeof window !== "undefined" && (
+                  <JEditor
+                    value={blogData.content}
+                    placeholder="placeholder..."
+                    onChange={handleJEditorChange}
+                  />
+                )}
+              </div>
             </div>
             {/* Blog Preview */}
             <div className="bg-white px-2  rounded-r-xl border-gray-400 border overflow-auto h-full">

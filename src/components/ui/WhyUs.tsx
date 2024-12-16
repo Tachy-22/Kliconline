@@ -8,25 +8,25 @@ const WhyUs = () => {
       title: "WATCH AND LISTEN TO OUR SERMONS",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
-      imageUrl: "/hero-img.svg", // Replace with actual image paths
+      imageUrl: "/benefit-img-1.jpg", // Replace with actual image paths
     },
     {
       id: 2,
-      imageUrl: "/hero-img.svg", // Replace with actual image paths
+      imageUrl: "/benefit-img-2.jpg", // Replace with actual image paths
       title: "Explore the Teachings of the Bible",
       description:
         "Dive into deep, insightful teachings from the Bible, guiding you through life’s challenges.",
     },
     {
       id: 3,
-      imageUrl: "/hero-img.svg", // Replace with actual image paths
+      imageUrl: "/benefit-img-3.jpg", // Replace with actual image paths
       title: "Connect with a Faithful Community",
       description:
         "Become part of a loving, supportive community that shares your faith and values.",
     },
     {
       id: 4,
-      imageUrl: "/hero-img.svg", // Replace with actual image paths
+      imageUrl: "/benefit-img-4.jpg", // Replace with actual image paths
       title: "Participate in Enriching Worship",
       description:
         "Join us for powerful worship sessions that bring you closer to God and renew your spirit.",
@@ -38,7 +38,7 @@ const WhyUs = () => {
       <div className="text-center mb-10">
         <p className="text-lg uppercase text-gray-600">WHY KLIC ?</p>
         <h2 className="text-3xl font-bold text-gray-800">
-          The Benefits of Joining Our Church
+         Why Join Our Church
         </h2>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">

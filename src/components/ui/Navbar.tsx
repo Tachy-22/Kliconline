@@ -6,6 +6,7 @@ import { Button } from "./button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 
 const Navbar = () => {
   const router = useRouter();
@@ -18,6 +19,7 @@ const Navbar = () => {
     { name: "Sermons", href: "/sermons" },
     { name: "Blogs", href: "/blogs" },
     { name: "Branches", href: "/branches" },
+    { name: "Testimonies", href: "/testimonies" },
   ];
 
   const isActiveLink = (href: string) => pathname === href;
@@ -29,7 +31,16 @@ const Navbar = () => {
       <div className="w-full text-white max-h-[5rem] flex items-center justify-between px-6 md:max-w-[80rem] mx-auto">
         {/* Logo Section */}
         <div className="text-xl py-3 font-bold border-r lg:px-[3rem] pr-[2rem]">
-          <Link href="/"> Klic</Link>
+          <Link href="/" className="">
+            {" "}
+            <Image
+              src={"/klic_logo.png"}
+              width={6000}
+              height={4000}
+              alt="KLIC"
+              className="w- h- aspect-video h-8 w-24"
+            />
+          </Link>
         </div>
 
         {/* Hamburger Menu (Mobile Only) */}
@@ -46,8 +57,8 @@ const Navbar = () => {
             <Link
               key={index}
               href={link.href}
-              className={`hover:underline hover:text-[#FFD2A4] font-extralight ${
-                isActiveLink(link.href) ? "text-[#FFD2A4]" : "text-white/75"
+              className={`hover:underline hover:text-[#FFD2A4] font-light ${
+                isActiveLink(link.href) ? "text-[#FFD2A4]" : "text-white/90"
               }`}
             >
               {link.name}
@@ -79,7 +90,19 @@ const Navbar = () => {
             className="fixed top-0 left-0 w-[80%] h-full bg-black/70 backdrop-blur text-white z-50 shadow-lg"
           >
             <div className="flex items-center justify-between p-6">
-              <h1 className="text-xl font-bold">Klic</h1>
+              <h1 className="text-xl font-bold">
+                {" "}
+                <Link href="/" className="">
+                  {" "}
+                  <Image
+                    src={"/klic_logo.png"}
+                    width={6000}
+                    height={4000}
+                    alt="KLIC"
+                    className="w- h- aspect-video h-8 w-24"
+                  />
+                </Link>
+              </h1>
             </div>
             <nav className="flex flex-col gap-4 px-6 mt-4 uppercase text-sm">
               {navLinks.map((link, index) => (

@@ -33,7 +33,7 @@ export function DeleteConfirmationModal({
   title = "Are you sure?",
 }: DeleteConfirmationModalProps) {
   const path = usePathname();
-  console.log(path);
+  //console.log(path);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 

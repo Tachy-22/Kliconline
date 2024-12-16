@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 import { sendNewsletter } from "@/actions/nodemailer";
-import { SendIcon } from "lucide-react";
+import { Send, } from "lucide-react";
 
 interface NewsletterFormProps {
   subscribers: SubscriberT[];
@@ -52,15 +52,16 @@ export default function NewsletterForm({ subscribers }: NewsletterFormProps) {
               name="subject"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Subject</FormLabel>
+                  <FormLabel className="text-gray-700 font-medium">Subject</FormLabel>
                   <FormControl>
                     <Input
-                      className=" placeholder:text-gray-500"
-                      placeholder="Newsletter subject"
+                      className="border-slate-200 hover:border-slate-300 focus:border-slate-400 transition-colors rounded-lg 
+                      placeholder:text-slate-400 text-gray-900"
+                      placeholder="Enter newsletter subject..."
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-sm text-red-500 mt-1" />
                 </FormItem>
               )}
             />
@@ -70,16 +71,16 @@ export default function NewsletterForm({ subscribers }: NewsletterFormProps) {
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Content</FormLabel>
+                  <FormLabel className="text-gray-700 font-medium">Content</FormLabel>
                   <FormControl>
                     <Textarea
-                      className=" placeholder:text-gray-500"
-                      placeholder="Newsletter content"
+                      className="min-h-[150px] border-slate-200 hover:border-slate-300 focus:border-slate-400 transition-colors rounded-lg
+                      placeholder:text-slate-400 text-gray-900"
+                      placeholder="Write your newsletter content..."
                       {...field}
-                      rows={10}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-sm text-red-500 mt-1" />
                 </FormItem>
               )}
             />
@@ -90,7 +91,7 @@ export default function NewsletterForm({ subscribers }: NewsletterFormProps) {
               className="bg-black py-6 text-white hover:bg-gray-800 transition-colors duration-300 focus:ring-2 focus:ring-black focus:ring-offset-2 rounded-xl w-full"
             >
               {sending ? "Sending..." : "Send Newsletter"}
-              {!sending && <SendIcon className="ml-2 h-4 w-4" />}
+              {!sending && <Send className="ml-2 h-4 w-4" />}
             </Button>
           </form>
         </Form>

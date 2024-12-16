@@ -9,7 +9,7 @@ const page = async () => {
   const sermons = await fetchCollection<SermonT>("sermons");
   const blogs = await fetchCollection<BlogT>("blogs", { limitTo: 3 });
 
-  console.log({ sermons });
+  ////console.log({ sermons });
 
   if ("items" in sermons && "items" in blogs) {
     return (

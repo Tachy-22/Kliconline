@@ -35,7 +35,7 @@ const Features = () => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="bg-[#FFF5EB] pt-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col gap-3"
+            className="bg-[#FFF5EB] pt-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col gap-3 justify-between"
           >
             {/* Icon */}
             <div className="px-6">

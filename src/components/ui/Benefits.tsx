@@ -16,7 +16,7 @@ const benefits: Benefit[] = [
     title: "Spirit-Filled Worship",
     description:
       "Experience powerful, life-transforming worship services where God's presence is manifested through anointed praise, worship, and the teaching of God's Word.",
-    image: "/hero-img.svg",
+    image: "/img1.jpg",
   },
   {
     id: 2,
@@ -43,35 +43,42 @@ const benefits: Benefit[] = [
 
 const Benefits: React.FC = () => {
   return (
-    <section className="py-6 md:py-16 p-3 md:px-[5rem] max-w-7xl mx-auto flex flex-col">
-      <p className="text-lg uppercase text-gray-600 text-center">
-        WHAT ARE WE ABOUT?
-      </p>
-      <h2 className="text-2xl md:text-3xl pt-[1rem] md:pt-[2rem] pb-[3rem] md:pb-[5rem] font-bold mx-auto text-gray-800 uppercase max-w-[25rem] text-center">
-        The Benefits of Joining Our Church
-      </h2>
-      <div className="flex flex-col gap-[3rem] md:gap-[6rem]">
+    <section className="py-12 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
+      <div className="text-center mb-16">
+        <span className="text-sm md:text-lg  text-gray-600 font-medium tracking-wider uppercase">
+          WHAT ARE WE ABOUT?
+        </span>
+        <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-900 leading-tight max-w-2xl mx-auto">
+          The Benefits of Joining Our Church
+        </h2>
+      </div>
+
+      <div className="space-y-16 md:space-y-24">
         {benefits.map((benefit, id) => (
           <div
             key={benefit.id}
             className={`${
               id % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-            } flex flex-col items-center gap-4 md:gap-6`}
+            } flex flex-col lg:flex-row items-center gap-8 md:gap-12`}
           >
-            <div className="w-full text-center lg:text-left">
-              <h3 className="text-2xl md:text-3xl uppercase font-semibold">
+            <div className="w-full lg:w-1/2 space-y-4">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-700 leading-tight">
                 {benefit.title}
               </h3>
-              <p className="text-gray-600">{benefit.description}</p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {benefit.description}
+              </p>
             </div>
-            <div className="w-full">
-              <Image
-                width={2000}
-                height={1000}
-                src={benefit.image}
-                alt={benefit.title}
-                className="w-full h-[15rem] md:h-[20rem] object-cover rounded-lg mb-4"
-              />
+            <div className="w-full lg:w-1/2">
+              <div className="relative overflow-hidden rounded-2xl shadow-xl">
+                <Image
+                  width={2000}
+                  height={1000}
+                  src={benefit.image}
+                  alt={benefit.title}
+                  className="w-full h-[300px] md:h-[400px] object-cover transform  transition-transform duration-300"
+                />
+              </div>
             </div>
           </div>
         ))}

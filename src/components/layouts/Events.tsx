@@ -22,7 +22,7 @@ const Events = ({ events }: EventsProps) => {
         }, events[0])
       : null;
 
-  console.log({ events });
+  //console.log({ events });
   return (
     <div className="flex flex-col py-[2rem] w-full bg-[#F5F2F0]">
       <div className="h-full px-3 lg:px-6 lg::px-20 max-w-7xl w-full mx-auto flex flex-col gap-6">

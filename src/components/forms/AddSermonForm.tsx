@@ -167,6 +167,7 @@ export default function AddSermonForm({
                           <Input
                             className="border-slate-700  placeholder:text-gray-500 rounded"
                             placeholder="Sermon title"
+                            maxLength={100}
                             {...field}
                           />
                         </FormControl>
@@ -187,6 +188,7 @@ export default function AddSermonForm({
                           <Textarea
                             className="rounded placeholder:text-gray-500"
                             placeholder="Sermon description"
+                            maxLength={500}
                             {...field}
                           />
                         </FormControl>
@@ -249,6 +251,7 @@ export default function AddSermonForm({
                           <Input
                             className="border-slate-700  placeholder:text-gray-500 rounded"
                             placeholder="Preacher name"
+                            maxLength={50}
                             {...field}
                           />
                         </FormControl>

@@ -21,12 +21,17 @@ const Hero = () => {
       {/* Fixed Background Image */}
       <div className="fixed top-0 left-0 w-full h-full bg-black">
         <Image
-          width={1500}
-          height={663}
+          width={6000}
+          height={4000}
           alt="bg-image"
-          src="/hero-img.svg"
-          className="w-full h-full object-cover opacity-90 transform-gpu"
-          style={{ transform: `translate3d(0, ${scrollY * -0.1}px, 0)` }}
+          src="/klic-home-2.jpg"
+          className="w-full h-full object-cover opacity-90 transform-gpu transition-transform duration-300 ease-out"
+          style={{ transform: `translate3d(0, ${scrollY * -0.05}px, 0)` }}
+        />
+        {/* Yellowish-orangish overlay */}
+        <div
+          className="absolute inset-0 bg-[#FFD2A4]/20 mix-blend-overlay transform-gpu transition-transform duration-300 ease-out"
+          style={{ transform: `translate3d(0, ${scrollY * -0.05}px, 0)` }}
         />
       </div>
 
@@ -37,10 +42,10 @@ const Hero = () => {
         </span>
         <h1 className="text-4xl py-[0.5rem] font-bold flex flex-col gap-3 text-white uppercase">
           <span className="text-">
-            Become a part of <span className="lg:hidden block">our</span>
+            Become a part of <span className="lg:hidden block">our family</span>
           </span>
           <span>
-            <span className="hidden lg:block">our</span> family
+            <span className="hidden lg:block">our family</span>
           </span>
         </h1>
         <div className="my-[1rem]">

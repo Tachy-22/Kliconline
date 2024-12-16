@@ -91,7 +91,7 @@ export function AdminSidebar({
 
       // First sign out from Firebase
       await signOutAction();
-      // console.log({ res });
+      // //console.log({ res });
       // Then remove the cookie
       Cookies.remove("admin-session", {
         path: "/",
@@ -114,7 +114,7 @@ export function AdminSidebar({
     <Sidebar className="border-0 bg-white">
       <SidebarContent className="border-0 bg-white ">
         <Link href="/admin" className="p-4 mb-2 border-b bg-black text-white">
-          <span className="text-2xl font-bold ">Klic</span>
+          <span className="text-2xl font-bold ">Klic Admin</span>
         </Link>
         <SidebarGroup>
           <SidebarGroupLabel className="text-gray-600 pb-4">
@@ -190,7 +190,7 @@ export function AdminSidebar({
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  className="rounded-xl p-4 text-gray-700 hover:bg-gray-100 disabled:opacity-50 border shadow-inner"
+                  className="rounded-md p-4 text-gray-700 hover:bg-gray-100 disabled:opacity-50  "
                   onClick={handleSignOut}
                   disabled={isSigningOut}
                 >

@@ -65,9 +65,9 @@ export default function AddEventForm({
   const path = usePathname();
   const [isFormOpen, setIsFormOpen] = useState(update);
   const [submitting, setSubmitting] = useState(false);
-  const [uploadedFiles, setUploadedFiles] = useState<string[]>(
-    event?.images || []
-  );
+  // const [uploadedFiles, setUploadedFiles] = useState<string[]>(
+  //   event?.images || []
+  // );
 
   const form = useForm<FormData>({
     mode: "onChange",
@@ -92,10 +92,10 @@ export default function AddEventForm({
             category: "",
           },
   });
-  console.log({ uploadedFiles });
+  //console.log({ uploadedFiles });
   const handleUploadComplete = (files: FileMetadata[]) => {
     const urls = files.map((file) => file.url);
-    setUploadedFiles(urls); // Replace instead of append
+//    setUploadedFiles(urls); // Replace instead of append
     form.setValue("images", urls); // Update form state directly with new list
   };
 
@@ -169,28 +169,21 @@ export default function AddEventForm({
                   <FormField
                     control={form.control}
                     name="title"
-                    rules={{
-                      required: "Title is required",
-                      minLength: {
-                        value: 3,
-                        message: "Title must be at least 3 characters",
-                      },
-                      maxLength: {
-                        value: 100,
-                        message: "Title must be less than 100 characters",
-                      },
-                    }}
+                    rules={{ required: "Title is required" }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-900">Title</FormLabel>
+                        <FormLabel className="text-gray-700 font-medium">
+                          Title
+                        </FormLabel>
                         <FormControl>
                           <Input
-                            className="rounded border-slate-700"
+                            className="border-slate-200 hover:border-slate-300 focus:border-slate-400 transition-colors rounded-lg
+                            placeholder:text-slate-400 text-gray-900"
+                            placeholder="Enter event title..."
                             {...field}
-                            value={field.value ?? ""}
                           />
                         </FormControl>
-                        <FormMessage className="text-red-500" />
+                        <FormMessage className="text-sm text-red-500 mt-1" />
                       </FormItem>
                     )}
                   />
@@ -201,16 +194,16 @@ export default function AddEventForm({
                     rules={{ required: "Category is required" }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-900">
+                        <FormLabel className="text-gray-700 font-medium">
                           Category
                         </FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={field.value || undefined}
+                          defaultValue={field.value}
                         >
                           <FormControl>
-                            <SelectTrigger className="border-slate-700 rounded">
-                              <SelectValue placeholder="Select a category" />
+                            <SelectTrigger className="border-slate-200 hover:border-slate-300 focus:border-slate-400 transition-colors rounded-lg text-gray-900">
+                              <SelectValue placeholder="Select event category" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -219,10 +212,9 @@ export default function AddEventForm({
                             </SelectItem>
                             <SelectItem value="IDBS">IDBS</SelectItem>
                             <SelectItem value="KLC">KLC</SelectItem>
-
                           </SelectContent>
                         </Select>
-                        <FormMessage className="text-red-500" />
+                        <FormMessage className="text-sm text-red-500 mt-1" />
                       </FormItem>
                     )}
                   />
@@ -292,7 +284,13 @@ export default function AddEventForm({
                   <FormField
                     control={form.control}
                     name="location"
-                    rules={{ required: "Location is required" }}
+                    rules={{
+                      required: "Location is required",
+                      maxLength: {
+                        value: 100,
+                        message: "Location must be less than 100 characters",
+                      },
+                    }}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-gray-900">
@@ -386,9 +384,9 @@ export default function AddEventForm({
                           message: "Description must be at least 20 characters",
                         },
                         maxLength: {
-                          value: 1000,
+                          value: 2000,
                           message:
-                            "Description must be less than 1000 characters",
+                            "Description must be less than 2000 characters",
                         },
                       }}
                       render={({ field }) => (

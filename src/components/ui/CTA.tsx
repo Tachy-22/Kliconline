@@ -4,7 +4,7 @@ import React from "react";
 
 const CTA = () => {
   return (
-    <section className="py-12 pt-[7rem] text-center ">
+    <section className="py-12  text-center ">
       {/* Sub-Headline */}
       <h2 className="text-lg uppercase text-gray-500">Our Mission & Vision</h2>
 

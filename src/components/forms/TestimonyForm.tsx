@@ -20,8 +20,12 @@ import { updateDocument } from "@/actions/updateDocument";
 import { addDocument } from "@/actions/addDocument";
 
 const formSchema = z.object({
-  author: z.string().min(2, "Author must be at least 2 characters"),
-  content: z.string().min(10, "Testimony must be at least 10 characters"),
+  author: z.string()
+    .min(2, "Author must be at least 2 characters")
+    .max(50, "Author must be less than 50 characters"),
+  content: z.string()
+    .min(10, "Testimony must be at least 10 characters")
+    .max(2000, "Testimony must be less than 2000 characters"),
 });
 
 interface TestimonyFormProps {
@@ -90,12 +94,12 @@ const TestimonyForm = ({ testimony, update = false,onClose }: TestimonyFormProps
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full max-w-2xl mx-auto space-y-6 "
+        className="w-full  mx-auto space-y-6 "
       >
         <div className="space-y-2">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
+          {/* <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
             {update ? "Update" : "Share Your"} Testimony
-          </h2>
+          </h2> */}
           <p className="text-sm text-gray-500">
             Please share your experience with us
           </p>
@@ -114,7 +118,7 @@ const TestimonyForm = ({ testimony, update = false,onClose }: TestimonyFormProps
                   placeholder="Enter your name"
                   {...field}
                   disabled={isSubmitting}
-                  className="h-11 px-4 py-2 text-base disabled:opacity-50"
+                  className="h-11 px-4 py-2 text-base disabled:opacity-50 rounded-lg border-gray-300 focus:border-black"
                 />
               </FormControl>
               <FormMessage className="text-sm text-red-500" />
@@ -132,8 +136,9 @@ const TestimonyForm = ({ testimony, update = false,onClose }: TestimonyFormProps
               </FormLabel>
               <FormControl>
                 <Textarea
+                rows={3}
                   placeholder="Share your story here..."
-                  className="min-h-[150px] px-4 py-3 text-base resize-y disabled:opacity-50"
+                  className="min-h-[150px] px-4 py-3 text-base resize-y disabled:opacity-50  rounded-lg border-gray-300 focus:border-black"
                   {...field}
                   disabled={isSubmitting}
                 />

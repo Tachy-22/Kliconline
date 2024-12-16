@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 import { fetchCollection } from "@/actions/fettchCollection";
 import Events from "@/components/layouts/Events";
 import Footer from "@/components/ui/Footer";

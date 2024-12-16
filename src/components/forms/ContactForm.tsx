@@ -21,10 +21,19 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "../ui/button";
 
 const formSchema = z.object({
-  fullName: z.string().min(2, "Name must be at least 2 characters"),
+  fullName: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name must be less than 50 characters"),
   email: z.string().email("Invalid email address"),
-  query: z.string().min(2, "Query must be at least 2 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  query: z
+    .string()
+    .min(2, "Query must be at least 2 characters")
+    .max(100, "Query must be less than 100 characters"),
+  message: z
+    .string()
+    .min(10, "Message must be at least 10 characters")
+    .max(1000, "Message must be less than 1000 characters"),
 });
 
 const ContactForm = () => {
@@ -32,7 +41,7 @@ const ContactForm = () => {
   const path = usePathname();
   const [isLoading, setIsLoading] = useState(false);
 
-  //  console.log(isLoading);
+  //  //console.log(isLoading);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -109,7 +118,7 @@ const ContactForm = () => {
                         {...field}
                       />
                     </FormControl>
-              <FormMessage className="text-sm text-red-500" />
+                    <FormMessage className="text-sm text-red-500" />
                   </FormItem>
                 )}
               />
@@ -131,7 +140,7 @@ const ContactForm = () => {
                         {...field}
                       />
                     </FormControl>
-              <FormMessage className="text-sm text-red-500" />
+                    <FormMessage className="text-sm text-red-500" />
                   </FormItem>
                 )}
               />
@@ -152,7 +161,7 @@ const ContactForm = () => {
                         {...field}
                       />
                     </FormControl>
-              <FormMessage className="text-sm text-red-500" />
+                    <FormMessage className="text-sm text-red-500" />
                   </FormItem>
                 )}
               />
@@ -174,7 +183,7 @@ const ContactForm = () => {
                         {...field}
                       />
                     </FormControl>
-              <FormMessage className="text-sm text-red-500" />
+                    <FormMessage className="text-sm text-red-500" />
                   </FormItem>
                 )}
               />

@@ -58,7 +58,7 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
           const { latitude, longitude } = position.coords;
           
           // Add debug information
-          console.log('Geolocation:', { latitude, longitude });
+          // console.log('Geolocation:', { latitude, longitude });
           
           // Fix: Store coordinates in correct order
           setUserPosition([latitude, longitude]);

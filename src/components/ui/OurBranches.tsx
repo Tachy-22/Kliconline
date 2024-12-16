@@ -25,8 +25,7 @@ const OurBranches: React.FC = () => {
             </p>
             <Link
               href="/branches"
-              className="rounded bg-[#ffd2a4] hover:bg-[#ffd2a4]/90 w-fit p-6"
-              onClick={() => alert("Navigate to the nearest branch finder!")}
+              className="inline-block px-8 py-4 text-black font-medium rounded-lg bg-[#ffd2a4] hover:bg-[#ffc988] transition-colors duration-300"
             >
               Find a Branch Near You
             </Link>

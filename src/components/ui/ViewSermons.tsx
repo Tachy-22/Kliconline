@@ -24,7 +24,7 @@ const ViewSermons = ({ sermons }: { sermons: SermonT[] }) => {
   };
 
   const latestSermon = getLatestSermon();
-  console.log({ latestSermon });
+  //console.log({ latestSermon });
 
   if (!latestSermon) {
     return <p>No sermons available.</p>;
@@ -34,8 +34,6 @@ const ViewSermons = ({ sermons }: { sermons: SermonT[] }) => {
 
   // Convert Firebase timestamp or Date object to Date
   const sermonDate = formatToMonthDayYear(date);
-
-  
 
   return (
     <section className="bg-gray-50 py-16 flex flex-col gap-[3rem]">

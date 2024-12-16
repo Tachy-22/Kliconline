@@ -31,15 +31,15 @@ const JEditor = ({
       defaultActionOnPaste: "insert_as_html" as const,
       beautifyHTML: false,
       paste: {
-        keepAttributes: ['style', 'class'],
+        keepAttributes: ["style", "class"],
         clearFormatting: false,
         useNativeClipboard: true,
-        forcePasteAsText: false
-      }
+        forcePasteAsText: false,
+      },
     }),
     [placeholder]
   );
-  console.log({ placeholder, value, onChange, config, editor });
+  //console.log({ placeholder, value, onChange, config, editor });
   if (typeof window === "undefined") {
     return <div>Loading...</div>;
   }

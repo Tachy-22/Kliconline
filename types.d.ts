@@ -136,4 +136,28 @@ type BranchT = {
   updatedAt?: string;
 };
 
-// ...existing code...
+ interface FileMetadata {
+  url: string;
+  name: string;
+  size: number;
+  type: string;
+  lastModified: number;
+}
+
+interface FileInputProps {
+  multiple?: boolean;
+  accept?: string;
+  maxSize?: number; // in MB
+  maxFileSize?: number; // in MB
+  onUploadComplete?: (files: FileMetadata[]) => void;
+  onError?: (error: string) => void;
+  className?: string;
+  initialFiles?: string[];
+}
+
+interface FileWithProgress {
+  file: File;
+  progress: number;
+  url?: string;
+  error?: string;
+}

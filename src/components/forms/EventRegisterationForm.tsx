@@ -31,8 +31,6 @@ const EventRegisterationForm = ({ event }: EventProps) => {
   const eventId = event.id;
   const formattedDate = formatToMonthDayYear(eventDate);
 
-    
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const registrationData: RegistrationData = {
@@ -51,7 +49,7 @@ const EventRegisterationForm = ({ event }: EventProps) => {
       console.error(result.message);
     } else {
       // Handle success
-      console.log("Registration successful");
+      //console.log("Registration successful");
     }
   };
 

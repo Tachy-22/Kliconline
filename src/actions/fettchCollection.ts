@@ -75,10 +75,10 @@ export async function fetchCollection<T>(
         },
         {} as Record<string, unknown>
       );
-      console.log({
-        id: doc.id,
-        ...transformedData,
-      });
+      // //console.log({
+      //   id: doc.id,
+      //   ...transformedData,
+      // });
       return {
         id: doc.id,
         ...transformedData,

@@ -145,14 +145,16 @@ export default function BranchesForm({
                     rules={{ required: "Branch name is required" }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-900">Branch Name</FormLabel>
+                        <FormLabel className="text-gray-700 font-medium">Branch Name</FormLabel>
                         <FormControl>
                           <Input
-                            className="rounded border-slate-700"
+                            className="border-slate-200 hover:border-slate-300 focus:border-slate-400 transition-colors rounded-lg
+                            placeholder:text-slate-400 text-gray-900"
+                            placeholder="Enter branch name..."
                             {...field}
                           />
                         </FormControl>
-                        <FormMessage className="text-red-500" />
+                        <FormMessage className="text-sm text-red-500 mt-1" />
                       </FormItem>
                     )}
                   />

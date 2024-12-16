@@ -1,7 +1,7 @@
 import { Input } from "./ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Button } from "./ui/button";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 interface TableControlsProps {
   searchQuery: string;
@@ -31,8 +31,16 @@ export function SearchControls({
           placeholder="Search..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-9 rounded-xl"
+          className="pl-9 pr-9 rounded-xl border-gray-200 focus:ring-2 focus:ring-black focus:border-black transition-all duration-200 text-gray-900 placeholder:text-gray-400 placeholder:text-sm"
         />
+        {searchQuery && (
+          <button
+            onClick={() => onSearchChange("")}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
       </div>
       {showStatusFilter && (
         <Select value={statusFilter} onValueChange={onStatusFilterChange}>

@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 html {
-  color-scheme: "light";
+  color-scheme: "light" !important;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -215,28 +216,6 @@ body {
     }
     .prose blockquote {
       @apply text-sm;
-    }
-  }
-
-  /* Dark mode support */
-  @media (prefers-color-scheme: dark) {
-    .prose {
-      @apply text-gray-200;
-    }
-    .prose h1, .prose h2, .prose h3, .prose h4 {
-      @apply text-gray-100;
-    }
-    .prose blockquote {
-      @apply bg-gray-800 border-gray-600 text-gray-300;
-    }
-    .prose code {
-      @apply bg-gray-800;
-    }
-    .prose pre {
-      @apply bg-gray-800;
-    }
-    .prose a {
-      @apply text-blue-400 hover:text-blue-300;
     }
   }
 }

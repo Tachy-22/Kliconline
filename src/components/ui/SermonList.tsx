@@ -16,7 +16,7 @@ const SermonList: React.FC<SermonListProps> = ({ sermons: initialSermons }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredSermons, setFilteredSermons] = useState(initialSermons);
 
-  console.log({ initialSermons });
+  //console.log({ initialSermons });
 
   const handleDateChange = (range: DateRange | undefined) => {
     if (range && range.from && range.to) {
@@ -47,7 +47,7 @@ const SermonList: React.FC<SermonListProps> = ({ sermons: initialSermons }) => {
     : searchedSermons.slice(0, 6);
 
   return (
-    <section className="p-3 lg:py-[6rem] lg:px-[4.5rem] w-full max-w-7xl mx-auto flex flex-col gap-6 lg:gap-12">
+    <section className="p-3 pb-[2rem] lg:py-[6rem] lg:px-[4.5rem] w-full max-w-7xl mx-auto flex flex-col gap-6 lg:gap-12">
       <h2 className="text-3xl font-bold mx-auto text-gray-800 uppercase max-w-[30rem] ">
         OUR SERMONS
       </h2>

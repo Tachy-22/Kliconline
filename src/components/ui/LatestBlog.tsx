@@ -37,7 +37,7 @@ const LatestBlog = ({ blogs }: { blogs: BlogT[] }) => {
   const latestBlog = getLatestBlog();
   const { date, author, title, excerpt, imageUrls, id } = latestBlog;
 
-  console.log({ latestBlog });
+  //console.log({ latestBlog });
 
   return (
     <section className=" ">

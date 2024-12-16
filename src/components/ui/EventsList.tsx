@@ -75,12 +75,12 @@ const EventsList: React.FC<EventsListProps> = ({ events }) => {
   const pastEvents = events.filter(({ date }) => {
     const eventDate = new Date(date); // Convert Timestamp to Date
     const yes = eventDate < now;
-    console.log({ eventDate, yes, now });
+    //console.log({ eventDate, yes, now });
     return eventDate < now;
   });
   const upcomingEvents = events.filter(({ date }) => {
     const eventDate = new Date(date); // Convert Timestamp to Date
-    console.log({ eventDate });
+    //console.log({ eventDate });
     return eventDate >= now;
   });
 
