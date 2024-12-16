@@ -4,6 +4,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { getDashboardStats } from "@/lib/helpers";
 import React from "react";
 
+export const revalidate = 0;
+
 export default async function AdminLayout({
   children,
 }: Readonly<{
