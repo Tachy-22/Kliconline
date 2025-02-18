@@ -17,7 +17,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[45rem]">
+    <div className="relative w-full h-[30rem] md:h-[40rem]">
       {/* Fixed Background Image */}
       <div className="fixed top-0 left-0 w-full h-full bg-black">
         <Image
@@ -40,7 +40,7 @@ const Hero = () => {
         <span className="uppercase text-white/80 text-sm tracking-tight font-semibold">
           Your Local Christian Community in the UK
         </span>
-        <h1 className="lg:text-6xl text-5xl py-[0.5rem] font-extrabold flex flex-col gap-2 md:gap-4  text-white uppercase text-nowrap">
+        <h1 className="md:text-6xl text-4xl py-[0.5rem] font-extrabold flex flex-col gap-2 md:gap-4  text-white uppercase text-nowrap">
           <span className="">
             Join Our Welcoming{" "}
             {/* <span className="lg:hidden block font-['Great_Vibes']  text-yellow-400 italic">
@@ -56,7 +56,7 @@ const Hero = () => {
         <div className="my-[1rem]">
           <Link
             href="/about-us"
-            className="px-4 py-2 bg-yellow-500 text-white/80 font-light rounded hover:bg-yellow-500/90 uppercase w-fit border-2 border-white flex items-center gap-2"
+            className="px-4 py-2 bg-yellow-500 text-white/80 font-light rounded-[0.5rem] hover:bg-yellow-500/90 uppercase w-fit border-2 border-yellow-400 flex items-center gap-2 transition-all duration-500"
           >
             Discover More
             <ChevronRight className="w-4 h-4" />

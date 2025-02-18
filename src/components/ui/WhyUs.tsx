@@ -34,14 +34,14 @@ const WhyUs = () => {
   ];
 
   return (
-    <div className="bg-gray-100 py-[5rem]">
+    <div className="bg-gray-100 py-[5rem] px-2">
       <div className="text-center mb-10">
         <p className="text-lg uppercase text-gray-600">WHY KLIC ?</p>
         <h2 className="text-3xl font-bold text-gray-800">
-         Why Join Our Church
+          Why Join Our Church
         </h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 max-w-7xl mx-auto rounded-xl border-x-4 shadow-2xl border-red-400 overflow-hidden p-2 ">
         {benefits.map((benefit) => (
           <div
             key={benefit.id}
@@ -54,8 +54,8 @@ const WhyUs = () => {
               height={300}
               className="w-full h-full object-cover rounded-lg "
             />
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4 rounded-lg ">
-              <h3 className="text-white uppercase font-semibold text-lg translate-y-[100%] group-hover:translate-y-0 transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/50 flex flex-col justify-end p-4 rounded-lg ">
+              <h3 className="text-white uppercase font-semibold text-lg translate-y-[100%] group-hover:translate-y-0 transition-all duration-300 text-center">
                 {benefit.title}
               </h3>
               {benefit.description && (

@@ -4,7 +4,7 @@ import React from "react";
 
 const MissionAndVision: React.FC = () => {
   return (
-    <section className="py-[3rem] md:py-[6rem] max-w-7xl mx-auto">
+    <section className="py-[2rem] md:py-[4rem] max-w-7xl mx-auto">
       <div className="mx-auto p-3 md:px-[4.5rem]">
         <div className="flex lg:flex-row flex-col gap-[3rem]">
           {/* Mission & Vision Section */}

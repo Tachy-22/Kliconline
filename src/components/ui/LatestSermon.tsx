@@ -45,7 +45,7 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
         </h2>
       </div>
       <div className="max-w-7xl mx-auto w-full gap flex flex-col lg:flex-row items-center justify-between lg:h-[25rem]">
-        <div className="bg-[#FFF5EB] rounded-lg p-3 lg:px-[3rem] py-[2rem] w-full lg:w-1/3 flex flex-col justify-between min-h-full h-full relative gap-6">
+        <div className="bg-yellow-100 rounded-lg p-3 lg:px-[3rem] py-[2rem] w-full lg:w-1/3 flex flex-col justify-between min-h-full h-full relative gap-6">
           <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full !text-black">
             {sermonDate}
           </div>
@@ -70,8 +70,7 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
             controls
             className="w-full h-10 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
             style={{
-              accentColor: '#FFB951',
-              backgroundColor: '#FFF',
+              accentColor: '#FFFFF',
             }}
           />
         

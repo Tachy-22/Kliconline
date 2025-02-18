@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "./button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Users, Calendar, Mic, BookText, MapPin, MessageCircle } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
@@ -14,12 +14,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: "About Us", href: "/about-us" },
-    { name: "Events", href: "/events" },
-    { name: "Sermons", href: "/sermons" },
-    { name: "Blogs", href: "/blogs" },
-    { name: "Branches", href: "/branches" },
-    { name: "Testimonies", href: "/testimonies" },
+    { name: "About Us", href: "/about-us", icon: Users },
+    { name: "Events", href: "/events", icon: Calendar },
+    { name: "Sermons", href: "/sermons", icon: Mic },
+    { name: "Blogs", href: "/blogs", icon: BookText },
+    { name: "Branches", href: "/branches", icon: MapPin },
+    { name: "Testimonies", href: "/testimonies", icon: MessageCircle },
   ];
 
   const isActiveLink = (href: string) => pathname === href;
@@ -57,12 +57,13 @@ const Navbar = () => {
             <Link
               key={index}
               href={link.href}
-              className={`hover: border-transparent border-b-4  hover:border-yellow-500 pb-2 hover:text-yellow-200 transition-all  ${
+              className={`hover: border-transparent border-b-4 hover:border-yellow-500 pb-2 hover:text-yellow-200 transition-all flex items-center gap-2 ${
                 isActiveLink(link.href)
                   ? "text-yellow-200 border-b-4 border-yellow-500"
                   : "text-white"
               }`}
             >
+              {/* {link.icon && <link.icon size={16} />} */}
               {link.name}
             </Link>
           ))}
@@ -106,16 +107,17 @@ const Navbar = () => {
                 </Link>
               </h1>
             </div>
-            <nav className="flex flex-col gap-4 px-6 mt-4 uppercase text-sm">
+            <nav className="flex flex-col gap-4 px-6 mt-4 uppercase text-sm font-bold">
               {navLinks.map((link, index) => (
                 <Link
                   key={index}
                   href={link.href}
-                  className={`hover:underline hover:text-[#FFD2A4]  ${
-                    isActiveLink(link.href) ? "text-[#FFD2A4]" : "text-white/75"
+                  className={`hover:text-yellow-500 flex items-center gap-2 ${
+                    isActiveLink(link.href) ? "text-yellow-500" : "text-white"
                   }`}
                   onClick={toggleSidebar} // Close sidebar when a link is clicked
                 >
+                  {link.icon && <link.icon size={16} />}
                   {link.name}
                 </Link>
               ))}

@@ -31,15 +31,15 @@ const Features = () => {
       <h1 className="text-3xl font-bold mt-2 mx-auto uppercase max-w-[80%] w-full" >A Church That&#39;s Relevant</h1>
 
       {/* Features Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 px-6 md:px-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 px-3 md:px-12">
         {features.map((feature, index) => (
           <div
             key={index}
-            className="bg-[#FFF5EB] pt-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col gap-3 justify-between"
+            className="bg-yellow-100/50 pt-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col gap-3 justify-between"
           >
             {/* Icon */}
             <div className="px-6">
-              <div className="text-2xl w-[3rem] flex items-center justify-center h-[3rem] bg-[#ffd2a4]  rounded-full  ">
+              <div className="text-2xl w-[3rem] flex items-center justify-center h-[3rem] bg-yellow-300  rounded-full  ">
                 {<feature.icon />}
               </div>
             </div>
@@ -55,7 +55,7 @@ const Features = () => {
             </p>
 
             {/* Bottom Accent */}
-            <div className="mt-4 h-4 bg-[#ffd2a4] w-full"></div>
+            <div className="mt-4 h-4 bg-yellow-300 w-full"></div>
           </div>
         ))}
       </div>
