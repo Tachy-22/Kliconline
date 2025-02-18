@@ -34,7 +34,7 @@ const Navbar = () => {
           <Link href="/" className="">
             {" "}
             <Image
-              src={"/klic_logo.png"}
+              src={"/klic_Logo.png"}
               width={6000}
               height={4000}
               alt="KLIC"
@@ -95,7 +95,7 @@ const Navbar = () => {
                 <Link href="/" className="">
                   {" "}
                   <Image
-                    src={"/klic_logo.png"}
+                    src={"/klic_Logo.png"}
                     width={6000}
                     height={4000}
                     alt="KLIC"
