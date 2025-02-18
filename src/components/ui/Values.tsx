@@ -14,15 +14,15 @@ const Values = () => {
   return (
     <section className="py-8 lg:py-12 pb-16  bg-white text-center max-w-full w-full md:max-w-[80rem] mx-auto lg:px-[4.5rem] p-3 px-0 flex flex-col gap-2 overflow-hidden">
       {/* Sub-Headline */}
-      <h2 className="text-lg uppercase text-gray-600  text-start md:text-center">
+      <h2 className="text-lg uppercase text-gray-600  text-start md:text-center px-2">
         OUR CORE VALUES
       </h2>
-      <h1 className="text-3xl font-bold mt-2 uppercase  text-start md:text-center">
+      <h1 className="text-3xl font-bold mt-2 uppercase  text-start md:text-center px-2">
         Faith, Love, and Service
       </h1>
 
       {/* Description */}
-      <p className="mt-4 text-gray-600 max-w-3xl mx-auto text-start md:text-center">
+      <p className="mt-4 text-gray-600 max-w-3xl mx-auto text-start md:text-center px-2">
         At Kingdom Life International Church, we are built on the foundations of
         unwavering faith in God&apos;s Word, unconditional love for all people,
         and dedicated service to our community. We believe in creating an

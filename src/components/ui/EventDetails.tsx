@@ -21,7 +21,7 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event }) => {
           className=" object-cover w-full h-full bg-gray-300 rounded"
         />
       </div>
-      <h2 className="text-sm font-bold text-orange-600 uppercase">
+      <h2 className="text-sm font-bold text-yellow-600 uppercase">
         {event.category || "Upcoming Event"}
       </h2>
       <h1 className="text-4xl font-extrabold text-gray-800">{event.title}</h1>

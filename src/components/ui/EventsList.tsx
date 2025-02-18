@@ -84,11 +84,11 @@ const EventsList: React.FC<EventsListProps> = ({ events }) => {
   });
 
   return (
-    <div className="flex flex-col gap-[5rem] px-3 lg:px-[4rem] ">
-      <div className="flex w-full flex-col items-center gap-3 lg:gap-[2rem]">
+    <div className="flex flex-col gap-[5rem] px-3 md:px-[4rem] w-full min-w-full">
+      <div className="flex w-full flex-col items-center gap-3 lg:gap-[2rem] ">
         {" "}
         <h2 className="text-3xl font-bold mx-auto text-gray-800 uppercase max-w-[30rem]">
-          PAST EVENTS
+          PAST EVENTS 
         </h2>
         {pastEvents && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full py-[1rem]">

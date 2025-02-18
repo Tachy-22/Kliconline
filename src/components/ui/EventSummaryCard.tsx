@@ -58,7 +58,7 @@ const EventSummaryCard: React.FC<EventT> = ({
     <>
       <article className="bg-[#ffff] py-8 relative p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between gap-3">
         <div className="flex items-center justify-between">
-          <span className="text-orange-500 text-sm font-bold uppercase">
+          <span className="text-yellow-600 text-sm font-bold uppercase">
             {isPastEvent ? "Past Event" : "Upcoming Event"}
           </span>
           <div className="text-right">
@@ -83,13 +83,13 @@ const EventSummaryCard: React.FC<EventT> = ({
         {isPastEvent && mediaUrl && (
           <Button
             onClick={() => setIsModalOpen(true)}
-            className=" bg-orange-500 text-white  hover:bg-orange-600 transition-colors duration-300 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 rounded"
+            className=" bg-yellow-300 text-black   hover:bg-yellow-400 transition-colors duration-300 focus:ring-2 focus:ring-yellow-300  focus:ring-offset-2 rounded"
             aria-label={`Watch recording of ${title}`}
           >
             Watch Recording
           </Button>
         )}
-        <div className="w-full h-3 bg-[#ffd2a4] absolute bottom-0 left-0 transition-all duration-300"></div>
+        <div className="w-full h-3 bg-yellow-200 absolute bottom-0 left-0 transition-all duration-300"></div>
       </article>
 
       {isModalOpen && (
@@ -117,7 +117,7 @@ const EventSummaryCard: React.FC<EventT> = ({
                 <div className="flex gap-2">
                   <button
                     onClick={toggleFullscreen}
-                    className="p-2 hover:bg-gray-200 rounded-full transition-colors focus:ring-2 focus:ring-orange-500"
+                    className="p-2 hover:bg-gray-200 rounded-full transition-colors focus:ring-2 focus:ring-yellow-300 text-black"
                     aria-label={
                       isFullscreen ? "Exit fullscreen" : "Enter fullscreen"
                     }
@@ -130,7 +130,7 @@ const EventSummaryCard: React.FC<EventT> = ({
                   </button>
                   <button
                     onClick={closeModal}
-                    className="p-2 hover:bg-gray-200 rounded-full transition-colors focus:ring-2 focus:ring-orange-500"
+                    className="p-2 hover:bg-gray-200 rounded-full transition-colors focus:ring-2 focus:ring-yellow-300 text-black"
                     aria-label="Close modal"
                   >
                     <X aria-hidden="true" />

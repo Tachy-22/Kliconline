@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { MapPin, Clock } from "lucide-react";
+import {  Clock } from "lucide-react";
 import { addDocument } from "@/actions/addDocument";
 import { usePathname } from "next/navigation";
 import SubmitButton from "../ui/SubmitButton";
@@ -30,6 +30,9 @@ const EventRegisterationForm = ({ event }: EventProps) => {
   const eventDate = event.date;
   const eventId = event.id;
   const formattedDate = formatToMonthDayYear(eventDate);
+  
+  // Add check for past event
+  const isEventPassed = new Date(eventDate) < new Date();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,66 +59,72 @@ const EventRegisterationForm = ({ event }: EventProps) => {
   return (
     <div className="bg-[#F7F8FA] shadow-md p-4 lg:p-10 rounded-md h-fit">
       <h3 className="text-2xl capitalize font-bold text-gray-800">
-        Register Now
+        {isEventPassed ? "Event Closed" : "Register Now"}
       </h3>
       <div className="mt-6 flex lg:flex-row flex-col text-gray-600 gap-5 justify-between">
-        <p className="flex items-center space-x-3">
+        {/* <p className="flex items-center space-x-3">
           <MapPin size={18} />
           <span>No 233 Main St. New York, United States</span>
-        </p>
+        </p> */}
         <p className="flex items-center space-x-3">
           <Clock size={18} />
           <span>{formattedDate}</span>
         </p>
       </div>
-      <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Full Name
-          </label>
-          <input
-            type="text"
-            placeholder="Leonard John"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
-          />
+      {isEventPassed ? (
+        <div className="mt-8 text-center text-gray-600">
+          <p>This event has already taken place.</p>
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            placeholder="admin@abc.com"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Phone Number
-          </label>
-          <input
-            type="tel"
-            placeholder="+1234567890"
-            value={formData.phone}
-            onChange={(e) =>
-              setFormData({ ...formData, phone: e.target.value })
-            }
-            className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
-          />
-        </div>
-        <SubmitButton
-          loadingtext="Registering..."
-          className="w-full py-3 mt-4 bg-orange-500 text-white font-medium rounded hover:bg-orange-600"
-        >
-          Register Now
-        </SubmitButton>
-      </form>
+      ) : (
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Full Name
+            </label>
+            <input
+              type="text"
+              placeholder="Leonard John"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              placeholder="admin@abc.com"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              placeholder="+1234567890"
+              value={formData.phone}
+              onChange={(e) =>
+                setFormData({ ...formData, phone: e.target.value })
+              }
+              className="w-full mt-2 px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-black"
+            />
+          </div>
+          <SubmitButton
+            loadingtext="Registering..."
+            className="w-full py-3 mt-4 bg-yellow-300 text-black font-medium rounded hover:bg-yellow-400"
+          >
+            Register Now
+          </SubmitButton>
+        </form>
+      )}
     </div>
   );
 };

@@ -70,7 +70,7 @@ const Benefits: React.FC = () => {
               </p>
             </div>
             <div className="w-full lg:w-1/2 flex items-center justify-center">
-              <div className="relative overflow-hidden rounded-2xl shadow-xl flex items-center justify-center border-4 border-red-400">
+              <div className="relative overflow-hidden rounded-2xl shadow-xl flex items-center justify-center border-4 border-red-950">
                 <Image
                   width={2000}
                   height={1000}

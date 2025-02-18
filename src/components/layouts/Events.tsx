@@ -34,7 +34,7 @@ const Events = ({ events }: EventsProps) => {
           <EventRegisterationForm event={mostRecentEvent as EventT} />
         </div>
       </div>
-      <div className="py-[6rem] max-w-7xl mx-auto">
+      <div className="py-[6rem] w-full min-w-full md:max-w-7xl mx-auto">
         {success && <EventsList events={events} />}
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-7xl mx-auto mb-4">
