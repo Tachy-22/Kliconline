@@ -40,8 +40,8 @@ export function DatePickerWithRange({
             id="date"
             variant={"outline"}
             className={cn(
-              "flex items-center gap-2 p-3 rounded-[0.5rem] min-w-[300px] justify-start text-left font-normal shadow-lg border-gray-300 hover:border-gray-400",
-              "w-[300px] justify-start text-left font-normal",
+              "flex items-center gap-2 p-3 rounded-[0.5rem] md:min-w-[300px] min-w-fit justify-start text-left font-normal shadow-lg border-gray-300 hover:border-gray-400",
+              "md:w-[300px] w-fit justify-start text-left font-normal",
               !date && "text-muted-foreground",
               date && "bg-selected-color" // Add this line to indicate a date has been selected
             )}
@@ -49,15 +49,15 @@ export function DatePickerWithRange({
             <CalendarIcon />
             {date?.from ? (
               date.to ? (
-                <>
+                <span className="hidden md:block">
                   {format(date.from, "LLL dd, y")} -{" "}
                   {format(date.to, "LLL dd, y")}
-                </>
+                </span>
               ) : (
                 format(date.from, "LLL dd, y")
               )
             ) : (
-              <span>Pick a date</span>
+              <span className="hidden md:block">Pick a date</span>
             )}
           </Button>
         </PopoverTrigger>

@@ -28,9 +28,9 @@ const Navbar = () => {
 
   return (
     <header className="w-full bg-black sticky left-0 top-0 z-50">
-      <div className="w-full text-white max-h-[5rem] flex items-center justify-between px-6 md:max-w-[80rem] mx-auto">
+      <div className="w-full text-white max-h-[5rem] flex items-center justify-between px-6 lg:max-w-[80rem] mx-auto">
         {/* Logo Section */}
-        <div className="text-xl py-3 font-bold border-r lg:px-[3rem] pr-[2rem]">
+        <div className="text-xl py-3 font-bold border-r lg:px-[1rem] pr-[1rem]">
           <Link href="/" className="">
             {" "}
             <Image
@@ -45,20 +45,22 @@ const Navbar = () => {
 
         {/* Hamburger Menu (Mobile Only) */}
         <div
-          className="md:hidden text-2xl cursor-pointer"
+          className="lg:hidden text-2xl cursor-pointer"
           onClick={toggleSidebar}
         >
           {isOpen ? <X /> : <Menu />}
         </div>
 
         {/* Navigation Links (Desktop) */}
-        <nav className="hidden md:flex gap-6 uppercase text-sm w-full px-[2rem]">
+        <nav className="hidden lg:flex gap-6 uppercase text-sm w-full px-[2rem]">
           {navLinks.map((link, index) => (
             <Link
               key={index}
               href={link.href}
-              className={`hover:underline hover:text-[#FFD2A4] font-light ${
-                isActiveLink(link.href) ? "text-[#FFD2A4]" : "text-white/90"
+              className={`hover: border-transparent border-b-4  hover:border-yellow-500 pb-2 hover:text-yellow-200 transition-all  ${
+                isActiveLink(link.href)
+                  ? "text-yellow-200 border-b-4 border-yellow-500"
+                  : "text-white"
               }`}
             >
               {link.name}
@@ -67,12 +69,12 @@ const Navbar = () => {
         </nav>
 
         {/* Button Section */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Button
             onClick={() => {
               router.push(`/contact`);
             }}
-            className="px-4 py-2 bg-[#FFD2A4] text-black font-light rounded hover:bg-[#FFD2A4]/90 uppercase"
+            className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-500/90 uppercase"
           >
             CONTACT US
           </Button>
@@ -109,7 +111,7 @@ const Navbar = () => {
                 <Link
                   key={index}
                   href={link.href}
-                  className={`hover:underline hover:text-[#FFD2A4] font-extralight ${
+                  className={`hover:underline hover:text-[#FFD2A4]  ${
                     isActiveLink(link.href) ? "text-[#FFD2A4]" : "text-white/75"
                   }`}
                   onClick={toggleSidebar} // Close sidebar when a link is clicked

@@ -52,16 +52,16 @@ const SermonList: React.FC<SermonListProps> = ({ sermons: initialSermons }) => {
         OUR SERMONS
       </h2>
 
-      <div className="flex flex-col md:flex-row lg:items-center justify-between gap-4 mb-6 w-full ">
+      <div className="flex flex-row items-center justify-between gap-4 mb-6 w-full ">
         {/* Search Input */}
-        <div className="flex gap-3 items-center justify-between md:w-1/2 w-full border border-stone-800 hover:border-black p-2 rounded">
+        <div className="flex gap-3 items-center justify-between md:w-1/2 w-full border border-gray-400 hover:border-gray-500 p-2 rounded-[0.5rem]">
           <Search />
 
           <Input
             content="h"
             type="text"
             placeholder="Search sermons..."
-            className="rounded-lg p-2 w-full border-0"
+            className="rounded-lg p-2 w-full  border-0 shadow-0 shadow-none placeholder:text-gray-400"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

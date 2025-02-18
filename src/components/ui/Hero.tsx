@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-//import { Button } from "./button";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -30,35 +30,42 @@ const Hero = () => {
         />
         {/* Yellowish-orangish overlay */}
         <div
-          className="absolute inset-0 bg-[#FFD2A4]/20 mix-blend-overlay transform-gpu transition-transform duration-300 ease-out"
+          className="absolute inset-0 bg-yellow-950/90 mix-blend-overlay transform-gpu transition-transform duration-300 ease-out"
           style={{ transform: `translate3d(0, ${scrollY * -0.05}px, 0)` }}
         />
       </div>
 
       {/* Content - will scroll over the fixed background */}
-      <div className="relative z-10 max-w-[80rem] mx-auto h-full flex flex-col justify-center gap-2 lg:px-[4.5rem] px-[1rem]">
+      <div className="relative z-10 max-w-[80rem] mx-auto h-full flex flex-col justify-center gap-3 lg:px-[4.5rem] px-[1rem] md:text-center md:items-center">
         <span className="uppercase text-white/80 text-sm tracking-tight font-semibold">
-          Welcome to our CHURCH
+          Your Local Christian Community in the UK
         </span>
-        <h1 className="text-4xl py-[0.5rem] font-bold flex flex-col gap-3 text-white uppercase">
-          <span className="text-">
-            Become a part of <span className="lg:hidden block">our family</span>
+        <h1 className="lg:text-6xl text-5xl py-[0.5rem] font-extrabold flex flex-col gap-2 md:gap-4  text-white uppercase text-nowrap">
+          <span className="">
+            Join Our Welcoming{" "}
+            {/* <span className="lg:hidden block font-['Great_Vibes']  text-yellow-400 italic">
+              congregation
+            </span> */}
           </span>
           <span>
-            <span className="hidden lg:block">our family</span>
+            <span className=" font-['Great_Vibes'] text-yellow-200 italic">
+              congregation
+            </span>
           </span>
         </h1>
         <div className="my-[1rem]">
           <Link
             href="/about-us"
-            className="px-4 py-2 bg-[#FFD2A4] text-black font-light rounded hover:bg-[#FFD2A4]/90 uppercase w-fit"
+            className="px-4 py-2 bg-yellow-500 text-white/80 font-light rounded hover:bg-yellow-500/90 uppercase w-fit border-2 border-white flex items-center gap-2"
           >
-            Learn More
+            Discover More
+            <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
-        <span className="max-w-[80%] text-white/90 text-sm font-light pt-[1rem]">
-          - Bringing you the light of God&apos;s word in simple and clear terms.
-        </span>
+        {/* <span className="max-w-[80%] text-white/90 text-sm font-light pt-[1rem]">
+          - Experience traditional worship and modern fellowship in the heart of
+          our community.
+        </span> */}
       </div>
     </div>
   );
