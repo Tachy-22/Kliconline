@@ -1,8 +1,9 @@
 "use client";
-import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
-import React, { useRef } from "react";
-// remove Download import since we won't use it
-//import { Download } from "lucide-react";
+import formatToMonthDayYear, { formatTime } from "@/lib/formatToMonthDayYear";
+import React, { useRef, useState, useEffect } from "react";
+import { Play, Pause, Download } from "lucide-react";
+
+
 
 const SermonCard: React.FC<SermonT> = ({
   title,
@@ -11,13 +12,59 @@ const SermonCard: React.FC<SermonT> = ({
   preacher,
   audioUrl,
   category,
-  // times = [],
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
-  // Remove handleDownload function since we won't need it
+  useEffect(() => {
+    if (!audioRef.current) return;
+    const audio = audioRef.current;
+    
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    const updateDuration = () => {
+      if (audio.duration && !isNaN(audio.duration)) {
+        setDuration(audio.duration);
+      }
+    };
 
-  // Convert Firebase timestamp or Date object to Date
+    audio.addEventListener("timeupdate", updateTime);
+    audio.addEventListener("loadedmetadata", updateDuration);
+    audio.addEventListener("durationchange", updateDuration);
+    audio.addEventListener("canplay", updateDuration);
+
+    return () => {
+      audio.removeEventListener("timeupdate", updateTime);
+      audio.removeEventListener("loadedmetadata", updateDuration);
+      audio.removeEventListener("durationchange", updateDuration);
+      audio.removeEventListener("canplay", updateDuration);
+    };
+  }, []);
+
+  const handlePlayPause = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!audioRef.current) return;
+    audioRef.current.currentTime = Number(e.target.value);
+    setCurrentTime(audioRef.current.currentTime);
+  };
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = audioUrl;
+    link.download = "sermon_audio.mp3";
+    link.click();
+  };
+
   const sermonDate = formatToMonthDayYear(date);
 
   return (
@@ -36,21 +83,26 @@ const SermonCard: React.FC<SermonT> = ({
         </div>
       </div>
 
-      <audio
-        ref={audioRef}
-        controls
-        className="w-full focus:outline-none rounded-full [&::-webkit-media-controls-panel]:bg-orange-50 border border-orange-800 [&::-webkit-media-controls-current-time-display]:text-black [&::-webkit-media-controls-time-remaining-display]:text-black h-[3rem]"
-        preload="metadata"
-      >
-        <source
-          className="w-full focus:outline-none   rounded-lg"
-          src={audioUrl}
-          type="audio/mpeg"
+      <audio ref={audioRef} src={audioUrl} className="hidden" />
+      <div className="flex items-center gap-2">
+        <button onClick={handlePlayPause}>
+          {isPlaying ? <Pause /> : <Play />}
+        </button>
+        <input
+          type="range"
+          min={0}
+          max={duration}
+          value={currentTime}
+          onChange={handleSeek}
+          className="cursor-pointer w-full accent-yellow-500 gutter-yellow-100"
         />
-        Your browser does not support the audio element.
-      </audio>
-
-      {/* Remove the form and button */}
+        <span className="text-sm text-nowrap">
+          {formatTime(currentTime)} / {formatTime(duration)}
+        </span>
+        <button onClick={handleDownload}>
+          <Download />
+        </button>
+      </div>
 
       <div className="w-full h-3 bg-[#ffd2a4] absolute bottom-0 left-0 transition-all duration-300"></div>
     </div>

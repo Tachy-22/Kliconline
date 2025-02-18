@@ -278,13 +278,13 @@ export default function AddSermonForm({
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="sunday-service">
+                            <SelectItem value="Sunday Service">
                               Sunday Service
                             </SelectItem>
-                            <SelectItem value="bible-study">
-                              Spontaneous Worship 
+                            <SelectItem value="Spontaneous Worship">
+                              Spontaneous Worship
                             </SelectItem>
-                            <SelectItem value="special-service">
+                            <SelectItem value="IDBS Service">
                               IDBS Service
                             </SelectItem>
                           </SelectContent>
@@ -329,6 +329,7 @@ export default function AddSermonForm({
                               accept="audio/*"
                               multiple={false}
                               maxSize={1}
+                              maxFileSize={50}
                               initialFiles={field.value ? [field.value] : []}
                               onUploadComplete={(files) => {
                                 if (files.length > 0) {
@@ -362,6 +363,7 @@ export default function AddSermonForm({
                             accept="image/*"
                             multiple={false}
                             maxSize={1}
+                            maxFileSize={10}
                             initialFiles={field.value ? [field.value] : []}
                             onUploadComplete={(files) => {
                               if (files.length > 0) {

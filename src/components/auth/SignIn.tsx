@@ -46,7 +46,19 @@ export default function SignIn() {
       if (result.success) {
         router.replace("/admin");
       } else {
-        setError(result.error || "An error occurred");
+        switch (result.error) {
+          case "auth/user-not-found":
+            setError("No user found with this email.");
+            break;
+          case "auth/wrong-password":
+            setError("Incorrect password. Please try again.");
+            break;
+          case "Firebase: Error (auth/invalid-credential).":
+            setError("Incorrect password or email. Please try again.");
+            break;
+          default:
+            setError(result.error || "An error occurred");
+        }
       }
     } catch (error: unknown) {
       setError(
@@ -138,7 +150,7 @@ export default function SignIn() {
             />
             <Button
               type="submit"
-              className="w-full h-11 bg-black text-white hover:bg-gray-800 transition-all duration-200 rounded-lg font-medium tracking-wide focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full h-11 bg-black text-white hover:bg-gray-800 transition-all duration-200 rounded-lg font-medium tracking-wide focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed shadow"
               disabled={isLoading}
             >
               {isLoading ? "Signing in..." : "Sign In"}

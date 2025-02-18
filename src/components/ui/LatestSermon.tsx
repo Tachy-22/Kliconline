@@ -1,11 +1,59 @@
 "use client";
 
-import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
+import formatToMonthDayYear, { formatTime } from "@/lib/formatToMonthDayYear";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { Play, Pause, Download } from "lucide-react";
 
 const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+    const audio = audioRef.current;
+
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    const updateDuration = () => {
+      if (audio.duration && !isNaN(audio.duration)) {
+        setDuration(audio.duration);
+      }
+    };
+
+    audio.addEventListener("timeupdate", updateTime);
+    audio.addEventListener("loadedmetadata", updateDuration);
+    audio.addEventListener("durationchange", updateDuration);
+    audio.addEventListener("canplay", updateDuration);
+
+    return () => {
+      audio.removeEventListener("timeupdate", updateTime);
+      audio.removeEventListener("loadedmetadata", updateDuration);
+      audio.removeEventListener("durationchange", updateDuration);
+      audio.removeEventListener("canplay", updateDuration);
+    };
+  }, []);
+
+  const handlePlayPause = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) audioRef.current.pause();
+    else audioRef.current.play();
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!audioRef.current) return;
+    audioRef.current.currentTime = Number(e.target.value);
+    setCurrentTime(audioRef.current.currentTime);
+  };
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = latestSermon.audioUrl;
+    link.download = "sermon_audio.mp3";
+    link.click();
+  };
 
   const getLatestSermon = () => {
     const today = new Date();
@@ -62,17 +110,28 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
 
           <audio
             ref={audioRef}
-            controls
-            className="w-full focus:outline-none rounded-full [&::-webkit-media-controls-panel]:bg-orange-50 border border-orange-800/50 [&::-webkit-media-controls-current-time-display]:text-black [&::-webkit-media-controls-time-remaining-display]:text-black"
-            preload="metadata"
-          >
-            <source
-              className="w-full focus:outline-none rounded-lg"
-              src={latestSermon.audioUrl}
-              type="audio/mpeg"
+            src={latestSermon.audioUrl}
+            className="hidden"
+          />
+          <div className="flex items-center gap-2">
+            <button onClick={handlePlayPause}>
+              {isPlaying ? <Pause /> : <Play />}
+            </button>
+            <input
+              type="range"
+              min={0}
+              max={duration}
+              value={currentTime}
+              onChange={handleSeek}
+              className="cursor-pointer w-full accent-yellow-500"
             />
-            Your browser does not support the audio element.
-          </audio>
+            <span className="text-sm text-nowrap">
+              {formatTime(currentTime)} / {formatTime(duration)}
+            </span>
+            <button onClick={handleDownload}>
+              <Download />
+            </button>
+          </div>
         </div>
 
         <div className="relative w-full lg:w-2/3 lg:min-h-full lg:h-full h-fit">

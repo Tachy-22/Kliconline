@@ -1,5 +1,4 @@
 import { useState, useRef, DragEvent } from "react";
-import { cn } from "@/lib/utils";
 import { uploadFile } from "@/actions/upload";
 import { X, Music, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,7 +15,7 @@ interface FileInputProps {
   multiple?: boolean;
   accept?: string;
   maxSize?: number; // in MB
-  maxFileSize?: number; // in MB
+  maxFileSize?: number; // in MB 10
   onUploadComplete?: (files: FileMetadata[]) => void;
   onError?: (error: string) => void;
   className?: string;
@@ -77,12 +76,13 @@ export function FileInput({
   multiple = false,
   accept = "*/*",
   maxSize = 5,
-  maxFileSize = 10, // default 10MB per file
+  maxFileSize = 50, // default 50MB per file
   onUploadComplete,
   onError,
   className,
   initialFiles = [],
 }: FileInputProps) {
+  console.log({ maxSize });
   const [isDragging, setIsDragging] = useState(false);
   const [files, setFiles] = useState<FileWithProgress[]>(() =>
     initialFiles.map((url) => {
@@ -149,8 +149,8 @@ export function FileInput({
     if (maxFileSize && file.size > maxFileSize * 1024 * 1024) {
       return `File size exceeds ${maxFileSize}MB`;
     }
-    if (maxSize && file.size > maxSize * 1024 * 1024) {
-      return `File size exceeds ${maxSize}MB`;
+    if (maxFileSize && file.size > maxFileSize * 1024 * 1024) {
+      return `File size exceeds ${maxFileSize}MB`;
     }
     if (
       accept !== "*/*" &&
@@ -285,11 +285,9 @@ export function FileInput({
   return (
     <div className="space-y-4">
       <div
-        className={cn(
-          "border-2 border-dashed rounded-lg p-6 text-center cursor-pointer",
-          isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300",
-          className
-        )}
+        className={` border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${className} ${
+          isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300"
+        }`}
         onClick={() => fileInputRef.current?.click()}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -306,7 +304,10 @@ export function FileInput({
         />
         <p>Drag and drop files here, or click to select files</p>
         <p className="text-sm text-gray-500">
-          {multiple ? "Upload multiple files" : "Upload a file"}
+          {multiple
+            ? `Upload multiple files `
+            : `Upload a file , max size ${maxFileSize}
+          mb`}
           {accept !== "*/*" && ` (${accept})`}
         </p>
       </div>
@@ -363,10 +364,8 @@ export function FileInput({
                         <div className="flex items-center gap-2">
                           <div className="flex-1 bg-gray-100 rounded-full h-2 overflow-hidden">
                             <div
-                              className={cn(
-                                "h-full transition-all duration-300",
-                                file.error ? "bg-red-500" : "bg-blue-500"
-                              )}
+                              className={`  h-full transition-all duration-300
+                              ${file.error ? "bg-red-500" : "bg-blue-500"}`}
                               style={{
                                 width: `${Math.min(
                                   Math.round(file.progress),
