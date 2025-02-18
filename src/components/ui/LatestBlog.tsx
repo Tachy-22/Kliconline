@@ -12,14 +12,7 @@ export interface BlogPost {
   image: string;
 }
 
-// export const latestPost: BlogPost = {
-//   date: "Tuesday 13 May, 2022",
-//   author: "John Hinauj Deo",
-//   title: "Church Was Doing What He Often Did When Dropped an Oracle",
-//   excerpt:
-//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-//   image: "hero-img.svg", // Replace with actual image path
-// };
+
 
 const LatestBlog = ({ blogs }: { blogs: BlogT[] }) => {
   const getLatestBlog = () => {
@@ -72,7 +65,7 @@ const LatestBlog = ({ blogs }: { blogs: BlogT[] }) => {
             <div className="mt-6">
               <Link
                 href={`/blogs/${id}`}
-                className="inline-block bg-orange-500 text-white font-bold py-2 px-4 rounded hover:bg-orange-600"
+                className="inline-block bg-yellow-300 text-black font-semibold py-2 px-4 rounded hover:bg-yellow-400"
               >
                 Read More
               </Link>
