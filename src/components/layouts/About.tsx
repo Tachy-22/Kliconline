@@ -2,7 +2,7 @@
 import React from "react";
 import AboutHero from "../ui/AboutHero";
 import Values from "../ui/Values";
-import MissionAndVision from "../ui/MissionAndVision";
+//import MissionAndVision from "../ui/MissionAndVision";
 import Benefits from "../ui/Benefits";
 import AboutPastors from "../ui/AboutPastors";
 
@@ -19,7 +19,7 @@ const About = () => {
       <AboutHero />
       <AboutPastors />
       <Values />
-      <MissionAndVision />
+      {/* <MissionAndVision /> */}
       <Benefits />
       {/* Giving Details Section */}
       <div className="max-w-6xl mx-auto p-3 md:px-6 lg:px-8 mt-12">

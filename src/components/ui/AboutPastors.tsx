@@ -53,7 +53,7 @@ const AboutPastors: React.FC = () => {
 
   return (
     <section className="py-[2rem] bg-gray-50">
-      <div className="max-w-6xl mx-auto p-3 md:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto p-3 md:px-6 lg:px-8">
         <div className="text-center mb-10">
           {/* <h2 className="text-lg font-semibold text-gray-600 uppercase">
             Our Pastors
@@ -67,8 +67,8 @@ const AboutPastors: React.FC = () => {
           {/* Full-width Pastor's Image Section */}
           <div className="w-full flex justify-center items-center py-8 px-4">
             <Image
-              width={800}
-              height={600}
+              width={2984}
+              height={2984}
               src={mainPastor.image}
               alt={mainPastor.name}
               className="max-w-full h-auto object-contain"

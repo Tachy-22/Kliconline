@@ -24,8 +24,8 @@ const Events = ({ events }: EventsProps) => {
 
   //console.log({ events });
   return (
-    <div className="flex flex-col py-[2rem] w-full bg-[#F5F2F0]">
-      <div className="h-full px-3 lg:px-6 lg::px-20 max-w-7xl w-full mx-auto flex flex-col gap-6">
+    <div className="flex flex-col py-[2rem] w-full bg-[#F5F2F0] ">
+      <div className="h-full px-3 lg:px-6  max-w-7xl w-full mx-auto flex flex-col gap-6">
         <h2 className="text-xl text-gray-800/50 uppercase max-w-[30rem] ">
           Latest Event{" "}
         </h2>
@@ -34,7 +34,7 @@ const Events = ({ events }: EventsProps) => {
           <EventRegisterationForm event={mostRecentEvent as EventT} />
         </div>
       </div>
-      <div className="py-[6rem] w-full min-w-full md:max-w-7xl mx-auto">
+      <div className="py-[6rem] w-full  max-w-7xl mx-auto">
         {success && <EventsList events={events} />}
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-7xl mx-auto mb-4">
