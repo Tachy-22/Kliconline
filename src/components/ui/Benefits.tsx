@@ -13,21 +13,21 @@ type Benefit = {
 const benefits: Benefit[] = [
   {
     id: 1,
-    title: "Spirit-Filled Worship",
+    title: "Spontaneous Worship",
     description:
       "Experience powerful worship through our Spontaneous Worship sessions (last Sunday of every other month) and Sunday services where God's presence transforms lives through anointed praise and teaching of God's Word.",
     image: "/benefit-img-1.jpg",
   },
   {
     id: 2,
-    title: "Prayer & Discipleship",
+    title: "6 Hours of Prayers",
     description:
       "Join our '6 Hours of Prayers' on the 3rd Saturday of each month and 'KLIC Prays - November to Remember' prayer program. Grow through our KLIC School of Ministry and In-Depth Bible Study (IDBS) sessions held weekly.",
     image: "/benefit-img-2.jpg",
   },
   {
     id: 3,
-    title: "Global Community",
+    title: "Hebrew Women Fellowship",
     description:
       "Be part of our international community with churches in the UK and Nigeria. Connect through our Hebrew Women Fellowship and experience the love and support of fellow believers across continents.",
     image: "/benefit-img-3.jpg",
