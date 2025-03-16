@@ -1,26 +1,26 @@
 "use client";
-import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
+//import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 import React, { useRef } from "react";
 
 const SermonCard: React.FC<SermonT> = ({
   title,
   description,
-  date,
+ //date,
   preacher,
   audioUrl,
   category,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const sermonDate = formatToMonthDayYear(date);
+ // const sermonDate = formatToMonthDayYear(date);
 
   return (
     <div className="bg-yellow-100/50 group overflow-hidden shadow-lg hover:shadow-xl  rounded-[0.5rem] p-3 lg:px-[2rem] py-[2rem] w-full flex flex-col justify-between min-h-full h-full relative gap-6 transition-all">
-      <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full !text-black">
+      {/* <div className="flex flex-col justify-end items-end font-semibold text-lg uppercase w-full !text-black">
         {sermonDate}
-      </div>
+      </div> */}
       <div className="text-sm text-orange-600 uppercase font-medium">
-        {category}
+        {category === "IDBS Service" ? "online IDBS Service" : category}
       </div>
       <div className="flex items-center gap-2">
         <div className="gap-3 flex flex-col ">

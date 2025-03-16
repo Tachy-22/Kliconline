@@ -70,6 +70,7 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
       if (update && blog) {
         await updateDocument("blogs", blog?.id as string, blogData, path);
         onClose?.();
+        setIsFormOpen(false);
       } else {
         await addDocument("blogs", blogData, path);
         setBlogData(defaultBlogData as unknown as BlogT);
