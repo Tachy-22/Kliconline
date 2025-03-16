@@ -4,15 +4,15 @@ import React, { useRef } from "react";
 
 const SermonCard: React.FC<SermonT> = ({
   title,
-  description,
- //date,
+//  description,
+  //date,
   preacher,
   audioUrl,
   category,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
- // const sermonDate = formatToMonthDayYear(date);
+  // const sermonDate = formatToMonthDayYear(date);
 
   return (
     <div className="bg-yellow-100/50 group overflow-hidden shadow-lg hover:shadow-xl  rounded-[0.5rem] p-3 lg:px-[2rem] py-[2rem] w-full flex flex-col justify-between min-h-full h-full relative gap-6 transition-all">
@@ -25,7 +25,7 @@ const SermonCard: React.FC<SermonT> = ({
       <div className="flex items-center gap-2">
         <div className="gap-3 flex flex-col ">
           <h3 className="text-xl font-bold text-gray-800">{title}</h3>
-          <p className="text-gray-500">{description}</p>
+          <p className="text-gray-500">listen and be blessed</p>
           <p className="text-gray-600 italic">Speaker: {preacher}</p>
         </div>
       </div>

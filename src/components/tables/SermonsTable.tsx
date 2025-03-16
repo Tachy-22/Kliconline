@@ -72,7 +72,12 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
     <motion.div {...slideIn}>
       <Card className="min-w-full mx-auto bg-white text-black border border-black/20">
         <CardHeader>
-          <CardTitle className="text-black">All Sermons</CardTitle>
+          <CardTitle className="text-black">
+            All Sermons 
+            <span className="ml-2 text-sm text-gray-600 font-normal">
+              (Total: {sermons.length})
+            </span>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <SearchControls

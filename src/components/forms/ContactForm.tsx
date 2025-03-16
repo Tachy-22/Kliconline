@@ -205,8 +205,8 @@ const ContactForm = () => {
               Address
             </h3>
             <p className="text-base text-gray-600 leading-relaxed">
-              NH 234 PUBLIC SQUARE <br />
-              SAN FRANCISCO 65368
+              Main hall, Haxby Road Primary Academy. <br />
+              154 Haxby Road, Clinton, York Y031 8JN
             </p>
           </div>
 
@@ -216,10 +216,10 @@ const ContactForm = () => {
             </h3>
             <p className="text-base text-gray-600 leading-relaxed">
               <span className="block hover:text-gray-900 transition-colors">
-                (480) 555-0103
+                (+234) 7017871161
               </span>
               <span className="block hover:text-gray-900 transition-colors">
-                FINSWEET@EXAMPLE.COM
+                kliconline@gmai.com
               </span>
             </p>
           </div>
