@@ -16,7 +16,12 @@ const MissionAndVision: React.FC = () => {
               Our Divine Commission
             </h2>
             <p className="text-gray-600 mt-4 leading-relaxed">
-              We are commissioned and anointed of God to teach and preach the kingdom of God, in practical, simple and clear terms, by the instrumentality of the Word and the Spirit of God, so as to bring men into the maturity of Christ and to help them live as Kings and Priests on earth. The mandate of KLIC spans across 10 major areas of focus for the development of the Total Man.
+              We are commissioned and anointed of God to teach and preach the
+              kingdom of God, in practical, simple and clear terms, by the
+              instrumentality of the Word and the Spirit of God, so as to bring
+              men into the maturity of Christ and to help them live as Kings and
+              Priests on earth. The mandate of KLIC spans across 10 major areas
+              of focus for the development of the Total Man.
             </p>
           </div>
 
@@ -29,7 +34,13 @@ const MissionAndVision: React.FC = () => {
               Kingdom Life International Church
             </h2>
             <p className="text-gray-600 mt-4 leading-relaxed">
-              We are a movement committed to the development of the Total Man through ten focus areas: Intense prayer, Evangelism and global mission, The word, Worship, The ministry of the Holy Spirit, Prosperity and wealth, Influence and leadership, Love work, Excellence, and Mentoring and discipleship. Through these pillars, we're helping people discover their purpose in Christ and live as Kings and Priests on earth.
+              We are a movement committed to the development of the Total Man
+              through ten focus areas: Intense prayer, Evangelism and global
+              mission, The word, Worship, The ministry of the Holy Spirit,
+              Prosperity and wealth, Influence and leadership, Love work,
+              Excellence, and Mentoring and discipleship. Through these pillars,
+              we&apos;re helping people discover their purpose in Christ and
+              live as Kings and Priests on earth.
             </p>
           </div>
         </div>
