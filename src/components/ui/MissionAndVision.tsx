@@ -10,38 +10,26 @@ const MissionAndVision: React.FC = () => {
           {/* Mission & Vision Section */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
-              Our Mission & Vision
+              Our Vision
             </h3>
             <h2 className="text-2xl font-bold text-gray-800 mt-2">
-              Advancing God&apos;s Kingdom
+              Our Divine Commission
             </h2>
             <p className="text-gray-600 mt-4 leading-relaxed">
-              At Kingdom Life International Church, our mission is to spread the
-              gospel of Jesus Christ, making disciples of all nations. We
-              envision a church that transforms lives through the power of
-              God&apos;s Word, raising Spirit-filled believers who impact their
-              communities and nations for Christ. Our vision is to be a light in
-              Nigeria and beyond, bringing hope, healing, and restoration
-              through Christ&apos;s love.
+              We are commissioned and anointed of God to teach and preach the kingdom of God, in practical, simple and clear terms, by the instrumentality of the Word and the Spirit of God, so as to bring men into the maturity of Christ and to help them live as Kings and Priests on earth. The mandate of KLIC spans across 10 major areas of focus for the development of the Total Man.
             </p>
           </div>
 
-          {/* What We Do Section */}
+          {/* Who We Are Section */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
-              What We Do
+              Who We Are
             </h3>
             <h2 className="text-2xl font-bold text-gray-800 mt-2">
-              Building Lives, Restoring Hope
+              Kingdom Life International Church
             </h2>
             <p className="text-gray-600 mt-4 leading-relaxed">
-              We are committed to spiritual growth through dynamic worship,
-              sound biblical teaching, and impactful community outreach. Our
-              ministries include vibrant worship services, discipleship
-              programs, youth empowerment, marriage and family counseling, and
-              humanitarian services. Through these initiatives, we&apos;re
-              helping people discover their purpose in Christ and live
-              fulfilling lives that glorify God.
+              We are a movement committed to the development of the Total Man through ten focus areas: Intense prayer, Evangelism and global mission, The word, Worship, The ministry of the Holy Spirit, Prosperity and wealth, Influence and leadership, Love work, Excellence, and Mentoring and discipleship. Through these pillars, we're helping people discover their purpose in Christ and live as Kings and Priests on earth.
             </p>
           </div>
         </div>

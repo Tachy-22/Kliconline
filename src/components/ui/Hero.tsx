@@ -38,18 +38,15 @@ const Hero = () => {
       {/* Content - will scroll over the fixed background */}
       <div className="relative z-10 max-w-[80rem] mx-auto h-full flex flex-col justify-center gap-3 lg:px-[4.5rem] px-[1rem] md:text-center md:items-center">
         <span className="uppercase text-white/80 text-sm tracking-tight font-semibold">
-          Your Local Christian Community in the UK
+          Kingdom Life International Church
         </span>
-        <h1 className="md:text-6xl text-4xl py-[0.5rem] font-extrabold flex flex-col gap-2 md:gap-4  text-white uppercase text-nowrap">
+        <h1 className="md:text-6xl text-4xl py-[0.5rem] font-extrabold flex flex-col gap-2 md:gap-4 text-white uppercase text-nowrap">
           <span className="">
-            Join Our Welcoming{" "}
-            {/* <span className="lg:hidden block font-['Great_Vibes']  text-yellow-400 italic">
-              congregation
-            </span> */}
+            Living As Kings And
           </span>
           <span>
-            <span className=" font-['Great_Vibes'] text-yellow-200 italic">
-              congregation
+            <span className="font-['Great_Vibes'] text-yellow-200 italic">
+              Priests On Earth
             </span>
           </span>
         </h1>
@@ -62,10 +59,6 @@ const Hero = () => {
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
-        {/* <span className="max-w-[80%] text-white/90 text-sm font-light pt-[1rem]">
-          - Experience traditional worship and modern fellowship in the heart of
-          our community.
-        </span> */}
       </div>
     </div>
   );

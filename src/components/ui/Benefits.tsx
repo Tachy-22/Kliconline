@@ -15,28 +15,28 @@ const benefits: Benefit[] = [
     id: 1,
     title: "Spirit-Filled Worship",
     description:
-      "Experience powerful, life-transforming worship services where God's presence is manifested through anointed praise, worship, and the teaching of God's Word.",
+      "Experience powerful worship through our Spontaneous Worship sessions (last Sunday of every other month) and Sunday services where God's presence transforms lives through anointed praise and teaching of God's Word.",
     image: "/benefit-img-1.jpg",
   },
   {
     id: 2,
-    title: "Strong Fellowship",
+    title: "Prayer & Discipleship",
     description:
-      "Be part of a loving community of believers who support, encourage, and pray for one another. Our small groups and fellowship programs help build lasting spiritual relationships.",
+      "Join our '6 Hours of Prayers' on the 3rd Saturday of each month and 'KLIC Prays - November to Remember' prayer program. Grow through our KLIC School of Ministry and In-Depth Bible Study (IDBS) sessions held weekly.",
     image: "/benefit-img-2.jpg",
   },
   {
     id: 3,
-    title: "Kingdom Programs",
+    title: "Global Community",
     description:
-      "Participate in our various spiritual development programs, including Bible study, leadership training, youth ministry, and special events designed to strengthen your faith.",
+      "Be part of our international community with churches in the UK and Nigeria. Connect through our Hebrew Women Fellowship and experience the love and support of fellow believers across continents.",
     image: "/benefit-img-3.jpg",
   },
   {
     id: 4,
-    title: "Community Impact",
+    title: "Digital Ministry",
     description:
-      "Join our outreach initiatives that touch lives through humanitarian services, educational support, and community development projects, demonstrating Christ's love in practical ways.",
+      "Access our services from anywhere through our audio livestreaming on mixlr.com/kliconline and video livestreaming on YouTube (KLICECHURCH). Stay connected through our social media platforms for spiritual nourishment.",
     image: "/benefit-img-4.jpg",
   },
 ];
@@ -45,11 +45,11 @@ const Benefits: React.FC = () => {
   return (
     <section className="py-12 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <span className="text-sm md:text-lg  text-gray-600 font-medium tracking-wider uppercase">
-          WHAT ARE WE ABOUT?
+        <span className="text-sm md:text-lg text-gray-600 font-medium tracking-wider uppercase">
+          OUR PROGRAMS
         </span>
         <h2 className="mt-3 text-3xl md:text-4xl font-bold text-gray-900 leading-tight max-w-2xl mx-auto">
-          The Benefits of Joining Our Church
+          How You Can Connect and Grow With Us
         </h2>
       </div>
 
@@ -76,7 +76,7 @@ const Benefits: React.FC = () => {
                   height={1000}
                   src={benefit.image}
                   alt={benefit.title}
-                  className=" h-[500px] md:h-[400px] object-cover  transition-all duration-300 object-top hover:scale-105"
+                  className="h-[500px] md:h-[400px] object-cover transition-all duration-300 object-top hover:scale-105"
                 />
               </div>
             </div>

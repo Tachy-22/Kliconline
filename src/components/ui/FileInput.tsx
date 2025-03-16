@@ -1,9 +1,7 @@
-import { useState, useRef, DragEvent, useEffect } from "react";
+import { useState, useRef, DragEvent } from "react";
 import { uploadFile } from "@/actions/upload";
 import { X, Music, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-//
 
 export interface FileMetadata {
   url: string;
@@ -78,7 +76,7 @@ export function FileInput({
   multiple = false,
   accept = "*/*",
   maxSize = 5,
-  maxFileSize = 10, // Change default to 10MB to match S3_UPLOAD_MAX_SIZE
+  maxFileSize = 50, // default 50MB per file
   onUploadComplete,
   onError,
   className,
@@ -104,17 +102,6 @@ export function FileInput({
     })
   );
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
-  // Load max file size from environment if available
-  useEffect(() => {
-    const envMaxSize = process.env.NEXT_PUBLIC_S3_UPLOAD_MAX_SIZE;
-    if (envMaxSize) {
-      const sizeInMB = parseInt(envMaxSize) / (1024 * 1024);
-      if (!isNaN(sizeInMB) && sizeInMB > 0) {
-        maxFileSize = sizeInMB;
-      }
-    }
-  }, []);
 
   const handleDrag = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -162,7 +149,9 @@ export function FileInput({
     if (maxFileSize && file.size > maxFileSize * 1024 * 1024) {
       return `File size exceeds ${maxFileSize}MB`;
     }
-    // Removed duplicate check
+    if (maxFileSize && file.size > maxFileSize * 1024 * 1024) {
+      return `File size exceeds ${maxFileSize}MB`;
+    }
     if (
       accept !== "*/*" &&
       !accept.split(",").some((type) => file.type.match(type))
@@ -227,7 +216,6 @@ export function FileInput({
         clearInterval(progressInterval);
 
         if ("error" in result) {
-          console.error("Upload error:", result.error);  // Add more detailed logging
           setFiles((prev) =>
             prev.map((f) =>
               f.file === fileData.file
@@ -267,7 +255,6 @@ export function FileInput({
           onUploadComplete?.([...completedFiles, newFileMetadata]);
         }
       } catch (err) {
-        console.error("File upload exception:", err); // Add more detailed logging
         const errorMessage =
           err instanceof Error ? err.message : "Upload failed";
         setFiles((prev) =>
