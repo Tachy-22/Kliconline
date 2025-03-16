@@ -1,41 +1,45 @@
 "use server";
 
-import fs from "fs-extra";
-import path from "path";
-
-const BASE_UPLOAD_DIR = "/home/kliconlinemedia@gmail.com/public_html/uploads/sermon/"; // Update this!
-const BASE_URL = "https://kliconline.org/uploads/sermon"; // Ensure this points to the correct directory
-
-// Ensure the uploads directory exists
-fs.ensureDirSync(BASE_UPLOAD_DIR);
+import cloudinary from "@/lib/cloudinary";
 
 interface UploadParams {
   buffer: ArrayBuffer;
   filename: string;
-  contentType: string;
+  folder?: string; // Optional: specify a folder in Cloudinary
+  contentType?: string
 }
 
-export async function uploadFile(
+export async function uploadToCloudinary(
   params: UploadParams
 ): Promise<{ url: string; error?: never } | { url?: never; error: string }> {
   try {
-    const { buffer, filename } = params;
+    const { buffer, filename, folder } = params;
 
-    if (!buffer || !filename) return { error: "No file uploaded" };
+    if (!buffer || !filename) return { error: "No file provided" };
 
-    // Generate a unique filename
-    const timestamp = Date.now();
-    const extension = path.extname(filename);
-    const safeName = filename.replace(/[^a-zA-Z0-9]/g, "-").split(".")[0];
-    const uniqueFilename = `${safeName}-${timestamp}${extension}`;
+    // Convert ArrayBuffer to Buffer
+    const fileBuffer = Buffer.from(buffer);
 
-    const filePath = path.join(BASE_UPLOAD_DIR, uniqueFilename);
-    const publicUrl = `${BASE_URL}/${uniqueFilename}`;
+    return new Promise((resolve) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        {
+          resource_type: "auto",
+          folder: folder || "uploads",
+          public_id: filename,
+        },
+        (error, result) => {
+          if (error) {
+            resolve({ error: error.message || "Upload failed" });
+          } else if (!result) {
+            resolve({ error: "No response from Cloudinary" });
+          } else {
+            resolve({ url: result.secure_url });
+          }
+        }
+      );
 
-    // Save file to storage
-    await fs.writeFile(filePath, Buffer.from(buffer));
-
-    return { url: publicUrl };
+      uploadStream.end(fileBuffer);
+    });
   } catch (error) {
     return { error: error instanceof Error ? error.message : "Upload failed" };
   }

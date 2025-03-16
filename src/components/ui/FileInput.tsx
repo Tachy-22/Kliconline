@@ -1,5 +1,5 @@
 import { useState, useRef, DragEvent } from "react";
-import { uploadFile } from "@/actions/upload";
+import { uploadToCloudinary } from "@/actions/upload";
 import { X, Music, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -207,7 +207,7 @@ export function FileInput({
           )
         );
 
-        const result = await uploadFile({
+        const result = await uploadToCloudinary({
           buffer,
           filename: fileData.file.name,
           contentType: fileData.file.type,
