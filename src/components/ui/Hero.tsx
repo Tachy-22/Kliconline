@@ -40,7 +40,7 @@ const Hero = () => {
         <span className="uppercase text-white/80 text-sm tracking-tight font-semibold">
           Kingdom Life International Church
         </span>
-        <h1 className="md:text-6xl text-4xl py-[0.5rem] font-extrabold flex flex-col gap-2 md:gap-4 text-white uppercase text-nowrap">
+        <h1 className="md:text-6xl text-3xl py-[0.5rem] font-extrabold flex flex-col gap-2 md:gap-4 text-white uppercase text-nowrap">
           <span className="">
             Living As Kings And
           </span>

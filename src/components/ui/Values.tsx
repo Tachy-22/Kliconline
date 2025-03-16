@@ -2,8 +2,12 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Values = () => {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+  
   const images = [
     "/value-img-1.jpg",
     "/drumming-img.jpg",
@@ -26,9 +30,6 @@ const Values = () => {
   return (
     <section className="py-8 lg:py-12 pb-16 bg-white text-center max-w-full w-full md:max-w-[80rem] mx-auto lg:px-[4.5rem] p-3 px-0 flex flex-col gap-2 overflow-hidden">
       {/* Sub-Headline */}
-      {/* <h2 className="text-lg uppercase text-gray-600 text-start md:text-center px-2">
-        OUR VISION
-      </h2> */}
       <h1 className="text-3xl font-bold mt-2 uppercase text-start md:text-center px-2">
         OUR VISION
       </h1>
@@ -44,22 +45,24 @@ const Values = () => {
       {/* Our Onions (Focus Areas) */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto px-4">
         {onions.map((onion, index) => (
-          <div key={index} className="flex items-center gap-2">
+          <div key={index} className="flex lg:items-center gap-2">
             <div className="h-2 w-2 bg-yellow-500 rounded-full"></div>
             <p className="text-gray-700">{onion}</p>
           </div>
         ))}
       </div>
 
-      {/* Button */}
-      <div className="mt-6 w-full">
-        <Link
-          href="/about-us"
-          className="px-4 py-2 bg-yellow-400 transition-all duration-500 drop-shadow-xl text-white rounded hover:bg-yellow-500/90 uppercase w-full md:w-fit"
-        >
-          READ MORE{" "}
-        </Link>
-      </div>
+      {/* Button - Only show on home page */}
+      {isHomePage && (
+        <div className="mt-6 w-full">
+          <Link
+            href="/about-us"
+            className="px-4 py-2 bg-yellow-400 transition-all duration-500 drop-shadow-xl text-white rounded hover:bg-yellow-500/90 uppercase w-full md:w-fit"
+          >
+            READ MORE{" "}
+          </Link>
+        </div>
+      )}
 
       {/* Image Grid */}
       <div className="">
