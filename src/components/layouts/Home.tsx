@@ -4,7 +4,7 @@ import React from "react";
 import Hero from "../ui/Hero";
 import Features from "../ui/Features";
 import Values from "../ui/Values";
-import CTA from "../ui/CTA";
+//mport CTA from "../ui/CTA";
 import WhyUs from "../ui/WhyUs";
 //import LatestSermon from "../ui/LatestSermon";
 import OurBlogs from "../ui/OurBlogs";
@@ -18,7 +18,7 @@ const Home = ({ sermons, blogs }: { sermons: SermonT[]; blogs: BlogT[] }) => {
       <div className="flex flex-col z-20 bg-white">
         <Features />
         <Values />
-        <CTA />
+        {/* <CTA /> */}
         <WhyUs />
         <ViewSermons sermons={sermons} />
         <OurBranches />

@@ -20,14 +20,14 @@ const OurBranches: React.FC = () => {
               <span className="">OVER THE GLOBE</span>
             </h2>
             <p className="text-base text-gray-700 mb-6 max-w-[90&]">
-              Our church has branches in over 50 countries worldwide. Find the
+              Our church has extensions in countries worldwide. Find the
               nearest branch to connect with a community that feels like family.
             </p>
             <Link
               href="/branches"
               className="inline-block px-8 py-4 text-black font-medium rounded-lg bg-[#ffd2a4] hover:bg-[#ffc988] transition-colors duration-300"
             >
-              Find a Branch Near You
+              Find an Extension Near You
             </Link>
           </div>
           <div className=" flex items-center lg:pt-0 pt-4">

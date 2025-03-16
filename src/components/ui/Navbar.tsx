@@ -27,7 +27,7 @@ const Navbar = () => {
     { name: "Events", href: "/events", icon: Calendar },
     { name: "Sermons", href: "/sermons", icon: Mic },
     { name: "Blogs", href: "/blogs", icon: BookText },
-    { name: "Branches", href: "/branches", icon: MapPin },
+    { name: "Extensions", href: "/branches", icon: MapPin },
     { name: "Testimonies", href: "/testimonies", icon: MessageCircle },
   ];
 

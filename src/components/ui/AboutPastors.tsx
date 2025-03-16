@@ -37,46 +37,46 @@ export const team: Pastors[] = [
       linkedin: "#",
     },
   },
-  {
-    name: "Kim Bowen",
-    role: "Pastor, Church",
-    image: "hero-img.svg", // Replace with actual image paths
-    socialLinks: {
-      facebook: "#",
-      twitter: "#",
-      linkedin: "#",
-    },
-  },
-  {
-    name: "Danielle Watkins",
-    role: "Pastor, Church",
-    image: "hero-img.svg", // Replace with actual image paths
-    socialLinks: {
-      facebook: "#",
-      twitter: "#",
-      linkedin: "#",
-    },
-  },
-  {
-    name: "Naomi Craig",
-    role: "Pastor, Church",
-    image: "hero-img.svg", // Replace with actual image paths
-    socialLinks: {
-      facebook: "#",
-      twitter: "#",
-      linkedin: "#",
-    },
-  },
-  {
-    name: "Santos Payne",
-    role: "Pastor, Church",
-    image: "hero-img.svg", // Replace with actual image paths
-    socialLinks: {
-      facebook: "#",
-      twitter: "#",
-      linkedin: "#",
-    },
-  },
+  // {
+  //   name: "Kim Bowen",
+  //   role: "Pastor, Church",
+  //   image: "hero-img.svg", // Replace with actual image paths
+  //   socialLinks: {
+  //     facebook: "#",
+  //     twitter: "#",
+  //     linkedin: "#",
+  //   },
+  // },
+  // {
+  //   name: "Danielle Watkins",
+  //   role: "Pastor, Church",
+  //   image: "hero-img.svg", // Replace with actual image paths
+  //   socialLinks: {
+  //     facebook: "#",
+  //     twitter: "#",
+  //     linkedin: "#",
+  //   },
+  // },
+  // {
+  //   name: "Naomi Craig",
+  //   role: "Pastor, Church",
+  //   image: "hero-img.svg", // Replace with actual image paths
+  //   socialLinks: {
+  //     facebook: "#",
+  //     twitter: "#",
+  //     linkedin: "#",
+  //   },
+  // },
+  // {
+  //   name: "Santos Payne",
+  //   role: "Pastor, Church",
+  //   image: "hero-img.svg", // Replace with actual image paths
+  //   socialLinks: {
+  //     facebook: "#",
+  //     twitter: "#",
+  //     linkedin: "#",
+  //   },
+  // },
 ];
 
 const AboutPastors: React.FC = () => {
@@ -84,12 +84,12 @@ const AboutPastors: React.FC = () => {
     <section className="py-[6rem] bg-gray-50">
       <div className="max-w-7xl mx-auto p-3 md:px-6 lg:px-8 text-center">
         <h2 className="text-lg font-semibold text-gray-600 uppercase">
-          Church Members
+        Our Pastors
         </h2>
         <h1 className="text-4xl font-extrabold text-gray-900 mb-8">
-          Meet Our Inspirational Team
+          Meet Our Ministers
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
           {team.map((member, index) => (
             <div
               key={index}

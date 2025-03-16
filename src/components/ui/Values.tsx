@@ -26,16 +26,19 @@ const Values = () => {
   return (
     <section className="py-8 lg:py-12 pb-16 bg-white text-center max-w-full w-full md:max-w-[80rem] mx-auto lg:px-[4.5rem] p-3 px-0 flex flex-col gap-2 overflow-hidden">
       {/* Sub-Headline */}
-      <h2 className="text-lg uppercase text-gray-600 text-start md:text-center px-2">
+      {/* <h2 className="text-lg uppercase text-gray-600 text-start md:text-center px-2">
         OUR VISION
-      </h2>
+      </h2> */}
       <h1 className="text-3xl font-bold mt-2 uppercase text-start md:text-center px-2">
-        Our Divine Commission
+        OUR VISION
       </h1>
 
       {/* Description */}
       <p className="mt-4 text-gray-600 max-w-3xl mx-auto text-start md:text-center px-2">
-        We are commissioned and anointed of God to teach and preach the kingdom of God, in practical, simple and clear terms, by the instrumentality of the Word and the Spirit of God, so as to bring men into the maturity of Christ and to help them live as Kings and Priests on earth.
+        We are commissioned and anointed of God to teach and preach the kingdom
+        of God, in practical, simple and clear terms, by the instrumentality of
+        the Word and the Spirit of God, so as to bring men into the maturity of
+        Christ and to help them live as Kings and Priests on earth.
       </p>
 
       {/* Our Onions (Focus Areas) */}
@@ -51,7 +54,7 @@ const Values = () => {
       {/* Button */}
       <div className="mt-6 w-full">
         <Link
-          href="/blogs/KSJZam6phQR2effxTDNo"
+          href="/about-us"
           className="px-4 py-2 bg-yellow-400 transition-all duration-500 drop-shadow-xl text-white rounded hover:bg-yellow-500/90 uppercase w-full md:w-fit"
         >
           READ MORE{" "}
