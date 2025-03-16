@@ -77,11 +77,11 @@ const LatestSermon = ({ sermons }: { sermons: SermonT[] }) => {
 
         <div className="relative w-full lg:w-2/3 lg:min-h-full lg:h-full h-fit">
           <Image
-            src={latestSermon.thumbnailUrl || "/sermon-img.svg"}
+            src={latestSermon.thumbnailUrl || "/album-art.jpg"}
             alt={latestSermon.title}
             width={2000}
             height={1000}
-            className="rounded-lg object-cover w-full h-full bg-gray-300"
+            className="rounded-lg object-cover  w-full h-full bg-gray-300"
           />
         </div>
       </div>
