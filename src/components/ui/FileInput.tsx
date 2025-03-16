@@ -1,4 +1,5 @@
 import { useState, useRef, DragEvent } from "react";
+import { uploadFile } from "@/actions/upload";
 import { X, Music, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -197,36 +198,32 @@ export function FileInput({
           }
         }, 50); // Update every 50ms for smooth animation
 
-        // Set to 95% when preparing to upload
+        const buffer = await fileData.file.arrayBuffer();
+
+        // Set to 95% when file is read
         setFiles((prev) =>
           prev.map((f) =>
             f.file === fileData.file ? { ...f, progress: 95 } : f
           )
         );
 
-        // Create FormData and append the file
-        const formData = new FormData();
-        formData.append("file", fileData.file);
-
-        // Send to the API route
-        const response = await fetch("/api/upload", {
-          method: "POST",
-          body: formData,
+        const result = await uploadFile({
+          buffer,
+          filename: fileData.file.name,
+          contentType: fileData.file.type,
         });
 
         clearInterval(progressInterval);
-        
-        const result = await response.json();
 
-        if (!response.ok || result.error) {
+        if ("error" in result) {
           setFiles((prev) =>
             prev.map((f) =>
               f.file === fileData.file
-                ? { ...f, error: result.error || "Upload failed", progress: 0 }
+                ? { ...f, error: result.error, progress: 0 }
                 : f
             )
           );
-          onError?.(result.error || "Upload failed");
+          onError?.(result.error as string);
         } else {
           // Set to 100% when complete
           setFiles((prev) =>
