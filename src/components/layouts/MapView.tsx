@@ -1,6 +1,6 @@
 "use client";
 
-import { Branch } from "@/types/branch";
+//import { Branch } from "@/types/branch";
 import { useEffect, useRef, useState } from "react";
 import Map from "ol/Map";
 import View from "ol/View";
@@ -34,8 +34,8 @@ interface MapViewProps {
   mapCenter: [number, number];
   mapZoom: number;
   userPosition: [number, number] | null;
-  selectedLocation: Branch | null;
-  branchData: Branch[];
+  selectedLocation: BranchT | null;
+  branchData: BranchT[];
 }
 
 const MapView = ({

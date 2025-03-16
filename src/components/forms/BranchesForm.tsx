@@ -30,6 +30,7 @@ type FormData = {
   address: string;
   latitude: number | null;
   longitude: number | null;
+  phone: string;
 };
 
 export default function BranchesForm({
@@ -49,6 +50,7 @@ export default function BranchesForm({
       address: branch?.address || "",
       latitude: branch?.latitude || null,
       longitude: branch?.longitude || null,
+      phone: branch?.phone || "",
     },
   });
 
@@ -173,6 +175,26 @@ export default function BranchesForm({
                           />
                         </FormControl>
                         <FormMessage className="text-red-500" />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    rules={{ required: "Admin phone number is required" }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700 font-medium">Admin Phone</FormLabel>
+                        <FormControl>
+                          <Input
+                            className="border-slate-200 hover:border-slate-300 focus:border-slate-400 transition-colors rounded-lg
+                            placeholder:text-slate-400 text-gray-900"
+                            placeholder="Enter admin phone number..."
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className="text-sm text-red-500 mt-1" />
                       </FormItem>
                     )}
                   />

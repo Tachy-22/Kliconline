@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import dynamic from "next/dynamic";
-import { Branch } from "@/types/branch";
+//import { Branch } from "@/types/branch";
 import { Input } from "../ui/input";
 import BranchHero from "../ui/BranchHero";
 import { getNearestBranch } from "@/lib/helpers";
@@ -17,10 +17,12 @@ interface SearchResult {
 
 const MapView = dynamic(() => import("./MapView"), { ssr: false });
 
-const Branches = ({ branchData }: { branchData: Branch[] }) => {
+const Branches = ({ branchData }: { branchData: BranchT[] }) => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<Branch | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<BranchT | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [mapCenter, setMapCenter] = useState<[number, number]>([
     7.3775355, 3.9470396,
@@ -56,10 +58,10 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
-          
+
           // Add debug information
           // console.log('Geolocation:', { latitude, longitude });
-          
+
           // Fix: Store coordinates in correct order
           setUserPosition([latitude, longitude]);
           setMapCenter([latitude, longitude]);
@@ -75,20 +77,22 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
               longitude,
               nearest.latitude,
               nearest.longitude
-            );
+            ) as unknown as string;
             setSelectedLocation({ ...nearest, distance });
           }
         },
         (error) => {
           console.error("Geolocation error:", error);
           // Consider showing an error message to the user
-          alert("Could not get your location. Please check your browser settings.");
+          alert(
+            "Could not get your location. Please check your browser settings."
+          );
         },
         {
           // Add more accurate geolocation options
           enableHighAccuracy: true,
           timeout: 5000,
-          maximumAge: 0
+          maximumAge: 0,
         }
       );
     }
@@ -130,7 +134,7 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
       lon,
       nearest.latitude,
       nearest.longitude
-    );
+    ) as unknown as string;
     setSelectedLocation({ ...nearest, distance });
   };
 
@@ -196,8 +200,14 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
                       {selectedLocation.name}
                     </p>
                     <p className="text-gray-600">{selectedLocation.address}</p>
+                    {selectedLocation.phone && (
+                      <p className="text-gray-600">
+                        Contact: {selectedLocation.phone}
+                      </p>
+                    )}
                     <p className="text-sm text-gray-500">
-                      Distance: {selectedLocation.distance?.toFixed(2)} km
+                      Distance:{" "}
+                      {parseInt(selectedLocation.distance as string)?.toFixed(2)} km
                     </p>
                   </div>
                 </div>
@@ -222,6 +232,11 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
                     <p className="text-gray-600 text-sm mt-1">
                       {branch.address}
                     </p>
+                    {branch.phone && (
+                      <p className="text-gray-600 text-sm mt-1">
+                        Contact: {branch.phone}
+                      </p>
+                    )}
                     <p className="text-gray-500 text-sm mt-1">
                       Hours: {"Call for hours"}
                     </p>

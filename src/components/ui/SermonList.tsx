@@ -16,7 +16,7 @@ const SermonList: React.FC<SermonListProps> = ({ sermons: initialSermons }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredSermons, setFilteredSermons] = useState(initialSermons);
 
-  //console.log({ initialSermons });
+  console.log({ initialSermons });
 
   const handleDateChange = (range: DateRange | undefined) => {
     if (range && range.from && range.to) {

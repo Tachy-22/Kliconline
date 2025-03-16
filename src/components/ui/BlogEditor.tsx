@@ -195,7 +195,7 @@ const BlogEditor: React.FC<BlogEditorProps> = ({
                     <FileInput
                       multiple={false}
                       accept="image/*"
-                      maxFileSize={1}
+                      maxFileSize={2}
                       onUploadComplete={handleUploadComplete}
                       initialFiles={blogData?.imageUrls || []}
                     />

@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/uploads/:path*",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "audio/mpeg",
+          },
+        ],
+      },
+    ];
+  },
   experimental: {
     serverActions: {
       bodySizeLimit: "50mb",

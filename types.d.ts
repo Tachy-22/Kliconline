@@ -108,7 +108,7 @@ type TestimonyT = {
   createdAt?: string;
   updatedAt?: string;
   approved?: boolean;
-}
+};
 
 interface SubscriberT {
   id: string;
@@ -134,9 +134,11 @@ type BranchT = {
   longitude: number;
   createdAt?: string;
   updatedAt?: string;
+  phone?: string;
+  distance?: string;
 };
 
- interface FileMetadata {
+interface FileMetadata {
   url: string;
   name: string;
   size: number;
