@@ -43,7 +43,7 @@ const Values = () => {
       </p>
 
       {/* Our Onions (Focus Areas) */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto px-4">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl lg:mx-auto px-4">
         {onions.map((onion, index) => (
           <div key={index} className="flex lg:items-center gap-2">
             <div className="h-2 w-2 bg-yellow-500 rounded-full"></div>

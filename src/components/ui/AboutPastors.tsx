@@ -37,46 +37,7 @@ export const team: Pastors[] = [
       linkedin: "#",
     },
   },
-  // {
-  //   name: "Kim Bowen",
-  //   role: "Pastor, Church",
-  //   image: "hero-img.svg", // Replace with actual image paths
-  //   socialLinks: {
-  //     facebook: "#",
-  //     twitter: "#",
-  //     linkedin: "#",
-  //   },
-  // },
-  // {
-  //   name: "Danielle Watkins",
-  //   role: "Pastor, Church",
-  //   image: "hero-img.svg", // Replace with actual image paths
-  //   socialLinks: {
-  //     facebook: "#",
-  //     twitter: "#",
-  //     linkedin: "#",
-  //   },
-  // },
-  // {
-  //   name: "Naomi Craig",
-  //   role: "Pastor, Church",
-  //   image: "hero-img.svg", // Replace with actual image paths
-  //   socialLinks: {
-  //     facebook: "#",
-  //     twitter: "#",
-  //     linkedin: "#",
-  //   },
-  // },
-  // {
-  //   name: "Santos Payne",
-  //   role: "Pastor, Church",
-  //   image: "hero-img.svg", // Replace with actual image paths
-  //   socialLinks: {
-  //     facebook: "#",
-  //     twitter: "#",
-  //     linkedin: "#",
-  //   },
-  // },
+
 ];
 
 const AboutPastors: React.FC = () => {
