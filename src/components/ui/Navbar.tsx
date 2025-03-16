@@ -4,7 +4,16 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "./button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Users, Calendar, Mic, BookText, MapPin, MessageCircle } from "lucide-react";
+import {
+  Menu,
+  X,
+  Users,
+  Calendar,
+  Mic,
+  BookText,
+  MapPin,
+  MessageCircle,
+} from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
@@ -125,7 +134,10 @@ const Navbar = () => {
             <div className="mt-6 px-6">
               <Button
                 className="w-full py-2 bg-[#FFD2A4] text-black font-light rounded hover:bg-[#FFD2A4]/90 uppercase"
-                onClick={toggleSidebar} // Optional: Close sidebar on button click
+                onClick={() => {
+                  router.push(`/contact`);
+                  toggleSidebar();
+                }}
               >
                 CONTACT US
               </Button>

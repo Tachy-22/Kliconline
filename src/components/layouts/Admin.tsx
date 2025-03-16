@@ -57,7 +57,7 @@ const Admin: React.FC<AdminProps> = ({ stats, recentSermons }: AdminProps) => {
     {
       name: "Upload Sermon",
       icon: <ImagePlus size={16} />,
-      href: "/admin/srmon/",
+      href: "/admin/sermons/",
     },
     {
       name: "Announcements",

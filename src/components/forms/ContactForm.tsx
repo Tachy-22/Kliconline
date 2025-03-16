@@ -191,7 +191,7 @@ const ContactForm = () => {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="bg-orange-300 font-semibold hover:bg-orange-200 text-black transition duration-300 focus:ring-2 focus:ring-black focus:ring-offset-2 rounded w-full"
+                className="bg-yellow-300 font-semibold hover:bg-yellow-200 text-black transition duration-300 focus:ring-2 focus:ring-black focus:ring-offset-2 rounded w-full"
               >
                 {isLoading ? "SUBMITING..." : "SEND MESSAGE"}
               </Button>
