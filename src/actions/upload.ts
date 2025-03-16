@@ -128,7 +128,9 @@ export async function uploadFile(
       await s3.send(completeCommand);
     }
 
-    return { url: `${process.env.CLOUD_FRONT_URL}/${key}` };
+    return {
+      url: `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`,
+    };
   } catch (error) {
     return { error: error instanceof Error ? error.message : "Upload failed" };
   }
