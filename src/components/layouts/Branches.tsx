@@ -152,7 +152,7 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
             <div className="bg-white  rounded-lg ">
               <h2 className="text-xl font-semibold mb-4">Location Search</h2>
               <p className="text-gray-600 mb-4">
-                Enter your town or area to find the nearest branch:
+                Enter your town or area to find the nearest extension:
               </p>
               <div className="relative">
                 <Input
@@ -189,7 +189,7 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
               {selectedLocation && (
                 <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
                   <h3 className="font-semibold text-black">
-                    Nearest Branch Found!
+                    Nearest Extension Found!
                   </h3>
                   <div className="mt-2 space-y-2">
                     <p className="font-medium text-gray-900">
@@ -206,7 +206,7 @@ const Branches = ({ branchData }: { branchData: Branch[] }) => {
 
             {/* All Branches List YOU */}
             <div className="bg-white  rounded-lg ">
-              <h2 className="text-xl font-semibold mb-4">All Branches</h2>
+              <h2 className="text-xl font-semibold mb-4">All Extensions</h2>
               <div className="space-y-4">
                 {branchData.map((branch) => (
                   <div
