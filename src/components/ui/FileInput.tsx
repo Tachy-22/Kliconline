@@ -1,5 +1,4 @@
 import { useState, useRef, DragEvent } from "react";
-import { uploadToCloudinary } from "@/actions/upload";
 import { X, Music, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -198,32 +197,36 @@ export function FileInput({
           }
         }, 50); // Update every 50ms for smooth animation
 
-        const buffer = await fileData.file.arrayBuffer();
-
-        // Set to 95% when file is read
+        // Set to 95% when preparing to upload
         setFiles((prev) =>
           prev.map((f) =>
             f.file === fileData.file ? { ...f, progress: 95 } : f
           )
         );
 
-        const result = await uploadToCloudinary({
-          buffer,
-          filename: fileData.file.name,
-          contentType: fileData.file.type,
+        // Create FormData and append the file
+        const formData = new FormData();
+        formData.append("file", fileData.file);
+
+        // Send to the API route
+        const response = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
         });
 
         clearInterval(progressInterval);
+        
+        const result = await response.json();
 
-        if ("error" in result) {
+        if (!response.ok || result.error) {
           setFiles((prev) =>
             prev.map((f) =>
               f.file === fileData.file
-                ? { ...f, error: result.error, progress: 0 }
+                ? { ...f, error: result.error || "Upload failed", progress: 0 }
                 : f
             )
           );
-          onError?.(result.error as string);
+          onError?.(result.error || "Upload failed");
         } else {
           // Set to 100% when complete
           setFiles((prev) =>
