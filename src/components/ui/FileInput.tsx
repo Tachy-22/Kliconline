@@ -1,5 +1,4 @@
 import { useState, useRef, DragEvent } from "react";
-import { uploadFile } from "@/actions/upload";
 import { X, Music, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -161,7 +160,11 @@ export function FileInput({
     return null;
   };
 
+  const UPLOAD_PRESET = "unsigned_uploads"; // Replace with your preset
+
   const handleFiles = async (newFiles: FileList) => {
+    // Debug: Logging incoming files for debugging
+    console.log("Debug: Starting upload process for files:", newFiles);
     const filesToUpload = Array.from(newFiles).map((file) => ({
       file,
       progress: 0,
@@ -180,6 +183,8 @@ export function FileInput({
       }
 
       try {
+        // Debug: Attempting file upload to Cloudinary
+        console.log("Debug: Attempting upload for file:", fileData.file.name);
         // Initialize progress at 0
         let currentProgress = 0;
 
@@ -198,63 +203,58 @@ export function FileInput({
           }
         }, 50); // Update every 50ms for smooth animation
 
-        const buffer = await fileData.file.arrayBuffer();
-
-        // Set to 95% when file is read
-        setFiles((prev) =>
-          prev.map((f) =>
-            f.file === fileData.file ? { ...f, progress: 95 } : f
-          )
+        // Remove any route calls, do direct Cloudinary upload:
+        const formData = new FormData();
+        formData.append("file", fileData.file);
+        formData.append("upload_preset", UPLOAD_PRESET);
+        const res = await fetch(
+          `https://api.cloudinary.com/v1_1/${process.env
+            .NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!}/auto/upload`,
+          { method: "POST", body: formData }
         );
-
-        const result = await uploadFile({
-          buffer,
-          filename: fileData.file.name,
-          contentType: fileData.file.type,
-        });
+        console.log({res})
+        if (!res.ok) {
+          throw new Error(`Upload failed: ${res.statusText}`);
+        }
+        const data = await res.json();
 
         clearInterval(progressInterval);
 
-        if ("error" in result) {
-          setFiles((prev) =>
-            prev.map((f) =>
-              f.file === fileData.file
-                ? { ...f, error: result.error, progress: 0 }
-                : f
-            )
-          );
-          onError?.(result.error as string);
-        } else {
-          // Set to 100% when complete
-          setFiles((prev) =>
-            prev.map((f) =>
-              f.file === fileData.file
-                ? { ...f, url: result.url, progress: 100 }
-                : f
-            )
-          );
+        // Set to 100% when complete
+        setFiles((prev) =>
+          prev.map((f) =>
+            f.file === fileData.file
+              ? {
+                  ...f,
+                  url: data.secure_url,
+                  progress: 100,
+                }
+              : f
+          )
+        );
 
-          const completedFiles = files
-            .filter((f) => f.url)
-            .map((f) => ({
-              url: f.url as string,
-              name: f.file.name,
-              size: f.file.size,
-              type: f.file.type,
-              lastModified: f.file.lastModified,
-            }));
+        const completedFiles = files
+          .filter((f) => f.url)
+          .map((f) => ({
+            url: f.url as string,
+            name: f.file.name,
+            size: f.file.size,
+            type: f.file.type,
+            lastModified: f.file.lastModified,
+          }));
 
-          const newFileMetadata: FileMetadata = {
-            url: result.url,
-            name: fileData.file.name,
-            size: fileData.file.size,
-            type: fileData.file.type,
-            lastModified: fileData.file.lastModified,
-          };
+        const newFileMetadata: FileMetadata = {
+          url: data.secure_url,
+          name: fileData.file.name,
+          size: fileData.file.size,
+          type: fileData.file.type,
+          lastModified: fileData.file.lastModified,
+        };
 
-          onUploadComplete?.([...completedFiles, newFileMetadata]);
-        }
+        onUploadComplete?.([...completedFiles, newFileMetadata]);
       } catch (err) {
+        // Debug: File upload error
+        console.error("Debug: Upload failed with error:", err);
         const errorMessage =
           err instanceof Error ? err.message : "Upload failed";
         setFiles((prev) =>
