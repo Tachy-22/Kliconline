@@ -201,7 +201,7 @@ export function FileInput({
               )
             );
           }
-        }, 50); // Update every 50ms for smooth animation
+        }, fileData.file.size / 1024 / 100); // Update every 50ms for smooth animation
 
         // Remove any route calls, do direct Cloudinary upload:
         const formData = new FormData();
@@ -212,7 +212,7 @@ export function FileInput({
             .NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!}/auto/upload`,
           { method: "POST", body: formData }
         );
-        console.log({res})
+        console.log({ res });
         if (!res.ok) {
           throw new Error(`Upload failed: ${res.statusText}`);
         }
