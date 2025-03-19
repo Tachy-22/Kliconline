@@ -6,6 +6,8 @@ const SermonHero: React.FC = () => {
       className="relative h-[26rem] bg-cover bg-top text-white"
       style={{ backgroundImage: "url('/sermon-hero.jpg')" }}
     >
+      <div className="absolute inset-0 bg-black/70"></div>
+
       <div className="relative z-10 flex flex-col items-start justify-center h-full mx-auto max-w-7xl  lg:px-[4.5rem] px-[2rem] text-black">
         <h2 className="text-sm uppercase tracking-wide font-semibol text-white">
           Sermons

@@ -29,6 +29,8 @@ const Hero = () => {
           style={{ transform: `translate3d(0, ${scrollY * -0.05}px, 0)` }}
         />
         {/* Yellowish-orangish overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
         <div
           className="absolute inset-0 bg-yellow-950/90 mix-blend-overlay transform-gpu transition-transform duration-300 ease-out"
           style={{ transform: `translate3d(0, ${scrollY * -0.05}px, 0)` }}
@@ -41,9 +43,7 @@ const Hero = () => {
           Kingdom Life International Church
         </span>
         <h1 className="md:text-6xl text-3xl py-[0.5rem] font-extrabold flex flex-col gap-2 md:gap-4 text-white uppercase text-nowrap">
-          <span className="">
-            Living As Kings And
-          </span>
+          <span className="">Living As Kings And</span>
           <span>
             <span className="font-['Great_Vibes'] text-yellow-200 italic">
               Priests On Earth

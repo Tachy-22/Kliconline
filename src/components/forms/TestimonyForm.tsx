@@ -26,6 +26,9 @@ const formSchema = z.object({
   content: z.string()
     .min(10, "Testimony must be at least 10 characters")
     .max(2000, "Testimony must be less than 2000 characters"),
+  title: z.string()
+    .nonempty("Title is required")
+    .max(100, "Title must be less than 100 characters")
 });
 
 interface TestimonyFormProps {
@@ -42,6 +45,7 @@ const TestimonyForm = ({ testimony, update = false,onClose }: TestimonyFormProps
     defaultValues: {
       author: testimony?.author || "",
       content: testimony?.content || "",
+      title: testimony?.title || "Default Title",
     },
   });
 
@@ -116,6 +120,27 @@ const TestimonyForm = ({ testimony, update = false,onClose }: TestimonyFormProps
               <FormControl>
                 <Input
                   placeholder="Enter your name"
+                  {...field}
+                  disabled={isSubmitting}
+                  className="h-11 px-4 py-2 text-base disabled:opacity-50 rounded-lg border-gray-300 focus:border-black"
+                />
+              </FormControl>
+              <FormMessage className="text-sm text-red-500" />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="title"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel className="text-base font-semibold text-gray-900">
+                Testimony Title
+              </FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Enter a title"
                   {...field}
                   disabled={isSubmitting}
                   className="h-11 px-4 py-2 text-base disabled:opacity-50 rounded-lg border-gray-300 focus:border-black"

@@ -8,7 +8,8 @@ import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 const Blog = ({ blogData }: { blogData: BlogT }) => {
   const { title, author, date, content, category, imageUrls } = blogData;
   const parsedContent = parse(content);
-
+  
+console.log({ imageUrls });
   return (
     <article className="max-w-[65rem] mx-auto px-2 sm:px-4 py-6 sm:py-12 bg-white">
       <header className="mb-8 sm:mb-12 flex flex-col gap-5">

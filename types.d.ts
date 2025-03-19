@@ -103,6 +103,7 @@ type TestimonyT = {
   id?: string;
   author: string;
   content: string;
+  title?: string;
   date: string;
   image?: string;
   createdAt?: string;

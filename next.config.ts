@@ -28,8 +28,13 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "d13tirqpsc6n7g.cloudfront.net",
+        hostname: "klicbucket.s3.us-east-1.amazonaws.com",
         pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/detyrovtq/image/upload/**",
       },
     ],
   },
