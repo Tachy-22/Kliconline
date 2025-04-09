@@ -1,5 +1,4 @@
-
-import SignIn from "@/components/auth/SignIn";
+import SignIn from "@/components/components/auth/SignIn";
 import React from "react";
 
 const page = () => {

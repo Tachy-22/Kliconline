@@ -8,12 +8,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from "@/components/components/ui/alert-dialog";
 import { Eye } from "lucide-react";
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
 
-export function PreviewModal({ content, author }: { content: string; author: string }) {
+export function PreviewModal({
+  content,
+  author,
+}: {
+  content: string;
+  author: string;
+}) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>

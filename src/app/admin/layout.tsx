@@ -1,6 +1,10 @@
-import AdminHeader from "@/components/ui/AdminHeader";
-import { AdminSidebar } from "@/components/ui/AdminSidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+
+import AdminHeader from "@/components/components/ui/AdminHeader";
+import { AdminSidebar } from "@/components/components/ui/AdminSidebar";
+import {
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/components/ui/sidebar";
 import { getDashboardStats } from "@/lib/helpers";
 import React from "react";
 
@@ -14,7 +18,9 @@ export default async function AdminLayout({
   const stats = await getDashboardStats();
 
   return (
-    <div className={`bg-white h-full  overflow-y-auto w-full max-w-screen flex`}>
+    <div
+      className={`bg-white h-full  overflow-y-auto w-full max-w-screen flex`}
+    >
       <SidebarProvider>
         <AdminSidebar
           testimoniesCount={stats.testimonies}

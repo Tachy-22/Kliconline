@@ -2,13 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
-import {
-  Facebook,
-  Twitter,
-  Linkedin,
-  Instagram,
- 
-} from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 export interface Pastors {
   name: string;
@@ -30,7 +24,7 @@ export const team: Pastors[] = [
     socialLinks: {
       facebook: "https://facebook.com/Sam Adewuyi",
       twitter: "https://twitter.com/Drsamadewuyi",
-      instagram: "https://instagram.com/pstsamadewuyi",
+      instagram: "https://www.instagram.com/kliconline//pstsamadewuyi",
     },
   },
   {
@@ -48,8 +42,6 @@ export const team: Pastors[] = [
 const AboutPastors: React.FC = () => {
   // Use the first pastor as the main pastor
   const mainPastor = team[0];
-
- 
 
   return (
     <section className="py-[2rem] bg-gray-50">

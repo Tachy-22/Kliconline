@@ -1,7 +1,7 @@
 "use client";
 // Assuming your TypeScript environment is configured properly
 
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/components/ui/button";
 import { Loader2 } from "lucide-react";
 import React from "react";
 import { useFormStatus } from "react-dom";

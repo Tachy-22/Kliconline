@@ -1,6 +1,6 @@
 import { fetchCollection } from "@/actions/fettchCollection";
-import BranchesTable from "@/components/tables/BranchesTable";
-import BranchesForm from "@/components/forms/BranchesForm";
+import BranchesTable from "@/components/components/tables/BranchesTable";
+// import BranchesForm from "@/components/components/forms/BranchesForm";
 
 const page = async () => {
   const branches = await fetchCollection("branches");
@@ -16,8 +16,8 @@ const page = async () => {
         <h1 className="text-2xl font-bold">Branch Management</h1>
         <p className="text-gray-600">Manage church branches and locations.</p>
       </div>
-      <BranchesTable branches={validBranches} />
-      <BranchesForm />
+      {/* <BranchesTable branches={validBranches} /> */}
+      {/* <BranchesForm /> */}
     </div>
   );
 };

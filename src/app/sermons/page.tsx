@@ -1,28 +1,21 @@
-export const revalidate = 0;
-
 import { fetchCollection } from "@/actions/fettchCollection";
-import Sermons from "@/components/layouts/Sermons";
-import Footer from "@/components/ui/Footer";
-import Navbar from "@/components/ui/Navbar";
-import React from "react";
+import Sermons from "./Sermons";
 
-const page = async () => {
+export default async function SermonPage() {
+  // Fetch sermons and events
   const sermons = await fetchCollection<SermonT>("sermons");
+  const events = await fetchCollection<EventT>("events");
 
-  //console.log({ sermons });
+  // Sort sermons by date (newest first)
+  const sortedSermons = "items" in sermons
+    ? [...sermons.items].sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      )
+    : [];
 
-  if ("items" in sermons) {
-    return (
-      <div>
-        {" "}
-        <Navbar />
-        <Sermons sermons={sermons.items} />
-        <Footer />
-      </div>
-    );
+  if (!("items" in sermons) || !("items" in events)) {
+    return <div>Error loading sermons or events</div>;
   }
-  return <div>Error </div>;
-  //  return <div>Sermons</div>
-};
 
-export default page;
+  return <Sermons sermons={sortedSermons} events={events.items} />;
+}

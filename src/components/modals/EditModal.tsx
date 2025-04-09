@@ -5,12 +5,11 @@ import {
   //  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from "@/components/components/ui/alert-dialog";
 //import AddEventForm from "../forms/AddEventForm";
 import { Pencil, X } from "lucide-react";
 import { useState } from "react";
@@ -49,7 +48,7 @@ export function EditModal({ children, title }: EditModalProps) {
           </AlertDialogTitle>
         </AlertDialogHeader>
         <div className="max-h-[80vh] overflow-auto">
-            {React.cloneElement(children, { onClose: () => setIsOpen(false) })}
+          {React.cloneElement(children, { onClose: () => setIsOpen(false) })}
         </div>
         <AlertDialogFooter></AlertDialogFooter>
       </AlertDialogContent>

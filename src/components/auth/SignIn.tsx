@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { signIn } from "@/actions/auth";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/components/ui/button";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import {
@@ -16,8 +16,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/components/components/ui/form";
+import { Input } from "@/components/components/ui/input";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
