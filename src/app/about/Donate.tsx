@@ -1,59 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
-import Navbar from "@/components/components/layout/Navbar";
-import Footer from "@/components/components/layout/Footer";
 import { motion } from "framer-motion";
 import {
-  CreditCard,
   BanknoteIcon,
-  Heart,
-  Gift,
-  Check,
-  CheckCircle,
-  HelpCircle,
-  ArrowRight,
+
 } from "lucide-react";
-import { Button } from "@/components/components/ui/button";
+
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/components/components/ui/tabs";
-import { Input } from "@/components/components/ui/input";
-import { Label } from "@/components/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/components/ui/select";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/components/ui/accordion";
+
 
 const Donate = () => {
-  const [donationAmount, setDonationAmount] = useState<string>("");
-  const [customAmount, setCustomAmount] = useState<string>("");
-  const [isCustomAmount, setIsCustomAmount] = useState<boolean>(false);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const handleDonationAmountSelect = (amount: string) => {
-    setDonationAmount(amount);
-    setIsCustomAmount(false);
-  };
-
-  const handleCustomAmountSelect = () => {
-    setDonationAmount(customAmount);
-    setIsCustomAmount(true);
-  };
 
   return (
     <div className="">
