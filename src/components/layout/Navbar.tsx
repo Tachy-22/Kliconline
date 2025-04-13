@@ -88,7 +88,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -111,7 +111,7 @@ const Navbar = () => {
           </div>
 
           {/* Social Media and Donate Button - Desktop */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
             <div className="flex space-x-2">
               <Link
                 href="https://www.facebook.com/kliconline/"
@@ -153,7 +153,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <button
               onClick={toggleMobileMenu}
               className={cn(
@@ -171,7 +171,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 top-16 bg-white z-40 lg:hidden"
+            className="fixed inset-0 top-16 bg-white z-40 md:hidden"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}

@@ -211,101 +211,39 @@ const About = () => {
                   <div className="relative">
                     <div className="absolute inset-0 rounded-full bg-church-purple/20"></div>
                     <img
-                      src="https://images.unsplash.com/photo-1564932438201-7efcee79985b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
-                      alt="Pastor Sam Adewuyi"
+                      src="/setman.png"
+                      alt="Pastor (Dr.) Sam & Olaide ADEWUYI"
                       className="w-full h-auto rounded-lg relative z-10"
                     />
                   </div>
                 </div>
                 <div className="md:w-2/3">
                   <h3 className="text-2xl font-serif font-bold mb-4">
-                    Pastor Sam Adewuyi
+                    Pastor (Dr.) Sam & Olaide ADEWUYI
                   </h3>
                   <div className="w-16 h-1 bg-church-yellow mb-6"></div>
                   <p className="text-gray-700 mb-4">
-                    Pastor Sam Adewuyi is the SETMAN of Kingdom Life
-                    International Church. With over 25 years in ministry, he is
-                    known for his profound insights into God&apos;s Word and his
-                    unique ability to communicate Kingdom principles in a
-                    simple, practical way that transforms lives.
+                    Pastor (Dr.) Sam & Olaide ADEWUYI are the SETMAN, Kingdom Life
+                    International Church, a rapidly growing movement, headquartered in
+                    Akure, Nigeria, with an extension in the city of York, United Kingdom.
                   </p>
                   <p className="text-gray-700 mb-4">
-                    Ordained by God with an apostolic mandate, Pastor Sam has
-                    ministered across different continents, establishing
-                    churches and raising leaders who are impacting their
-                    communities with the Gospel.
+                    They teach the message of Christ Jesus with clarity and simplicity by
+                    the inspiration of the Holy Spirit, shedding light on how believers
+                    can engage the works of faith to produce results in the secular
+                    space, ultimately making them a relevant and positive force, as
+                    well as a blessing on the earth.
                   </p>
                   <p className="text-gray-700">
-                    He is married to Pastor Olaide Adewuyi, and together they
-                    oversee the KLIC network of churches, the School of
-                    Ministry, and various outreach programs designed to expand
-                    God&apos;s Kingdom on earth.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row-reverse gap-10 items-center mt-16">
-                <div className="md:w-1/3">
-                  <div className="relative">
-                    <div className="absolute inset-0 rounded-full bg-church-purple/20"></div>
-                    <img
-                      src="https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80"
-                      alt="Pastor Olaide Adewuyi"
-                      className="w-full h-auto rounded-lg relative z-10"
-                    />
-                  </div>
-                </div>
-                <div className="md:w-2/3">
-                  <h3 className="text-2xl font-serif font-bold mb-4">
-                    Pastor Olaide Adewuyi
-                  </h3>
-                  <div className="w-16 h-1 bg-church-yellow mb-6"></div>
-                  <p className="text-gray-700 mb-4">
-                    Pastor Olaide Adewuyi serves alongside her husband as
-                    co-pastor of Kingdom Life International Church. She is a
-                    dynamic teacher and preacher whose ministry has touched
-                    thousands of lives around the world.
-                  </p>
-                  <p className="text-gray-700 mb-4">
-                    With a specific calling to minister to women, Pastor Olaide
-                    is the founder of the Hebrew Women Fellowship, a ministry
-                    that empowers women to embrace their divine identity and
-                    fulfill their God-given purpose.
-                  </p>
-                  <p className="text-gray-700">
-                    Her passion for prayer, worship, and the Word of God has
-                    made her a source of inspiration and strength to many, and
-                    her teachings continue to bring healing, deliverance, and
-                    transformation to all who hear them.
+                    They are resident in the United Kingdom and their beautiful union is
+                    blessed with amazing children.
                   </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
-        {/* Donation Section */}
-        {/* <section className="py-20 bg-church-purple text-white">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">
-                Support Our Vision
-              </h2>
-              <div className="w-20 h-1 bg-church-yellow mx-auto mb-6"></div>
-              <p className="text-lg mb-8 opacity-90">
-                Your generous support enables us to continue spreading the
-                message of the Kingdom of God around the world. Together, we can
-                make a lasting impact on lives, communities, and nations.
-              </p>
-              <Button
-                asChild
-                className="bg-church-yellow hover:bg-church-yellow-dark text-gray-900 px-8 py-6 text-lg"
-              >
-                <Link href="/donate">Make a Donation</Link>
-              </Button>
-            </div>
-          </div>
-        </section> */}
+              
         <Donate />
       </main>
 

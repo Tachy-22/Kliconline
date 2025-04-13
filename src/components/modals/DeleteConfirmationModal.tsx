@@ -15,7 +15,7 @@ import { AlertDialogTrigger } from "@radix-ui/react-alert-dialog";
 import { Trash2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 //import { Button } from "../ui/button";
-import SubmitButton from "./ui/SubmitButton";
+import SubmitButton from "../ui/SubmitButton";
 //import { useFormState } from "react-dom";
 import { useState } from "react";
 

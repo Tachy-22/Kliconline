@@ -60,13 +60,13 @@ const Donate = () => {
 
                 <Tabs defaultValue="online" className="w-full">
                   <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="online" className="py-3">
+                    <TabsTrigger value="online" className="py-1">
                       KLIC Tithe{" "}
                     </TabsTrigger>
-                    <TabsTrigger value="bank" className="py-3">
+                    <TabsTrigger value="bank" className="py-1">
                       KLIC Offerings{" "}
                     </TabsTrigger>
-                    <TabsTrigger value="partner" className="py-3">
+                    <TabsTrigger value="partner" className="py-1">
                       Sam Excelson Teaching Ministry{" "}
                     </TabsTrigger>
                   </TabsList>
