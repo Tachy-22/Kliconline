@@ -1,4 +1,4 @@
-// import Blogs from "@/components/components/layouts/Blogs";
+// import Blogs from "@/components/layouts/Blogs";
 import { fetchCollection } from "@/actions/fettchCollection";
 
 import React from "react";

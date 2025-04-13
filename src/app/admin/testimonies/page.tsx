@@ -1,5 +1,5 @@
 import { fetchCollection } from "@/actions/fettchCollection";
-import TestimonyTable from "@/components/components/tables/TestimonyTable";
+import TestimonyTable from "@/components/events/tables/TestimonyTable";
 
 const page = async () => {
   const testimonies = await fetchCollection<TestimonyT>("testimonies", {

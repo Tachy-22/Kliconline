@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,14 +9,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/components/ui/dialog";
-import { Input } from "@/components/components/ui/input";
-import { Label } from "@/components/components/ui/label";
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 import { addDocument } from "@/actions/addDocument";
 import { Loader2 } from "lucide-react";
-import { useToast } from "@/components/components/ui/use-toast";
-import { Textarea } from "@/components/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 interface TestimonyFormProps {
   isOpen: boolean;

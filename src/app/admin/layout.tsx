@@ -1,10 +1,6 @@
-
-import AdminHeader from "@/components/components/ui/AdminHeader";
-import { AdminSidebar } from "@/components/components/ui/AdminSidebar";
-import {
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/components/ui/sidebar";
+import AdminHeader from "@/components/ui/AdminHeader";
+import { AdminSidebar } from "@/components/ui/AdminSidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { getDashboardStats } from "@/lib/helpers";
 import React from "react";
 

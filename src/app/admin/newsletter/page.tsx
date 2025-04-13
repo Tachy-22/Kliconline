@@ -1,8 +1,7 @@
-
-import { NewsletterTable } from "@/components/components/tables/NewsletterTable";
-import { NewsletterHistoryTable } from "@/components/components/tables/NewsletterHistoryTable";
+import { NewsletterTable } from "@/components/events/tables/NewsletterTable";
+import { NewsletterHistoryTable } from "@/components/events/tables/NewsletterHistoryTable";
 import { fetchCollection } from "@/actions/fettchCollection";
-import NewsletterForm from "@/components/components/forms/NewsletterForm";
+import NewsletterForm from "@/components/forms/NewsletterForm";
 
 export default async function NewsletterPage() {
   const subscribersResult = await fetchCollection<SubscriberT>("subscribers");

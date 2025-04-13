@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-import Navbar from "@/components/components/layout/Navbar";
-import Footer from "@/components/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Calendar, User, ArrowLeft, Facebook, Twitter } from "lucide-react";
-import { Button } from "@/components/components/ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import parse from "html-react-parser";
 import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
@@ -247,8 +247,8 @@ const BlogPost = ({
                   <p className="text-right text-sm">- {todayVerse.reference}</p>
                   <div className="mt-3 bg-opacity-20 bg-white rounded p-3">
                     <p className="text-sm">
-                      Reflect on God&apos;s promises and find peace in His perfect
-                      plan for your life.
+                      Reflect on God&apos;s promises and find peace in His
+                      perfect plan for your life.
                     </p>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import Loader from "@/components/components/ui/Loader";
+import Loader from "@/components/ui/Loader";
 import React from "react";
 
 const loader = () => {

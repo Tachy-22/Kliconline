@@ -1,8 +1,6 @@
 import { fetchCollection } from "@/actions/fettchCollection";
-import BlogEditor from "@/components/components/BlogEditor";
-import BlogsTable from "@/components/components/tables/BlogsTable";
-
-
+import BlogEditor from "@/components/BlogEditor";
+import BlogsTable from "@/components/events/tables/BlogsTable";
 
 const page = async () => {
   const blogs = await fetchCollection("blogs");

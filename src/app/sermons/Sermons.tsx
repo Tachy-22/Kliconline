@@ -3,32 +3,27 @@ import { useState, useMemo } from "react";
 import {
   FileAudio,
   Youtube,
- // ArrowRight,
+  // ArrowRight,
   Search,
   Calendar as CalendarIcon,
 } from "lucide-react";
-import { Card, CardContent } from "@/components/components/ui/card";
-import { Button } from "@/components/components/ui/button";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 //import Link from "next/link";
-import { LatestEventCard } from "@/components/components/events/LatestEventCard";
-import CustomMediaPlayer from "@/components/components/ui/CustomMediaPalayer";
-import Navbar from "@/components/components/layout/Navbar";
-import Footer from "@/components/components/layout/Footer";
-import { Input } from "@/components/components/ui/input";
+import { LatestEventCard } from "@/components/events/LatestEventCard";
+import CustomMediaPlayer from "@/components/ui/CustomMediaPalayer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import { Input } from "@/components/ui/input";
 import { format } from "date-fns";
 import { DateRange } from "react-day-picker";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/components/ui/popover";
-import { Calendar } from "@/components/components/ui/calendar";
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 
 function VideoModal({

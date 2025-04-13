@@ -1,20 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
-import Navbar from "@/components/components/layout/Navbar";
-import Footer from "@/components/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { Button } from "@/components/components/ui/button";
-import { Input } from "@/components/components/ui/input";
-import { Textarea } from "@/components/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/components/ui/select";
-import { useToast } from "@/components/components/ui/use-toast";
+} from "@/components/ui/select";
+import { useToast } from "@/components/ui/use-toast";
 import { addDocument } from "@/actions/addDocument";
 import { ContactMessage } from "@/types";
 
@@ -33,7 +33,9 @@ const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
@@ -78,12 +80,14 @@ const Contact = () => {
 
       toast({
         title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you shortly.",
+        description:
+          "Thank you for contacting us. We'll get back to you shortly.",
       });
     } catch (error) {
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to send message",
+        description:
+          error instanceof Error ? error.message : "Failed to send message",
         variant: "destructive",
       });
     } finally {
@@ -123,8 +127,8 @@ const Contact = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                We&apos;d love to hear from you. Reach out to us with any questions,
-                prayer requests, or feedback.
+                We&apos;d love to hear from you. Reach out to us with any
+                questions, prayer requests, or feedback.
               </motion.p>
             </div>
           </div>
@@ -178,7 +182,6 @@ const Contact = () => {
                           Email Address
                         </h3>
                         <p className="text-gray-600">kliconline@gmail.com</p>
-                    
                       </div>
                     </div>
 
@@ -196,7 +199,6 @@ const Contact = () => {
                         <p className="text-gray-600">
                           Thursday: 5:30 PM - 7:30 PM
                         </p>
-                    
                       </div>
                     </div>
                   </div>

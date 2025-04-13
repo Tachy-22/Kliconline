@@ -1,6 +1,6 @@
 import { fetchCollection } from "@/actions/fettchCollection";
-import AddEventForm from "@/components/components/forms/AddEventForm";
-import EventsTable from "@/components/components/tables/EventsTable";
+import AddEventForm from "@/components/forms/AddEventForm";
+import EventsTable from "@/components/events/tables/EventsTable";
 
 const page = async () => {
   const events = await fetchCollection("events");

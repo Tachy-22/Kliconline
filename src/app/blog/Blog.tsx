@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import BlogList from "@/components/components/blog/BlogList";
+import BlogList from "@/components/blog/BlogList";
 import { motion } from "framer-motion";
 
 const Blog = ({ blogs }: { blogs: BlogT[] }) => {

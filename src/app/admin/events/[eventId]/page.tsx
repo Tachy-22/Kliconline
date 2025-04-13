@@ -1,7 +1,7 @@
 import React from "react";
 import { fetchDocument } from "@/actions/fetchDocument";
 import { fetchCollection } from "@/actions/fetchCollection";
-import RegisteredParticipantsTable from "@/components/components/tables/RegisteredParticipantsTable";
+import RegisteredParticipantsTable from "@/components/events/tables/RegisteredParticipantsTable";
 
 const page = async ({ params }: { params: Promise<{ eventId: string }> }) => {
   const { eventId } = await params;

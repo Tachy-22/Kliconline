@@ -8,7 +8,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog";
 import { X } from "lucide-react";
 import { Button } from "../ui/button";
 import React, { useState } from "react";

@@ -1,21 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import {
-  BanknoteIcon,
+import { BanknoteIcon } from "lucide-react";
 
-} from "lucide-react";
-
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/components/ui/tabs";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Donate = () => {
-
-
   return (
     <div className="">
       {/* <Navbar /> */}
@@ -125,9 +114,9 @@ const Donate = () => {
                         </h4>
                         <p className="text-blue-700 text-sm">
                           Please include your name and purpose of donation
-                          (e.g., &quot;John Smith - Tithe&quot;) in the reference field of
-                          your bank transfer to help us properly allocate your
-                          donation.
+                          (e.g., &quot;John Smith - Tithe&quot;) in the
+                          reference field of your bank transfer to help us
+                          properly allocate your donation.
                         </p>
                       </div>
                     </div>
@@ -176,9 +165,9 @@ const Donate = () => {
                         </h4>
                         <p className="text-blue-700 text-sm">
                           Please include your name and purpose of donation
-                          (e.g., &quot;John Smith - Tithe&quot;) in the reference field of
-                          your bank transfer to help us properly allocate your
-                          donation.
+                          (e.g., &quot;John Smith - Tithe&quot;) in the
+                          reference field of your bank transfer to help us
+                          properly allocate your donation.
                         </p>
                       </div>
                     </div>
@@ -230,9 +219,9 @@ const Donate = () => {
                         </h4>
                         <p className="text-blue-700 text-sm">
                           Please include your name and purpose of donation
-                          (e.g., &quot;John Smith - Tithe&quot;) in the reference field of
-                          your bank transfer to help us properly allocate your
-                          donation.
+                          (e.g., &quot;John Smith - Tithe&quot;) in the
+                          reference field of your bank transfer to help us
+                          properly allocate your donation.
                         </p>
                       </div>
                     </div>

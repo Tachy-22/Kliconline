@@ -1,9 +1,9 @@
 //import { fetchCollection } from "@/actions/fettchCollection";
 
-// import BranchesForm from "@/components/components/forms/BranchesForm";
+// import BranchesForm from "@/components/forms/BranchesForm";
 
 const page = async () => {
- // const branches = await fetchCollection("branches");
+  // const branches = await fetchCollection("branches");
 
   // const validBranches =
   //   "items" in branches

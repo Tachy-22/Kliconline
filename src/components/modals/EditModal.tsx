@@ -9,7 +9,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog";
 //import AddEventForm from "../forms/AddEventForm";
 import { Pencil, X } from "lucide-react";
 import { useState } from "react";

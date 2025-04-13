@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
-import { Toaster as Sonner } from "@/components/components/ui/sonner";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 
-import { Toaster } from "@/components/components/ui/toaster";
-import { TooltipProvider } from "@/components/components/ui/tooltip";
-import { ToastProvider } from "@/components/components/ui/toast";
-//import Navbar from "@/components/components/ui/Navbar";
-//import Footer from "@/components/components/ui/Footer";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ToastProvider } from "@/components/ui/toast";
+//import Navbar from "@/components/ui/Navbar";
+//import Footer from "@/components/ui/Footer";
 
 export const revalidate = 0;
 
@@ -36,7 +36,7 @@ export default function RootLayout({
           <TooltipProvider>
             <ToastProvider>
               <Toaster />
-              <Sonner /> 
+              <Sonner />
               <main>{children}</main>
             </ToastProvider>
           </TooltipProvider>

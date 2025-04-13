@@ -1,7 +1,7 @@
 import { getDashboardStats } from "@/lib/helpers";
 import { fetchCollection } from "@/actions/fettchCollection";
 import React from "react";
-import Admin from "@/components/components/layouts/Admin";
+import Admin from "@/components/layouts/Admin";
 
 const Page = async () => {
   const stats = await getDashboardStats();
@@ -13,7 +13,7 @@ const Page = async () => {
 
   const recentSermons = "items" in sermonsResponse ? sermonsResponse.items : [];
 
-  return <Admin  stats={stats} recentSermons={recentSermons} />;
+  return <Admin stats={stats} recentSermons={recentSermons} />;
 };
 
 export default Page;

@@ -1,6 +1,6 @@
 "use client";
-import Navbar from "@/components/components/layout/Navbar";
-import Footer from "@/components/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { CheckCircle } from "lucide-react";
 import Donate from "./Donate";
 
@@ -115,8 +115,8 @@ const About = () => {
                 </p>
                 <p className="text-lg text-gray-700">
                   Through discipleship, training, and outreach, we are committed
-                  to expanding God&apos;s Kingdom, touching lives with His love, and
-                  establishing His righteousness in every sphere of society.
+                  to expanding God&apos;s Kingdom, touching lives with His love,
+                  and establishing His righteousness in every sphere of society.
                 </p>
               </div>
             </div>
@@ -223,11 +223,11 @@ const About = () => {
                   </h3>
                   <div className="w-16 h-1 bg-church-yellow mb-6"></div>
                   <p className="text-gray-700 mb-4">
-                    Pastor Sam Adewuyi is the SETMAN of
-                    Kingdom Life International Church. With over 25 years in
-                    ministry, he is known for his profound insights into God&apos;s
-                    Word and his unique ability to communicate Kingdom
-                    principles in a simple, practical way that transforms lives.
+                    Pastor Sam Adewuyi is the SETMAN of Kingdom Life
+                    International Church. With over 25 years in ministry, he is
+                    known for his profound insights into God&apos;s Word and his
+                    unique ability to communicate Kingdom principles in a
+                    simple, practical way that transforms lives.
                   </p>
                   <p className="text-gray-700 mb-4">
                     Ordained by God with an apostolic mandate, Pastor Sam has
@@ -306,7 +306,7 @@ const About = () => {
             </div>
           </div>
         </section> */}
-        <Donate/>
+        <Donate />
       </main>
 
       <Footer />

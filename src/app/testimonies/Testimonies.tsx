@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Navbar from "@/components/components/layout/Navbar";
-import Footer from "@/components/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
-import { Button } from "@/components/components/ui/button";
+import { Button } from "@/components/ui/button";
 import TestimonyForm from "./TestimonyForm";
 
 const Testimonies = ({ testimonies }: { testimonies: TestimonyT[] }) => {

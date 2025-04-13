@@ -1,6 +1,6 @@
 import React from "react";
 import { fetchCollection } from "@/actions/fettchCollection";
-import MessagesTable from "@/components/components/tables/MessagesTable";
+import MessagesTable from "@/components/events/tables/MessagesTable";
 import { ContactMessage } from "@/types";
 
 export default async function MessagesPage() {

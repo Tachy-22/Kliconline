@@ -1,6 +1,6 @@
 import { fetchCollection } from "@/actions/fettchCollection";
-import AddSermonForm from "@/components/components/forms/AddSermonForm";
-import SermonsTable from "@/components/components/tables/SermonsTable";
+import AddSermonForm from "@/components/forms/AddSermonForm";
+import SermonsTable from "@/components/events/tables/SermonsTable";
 
 const page = async () => {
   const sermons = await fetchCollection<SermonT[]>("sermons");

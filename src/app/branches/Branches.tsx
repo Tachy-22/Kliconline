@@ -1,12 +1,76 @@
 "use client";
 
 import { useEffect } from "react";
-import Navbar from "@/components/components/layout/Navbar";
-import Footer from "@/components/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+export interface Branch {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+  serviceTimes: string;
+  pastorName: string;
+  description: string;
+  image: string;
+  mapEmbedUrl: string;
+}
 
-import { BranchesData } from "@/components/data/branchesData";
+export const BranchesData: Branch[] = [
+  {
+    id: "uk-main",
+    name: "KLIC UK (Headquarters)",
+    address:
+      "Main hall, Haxby Road Primary Academy. 154 Haxby Road, Clinton, York Y031 8JN",
+    phone: "+44 123 456 7890",
+    email: "kliconline@gmail.com",
+    serviceTimes:
+      "Sunday: 10:00 AM - 12:30 PM | Wednesday: 7:00 PM - 9:00 PM | Friday: 6:00 PM - 7:30 PM",
+    pastorName: "Pastor Sam and Olaide Adewuyi",
+    description:
+      "Our main headquarters located in the heart of London, UK. This branch hosts our main Sunday services, midweek Bible studies, and special events. The London branch also houses our School of Ministry and administrative offices.",
+    image:
+      "https://images.pexels.com/photos/9322688/pexels-photo-9322688.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2347.2133349311897!2d-1.0758845234233892!3d53.975551172322174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879316bfa2abe99%3A0x1ae5b90f20bf88fc!2sHaxby%20Road%20Primary%20Academy%2C%20154%20Haxby%20Rd%2C%20York%20YO31%208JN%2C%20UK!5e0!3m2!1sen!2sus!4v1653647296295!5m2!1sen!2sus",
+  },
+  {
+    id: "lagos",
+    name: "KLIC Lagos",
+    address:
+      "KLIC Hall, Quadrant Event Center 6, Alhaji Mudashiru Awe Street, adjacent Yaba Tech's Main Entrance, Yaba, Lagos",
+    phone: "+234 8039373989",
+    email: "kliconline@gmail.com",
+    serviceTimes:
+      "Sunday: 8:00 AM - 10:30 AM & 11:00 AM - 1:30 PM | Tuesday: 6:30 PM - 8:30 PM | Friday: 6:00 PM - 8:00 PM",
+    pastorName: "Pastor Paul",
+    description:
+      "Our Lagos branch serves the vibrant city with multiple Sunday services to accommodate our growing congregation. This branch has a strong focus on youth ministry and community outreach programs throughout Lagos.",
+    image:
+      "https://images.pexels.com/photos/2014775/pexels-photo-2014775.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.8299233073325!2d3.3690384148198874!3d6.5226679240620355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8c0f7e6d6d1d%3A0x36c31d0ca74e016b!2sYaba%20College%20of%20Technology!5e0!3m2!1sen!2sus!4v1653647541676!5m2!1sen!2sus",
+  },
+  {
+    id: "akure",
+    name: "KLIC Akure",
+    address:
+      "39A, Alaba Community Road, stateline,FUT Akure, Ondo State, Nigeria",
+    phone: "+(+234) 7017871161",
+    email: "kliconline@gmail.com",
+    serviceTimes:
+      "Sunday: 9:00 AM - 11:30 AM | Wednesday: 6:00 PM - 8:00 PM | Saturday: 5:00 PM - 7:00 PM (Youth Service)",
+    pastorName: "Pastor Rotimi and Harriett Ekundayo",
+    description:
+      "Our Akure branch serves the capital city of Ondo State with powerful worship and in-depth teaching of God's Word. This branch has a special focus on family ministries and rural outreach programs.",
+    image:
+      "https://images.pexels.com/photos/7697244/pexels-photo-7697244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.903687121235!2d5.148146774907534!3d7.262822792738298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1047966e0c7083c5%3A0x6f290aedde59d11!2sFederal%20University%20of%20Technology%20Akure!5e0!3m2!1sen!2sus!4v1653647583269!5m2!1sen!2sus",
+  },
+];
 
 const Branches = () => {
   useEffect(() => {
@@ -143,8 +207,6 @@ const Branches = () => {
                           className="rounded-lg mb-4"
                           title={`${branch.name} Map`}
                         ></iframe>
-
-          
                       </div>
                     </div>
                   </motion.div>
