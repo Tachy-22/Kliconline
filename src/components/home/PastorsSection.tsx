@@ -17,7 +17,7 @@ const PastorsSection = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10 items-center justify-center">
-          <div className="flex-1 max-w-md">
+          <div className="flex-1 lg:max-w-md">
             <div className="relative">
               <div className="absolute -left-4 -top-4 w-24 h-24 bg-church-yellow rounded-tl-lg"></div>
               <img
@@ -29,7 +29,7 @@ const PastorsSection = () => {
             </div>
           </div>
 
-          <div className="flex-1 max-w-lg">
+          <div className="flex-1 lg:max-w-lg">
             <h3 className="text-2xl font-serif font-bold mb-4">
               Pastor Sam & Olaide Adewuyi
             </h3>
