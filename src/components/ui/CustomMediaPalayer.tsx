@@ -1,10 +1,7 @@
 "use client"
 
-import { Pause, Play, Repeat, Shuffle, SkipBack, SkipForward } from "lucide-react";
+import {  FastForward, Maximize2, Minimize2, Pause, Play, Repeat, Rewind, Shuffle, SkipBack, SkipForward } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-
-
-
 
 interface CustomMediaPlayerProps {
   onClose: () => void;
@@ -12,7 +9,6 @@ interface CustomMediaPlayerProps {
   currentTrackIndex: number;
   onChangeTrackIndex: (idx: number) => void;
 }
-
 
 const CustomMediaPlayer = ({
   onClose,
@@ -25,8 +21,11 @@ const CustomMediaPlayer = ({
   const [duration, setDuration] = useState(0);
   const [isShuffle, setIsShuffle] = useState(false);
   const [isLoop, setIsLoop] = useState(false);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<HTMLDivElement>(null);
 
   const handleNext = () => {
     if (isShuffle) {
@@ -94,8 +93,6 @@ const CustomMediaPlayer = ({
     setIsPlaying(!isPlaying);
   };
 
-
-
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!progressRef.current || !audioRef.current) return;
 
@@ -113,6 +110,37 @@ const CustomMediaPlayer = ({
       (currentTrackIndex - 1 + trackList.length) % trackList.length;
     onChangeTrackIndex(prevIndex);
   };
+
+  const handleJumpForward = () => {
+    if (!audioRef.current) return;
+    audioRef.current.currentTime = Math.min(audioRef.current.currentTime + 10, duration);
+  };
+
+  const handleJumpBackward = () => {
+    if (!audioRef.current) return;
+    audioRef.current.currentTime = Math.max(audioRef.current.currentTime - 10, 0);
+  };
+
+  const handleSpeedChange = () => {
+    if (!audioRef.current) return;
+    const speeds = [1, 1.5, 2, 0.5, 0.75];
+    const currentIndex = speeds.indexOf(playbackSpeed);
+    const nextIndex = (currentIndex + 1) % speeds.length;
+    const newSpeed = speeds[nextIndex];
+    
+    setPlaybackSpeed(newSpeed);
+    audioRef.current.playbackRate = newSpeed;
+  };
+
+  const toggleFullScreen = () => {
+    setIsFullScreen(!isFullScreen);
+  };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.playbackRate = playbackSpeed;
+    }
+  }, [currentTrackIndex, playbackSpeed]);
 
   const formatTime = (time: number) => {
     const hours = Math.floor(time / 3600);
@@ -136,13 +164,18 @@ const CustomMediaPlayer = ({
         onClick={onClose}
         className="inset-0 absolute top-0 w-full h-full bg-blue-600/20 cursor-pointer"
       ></div>
-      <div className="bg-black rounded-lg overflow-hidden max-w-sm w-full shadow-xl z-20">
+      <div 
+        ref={playerRef}
+        className={`bg-black rounded-lg overflow-hidden shadow-xl z-20 ${
+          isFullScreen ? "fixed inset-0 max-w-full rounded-none" : "max-w-sm w-full"
+        }`}
+      >
         {/* Cover Image */}
         <div className="relative">
           <img
             src={currentSermon?.thumbnailUrl || "/klic-logo.jpg"}
             alt={currentSermon?.title || ""}
-            className="w-full h-80 object-cover"
+            className={`w-full object-cover ${isFullScreen ? "h-[70vh]" : "h-80"}`}
           />
 
           <button
@@ -155,11 +188,21 @@ const CustomMediaPlayer = ({
 
         {/* Media Info */}
         <div className="p-4 bg-black text-white">
-          <div className="mb-2">
-            <h3 className="font-bold text-xl truncate">
-              {currentSermon?.title}
-            </h3>
-            <p className="text-gray-400 text-sm">{currentSermon?.preacher}</p>
+          <div className="mb-2 flex justify-between items-start">
+            <div>
+              <h3 className="font-bold text-xl truncate">
+                {currentSermon?.title}
+              </h3>
+              <p className="text-gray-400 text-sm">{currentSermon?.preacher}</p>
+            </div>
+            <div className="flex items-center">
+              <button 
+                onClick={toggleFullScreen} 
+                className="text-gray-400 hover:text-white ml-2"
+              >
+                {isFullScreen ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
 
           {/* Progress Bar */}
@@ -180,6 +223,16 @@ const CustomMediaPlayer = ({
             <span>-{formatTime(remainingTime)}</span>
           </div>
 
+          {/* Playback Speed */}
+          <div className="flex justify-center mb-3">
+            <button 
+              onClick={handleSpeedChange} 
+              className="text-gray-400 hover:text-white px-2 py-1 rounded text-xs bg-gray-800"
+            >
+              {playbackSpeed}x
+            </button>
+          </div>
+
           {/* Controls */}
           <div className="flex justify-between items-center">
             <button
@@ -189,30 +242,46 @@ const CustomMediaPlayer = ({
               <Shuffle className="h-5 w-5" />
             </button>
 
-            <button
-              className="text-white hover:text-white/80"
-              onClick={handlePrev}
-            >
-              <SkipBack className="h-6 w-6" />
-            </button>
+            <div className="flex items-center space-x-2">
+              <button
+                className="text-white hover:text-white/80"
+                onClick={handlePrev}
+              >
+                <SkipBack className="h-6 w-6" />
+              </button>
 
-            <button
-              className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full p-3"
-              onClick={handleTogglePlay}
-            >
-              {isPlaying ? (
-                <Pause className="h-6 w-6" />
-              ) : (
-                <Play className="h-6 w-6" />
-              )}
-            </button>
+              <button
+                className="text-white hover:text-white/80"
+                onClick={handleJumpBackward}
+              >
+                <Rewind className="h-5 w-5" />
+              </button>
 
-            <button
-              className="text-white hover:text-white/80"
-              onClick={handleNext}
-            >
-              <SkipForward className="h-6 w-6" />
-            </button>
+              <button
+                className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full p-3"
+                onClick={handleTogglePlay}
+              >
+                {isPlaying ? (
+                  <Pause className="h-6 w-6" />
+                ) : (
+                  <Play className="h-6 w-6" />
+                )}
+              </button>
+
+              <button
+                className="text-white hover:text-white/80"
+                onClick={handleJumpForward}
+              >
+                <FastForward className="h-5 w-5" />
+              </button>
+
+              <button
+                className="text-white hover:text-white/80"
+                onClick={handleNext}
+              >
+                <SkipForward className="h-6 w-6" />
+              </button>
+            </div>
 
             <button
               className={isLoop ? "text-indigo-500" : "text-gray-400"}

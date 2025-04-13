@@ -196,7 +196,7 @@ function SermonsSection({
     const isDownloading = downloadingUrl === audioUrl;
 
     return (
-      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300">
+      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 break-inside-avoid mb-6">
         <div className="relative h-48">
           <img
             src={`${image}` || "/klic-logo.jpg"}
@@ -304,7 +304,7 @@ function SermonsSection({
             </TabsTrigger>
           </TabsList>
           <TabsContent value="audio">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="columns-1 md:columns-2 lg:columns-3 space-y-6">
               {sermons.map((sermon, index) => (
                 <SermonCard
                   key={index}
@@ -320,7 +320,7 @@ function SermonsSection({
             </div>
           </TabsContent>
           <TabsContent value="media">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="columns-1 md:columns-2 lg:columns-3 space-y-6">
               {events.map((event, index) => (
                 <SermonCard
                   key={index}
