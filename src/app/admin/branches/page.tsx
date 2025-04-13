@@ -1,14 +1,14 @@
-import { fetchCollection } from "@/actions/fettchCollection";
-import BranchesTable from "@/components/components/tables/BranchesTable";
+//import { fetchCollection } from "@/actions/fettchCollection";
+
 // import BranchesForm from "@/components/components/forms/BranchesForm";
 
 const page = async () => {
-  const branches = await fetchCollection("branches");
+ // const branches = await fetchCollection("branches");
 
-  const validBranches =
-    "items" in branches
-      ? (branches.items as BranchT[]).filter((branch) => branch && branch.name)
-      : [];
+  // const validBranches =
+  //   "items" in branches
+  //     ? (branches.items as BranchT[]).filter((branch) => branch && branch.name)
+  //     : [];
 
   return (
     <div className="p-6 flex flex-col gap-6">

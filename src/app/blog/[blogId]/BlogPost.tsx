@@ -242,12 +242,12 @@ const BlogPost = ({
                     Verse of the Day
                   </h3>
                   <blockquote className="italic mb-4">
-                    "{todayVerse.text}"
+                    &quot;{todayVerse.text}&quot;
                   </blockquote>
                   <p className="text-right text-sm">- {todayVerse.reference}</p>
                   <div className="mt-3 bg-opacity-20 bg-white rounded p-3">
                     <p className="text-sm">
-                      Reflect on God's promises and find peace in His perfect
+                      Reflect on God&apos;s promises and find peace in His perfect
                       plan for your life.
                     </p>
                   </div>

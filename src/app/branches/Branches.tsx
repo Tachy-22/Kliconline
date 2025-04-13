@@ -4,9 +4,8 @@ import { useEffect } from "react";
 import Navbar from "@/components/components/layout/Navbar";
 import Footer from "@/components/components/layout/Footer";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
-import { Button } from "@/components/components/ui/button";
-import Link from "next/link";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
+
 import { BranchesData } from "@/components/data/branchesData";
 
 const Branches = () => {

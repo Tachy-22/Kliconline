@@ -7,7 +7,7 @@ import {
   LogOut,
   Loader2,
   Info,
-  Building2,
+  //Building2,
   Music2, // Add this import
 } from "lucide-react";
 import Cookies from "js-cookie";

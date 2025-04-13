@@ -123,7 +123,7 @@ const Contact = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                We'd love to hear from you. Reach out to us with any questions,
+                We&apos;d love to hear from you. Reach out to us with any questions,
                 prayer requests, or feedback.
               </motion.p>
             </div>

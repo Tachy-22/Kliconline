@@ -9,7 +9,6 @@ const BlogCard = ({
   author,
   date,
   image,
-  slug,
   id,
 }: {
   title: string;
@@ -17,7 +16,6 @@ const BlogCard = ({
   author: string;
   date: string;
   image: string;
-  slug: string;
   id: string;
 }) => {
   return (
@@ -78,7 +76,7 @@ const BlogSection = ({ blogs }: { blogs: BlogT[] }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {blogs && blogs.length > 0 ? (
-            blogs.map((blog, index) => (
+            blogs.map((blog) => (
               <BlogCard
                 key={blog.id}
                 id={blog.id as string}
@@ -90,7 +88,6 @@ const BlogSection = ({ blogs }: { blogs: BlogT[] }) => {
                   (blog.imageUrls?.[0] || (blog?.images?.[0] as string)) ??
                   "/default-image.jpg"
                 }
-                slug={blog.exerpts as string}
               />
             ))
           ) : (

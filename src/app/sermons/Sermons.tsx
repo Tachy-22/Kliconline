@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import {
   FileAudio,
   Youtube,
-  ArrowRight,
+ // ArrowRight,
   Search,
   Calendar as CalendarIcon,
 } from "lucide-react";
@@ -15,7 +15,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/components/ui/tabs";
-import Link from "next/link";
+//import Link from "next/link";
 import { LatestEventCard } from "@/components/components/events/LatestEventCard";
 import CustomMediaPlayer from "@/components/components/ui/CustomMediaPalayer";
 import Navbar from "@/components/components/layout/Navbar";

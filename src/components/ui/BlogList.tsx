@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 
-
-
 import BlogCard from "./BlogCard";
 
 const BlogList = ({ blogs }: { blogs: BlogT[] }) => {
@@ -13,9 +11,11 @@ const BlogList = ({ blogs }: { blogs: BlogT[] }) => {
           All Blog Posts
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {blogs.map((blog, index) => (
-            <BlogCard key={index} blog={blog} />
-          ))}
+          {blogs && blogs.length > 0 ? (
+            blogs.map((blog, index) => <BlogCard key={blog.id || index} blog={blog} />)
+          ) : (
+            <p className="col-span-full text-center text-gray-500">No blog posts available</p>
+          )}
         </div>
       </div>
     </section>

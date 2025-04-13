@@ -11,7 +11,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "../../ui/alert";
-import { EditModal } from "../../modals/EditModal";
+//import { EditModal } from "../../modals/EditModal";
 import { DeleteConfirmationModal } from "../../modals/DeleteConfirmationModal";
 import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 import { useOptimistic, startTransition } from "react";
@@ -21,7 +21,7 @@ import { Checkbox } from "../../ui/checkbox";
 import { PreviewModal } from "../../modals/PreviewModal";
 import { useTableOperations } from "@/hooks/useTableOperations";
 import { SearchControls, PaginationControls } from "../../TableControls";
-import TestimonyForm from "@/app/testimonies/TestimonyForm";
+//import TestimonyForm from "@/app/testimonies/TestimonyForm";
 
 const TestimonyTable = ({
   testimonies: initialTestimonies,

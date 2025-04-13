@@ -12,7 +12,7 @@ const PastorsSection = () => {
           <div className="w-20 h-1 bg-church-yellow mx-auto mb-6"></div>
           <p className="text-lg max-w-2xl mx-auto text-gray-700">
             God has blessed our church with dedicated leaders who are passionate
-            about teaching God's Word and ministering to His people.
+            about teaching God&apos;s Word and ministering to His people.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ const PastorsSection = () => {
               Pastor Sam and Olaide Adewuyi are the founders and lead pastors of
               Kingdom Life International Church. With over 20 years in ministry,
               they are committed to teaching the uncompromised Word of God and
-              helping people discover their purpose in God's kingdom.
+              helping people discover their purpose in God&apos;s kingdom.
             </p>
             <p className="text-lg mb-6 text-gray-700">
               Their passion for spreading the Kingdom message has led to the

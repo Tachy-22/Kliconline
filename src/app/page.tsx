@@ -10,10 +10,10 @@ import AboutSection from "@/components/components/home/AboutSection";
 import ProgramsSection from "@/components/components/home/ProgramsSection";
 import PastorsSection from "@/components/components/home/PastorsSection";
 import TestimonialsSection from "@/components/components/home/TestimonialsSection";
-import EventsSection from "@/components/components/home/EventsSection";
+//import EventsSection from "@/components/components/home/EventsSection";
 import SermonsSection from "@/components/components/home/SermonsSection";
 import BlogSection from "@/components/components/home/BlogSection";
-import DonateSection from "@/components/components/home/DonateSection";
+//import DonateSection from "@/components/components/home/DonateSection";
 import LatestEventSection from "@/components/components/home/LatestEventSection";
 import Footer from "@/components/components/layout/Footer";
 
@@ -34,9 +34,9 @@ const page = async () => {
     }, events.items[0]);
   }
 
-  const upcomingEvents = ("items" in events)
-    ? events.items.filter(evt => new Date(evt.date) < new Date())
-    : [];
+  // const upcomingEvents = ("items" in events)
+  //   ? events.items.filter(evt => new Date(evt.date) < new Date())
+  //   : [];
 
   // Get the 6 most recent sermons by date
   const recentSermons = ("items" in sermons) 

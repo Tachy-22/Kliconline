@@ -125,7 +125,7 @@ const Donate = () => {
                         </h4>
                         <p className="text-blue-700 text-sm">
                           Please include your name and purpose of donation
-                          (e.g., "John Smith - Tithe") in the reference field of
+                          (e.g., &quot;John Smith - Tithe&quot;) in the reference field of
                           your bank transfer to help us properly allocate your
                           donation.
                         </p>
@@ -176,7 +176,7 @@ const Donate = () => {
                         </h4>
                         <p className="text-blue-700 text-sm">
                           Please include your name and purpose of donation
-                          (e.g., "John Smith - Tithe") in the reference field of
+                          (e.g., &quot;John Smith - Tithe&quot;) in the reference field of
                           your bank transfer to help us properly allocate your
                           donation.
                         </p>
@@ -230,7 +230,7 @@ const Donate = () => {
                         </h4>
                         <p className="text-blue-700 text-sm">
                           Please include your name and purpose of donation
-                          (e.g., "John Smith - Tithe") in the reference field of
+                          (e.g., &quot;John Smith - Tithe&quot;) in the reference field of
                           your bank transfer to help us properly allocate your
                           donation.
                         </p>

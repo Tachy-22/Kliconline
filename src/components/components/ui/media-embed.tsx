@@ -1,6 +1,5 @@
-
 import React from "react";
-import { Youtube, Headphones } from "lucide-react";
+import { Headphones } from "lucide-react";
 
 interface MediaEmbedProps {
   type: "youtube" | "mixlr";
@@ -22,7 +21,7 @@ export function MediaEmbed({ type, embedId, title }: MediaEmbedProps) {
           />
         </div>
       )}
-      
+
       {type === "mixlr" && (
         <div className="bg-gray-100 p-4 rounded-md">
           <div className="flex items-center gap-2 mb-4">
