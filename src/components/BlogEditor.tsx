@@ -7,9 +7,9 @@ import { usePathname } from "next/navigation";
 import { updateDocument } from "@/actions/updateDocument";
 import { addDocument } from "@/actions/addDocument";
 import { Plus, X } from "lucide-react";
-import SubmitButton from "../ui/SubmitButton";
-import JEditor from "../ui/JoditEditor";
-import { FileInput } from "../ui/FileInput";
+import SubmitButton from "./ui/SubmitButton";
+import JEditor from "./ui/JoditEditor";
+import { FileInput } from "./ui/FileInput";
 import { Button } from "./ui/button";
 
 //import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";

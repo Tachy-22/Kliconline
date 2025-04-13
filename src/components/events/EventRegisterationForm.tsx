@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Clock } from "lucide-react";
 import { addDocument } from "@/actions/addDocument";
 import { usePathname } from "next/navigation";
-import SubmitButton from "../../ui/SubmitButton";
+import SubmitButton from "./ui/SubmitButton";
 import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 
 interface RegistrationData extends Record<string, unknown> {
