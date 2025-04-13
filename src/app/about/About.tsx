@@ -185,7 +185,7 @@ const About = () => {
               <div className="relative">
                 <div className="absolute -left-4 -top-4 w-32 h-32 bg-church-yellow rounded-tl-lg"></div>
                 <img
-                  src="https://images.unsplash.com/photo-1507692812060-98338d07aca3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                  src="/testimony-hero.jpg"
                   alt="Church history"
                   className="w-full h-[400px] object-cover rounded-lg shadow-lg relative z-10"
                 />
@@ -205,9 +205,9 @@ const About = () => {
               <div className="w-20 h-1 bg-church-yellow mx-auto mb-6"></div>
             </div>
 
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w- mx-auto">
               <div className="flex flex-col md:flex-row gap-10 items-center">
-                <div className="md:w-1/3">
+                <div className="md:w-1/2">
                   <div className="relative">
                     <div className="absolute inset-0 rounded-full bg-church-purple/20"></div>
                     <img

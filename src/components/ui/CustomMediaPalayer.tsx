@@ -94,40 +94,7 @@ const CustomMediaPlayer = ({
     setIsPlaying(!isPlaying);
   };
 
-  const handleDownload = async () => {
-    try {
-      const currentSermon = trackList[currentTrackIndex];
-      if (!currentSermon?.audioUrl) return;
 
-      // Fetch the audio file
-      const response = await fetch(currentSermon.audioUrl);
-      const blob = await response.blob();
-
-      // Create a temporary URL for the blob
-      const blobUrl = window.URL.createObjectURL(blob);
-
-      // Create an anchor element and initiate download
-      const downloadLink = document.createElement("a");
-      downloadLink.href = blobUrl;
-      downloadLink.download = currentSermon.title.replace(/\s+/g, "_") + ".mp3";
-
-      // Trigger download
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-
-      // Clean up the blob URL
-      setTimeout(() => {
-        window.URL.revokeObjectURL(blobUrl);
-      }, 100);
-    } catch (error) {
-      console.error("Download failed:", error);
-      // Fallback to direct link if fetch fails
-      const currentSermon = trackList[currentTrackIndex];
-      if (!currentSermon?.audioUrl) return;
-      window.open(currentSermon.audioUrl, "_blank");
-    }
-  };
 
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!progressRef.current || !audioRef.current) return;
@@ -165,7 +132,11 @@ const CustomMediaPlayer = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black/50">
-      <div className="bg-black rounded-lg overflow-hidden max-w-sm w-full shadow-xl">
+      <div
+        onClick={onClose}
+        className="inset-0 absolute top-0 w-full h-full bg-blue-600/20 cursor-pointer"
+      ></div>
+      <div className="bg-black rounded-lg overflow-hidden max-w-sm w-full shadow-xl z-20">
         {/* Cover Image */}
         <div className="relative">
           <img
@@ -250,14 +221,6 @@ const CustomMediaPlayer = ({
               <Repeat className="h-5 w-5" />
             </button>
           </div>
-        </div>
-        <div className="flex justify-between items-center mt-4">
-          <button
-            onClick={handleDownload}
-            className="text-white bg-indigo-600 px-3 py-1 rounded"
-          >
-            Download
-          </button>
         </div>
 
         {/* Hidden Audio Element */}

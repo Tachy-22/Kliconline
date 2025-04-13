@@ -1,97 +1,17 @@
 "use client";
 import { useState } from "react";
-import { FileAudio, Youtube, ArrowRight } from "lucide-react";
+import {
+  FileAudio,
+  Youtube,
+  ArrowRight,
+  Download,
+  Loader2,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 import CustomMediaPlayer from "../ui/CustomMediaPalayer";
-
-// function MediaModal({
-//   open,
-//   onClose,
-//   item,
-// }: {
-//   open: boolean;
-//   onClose: () => void;
-//   item: {
-//     type: "audio" | "youtube" | "mixlr";
-//     image: string;
-//     audioUrl?: string;
-//     videoUrl?: string;
-//   };
-// }) {
-//   const [isPlaying, setIsPlaying] = useState(false);
-//   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-//   const handleTogglePlay = () => {
-//     if (!audioRef.current) return;
-//     if (isPlaying) {
-//       audioRef.current.pause();
-//       setIsPlaying(false);
-//     } else {
-//       audioRef.current.play();
-//       setIsPlaying(true);
-//     }
-//   };
-
-//   const handleDownload = () => {
-//     if (!item.audioUrl) return;
-//     const link = document.createElement("a");
-//     link.href = item.audioUrl;
-//     link.download = item.audioUrl.split("/").pop() || "track.mp3";
-//     link.click();
-//   };
-
-//   if (!open || !item) return null;
-
-//   const isAudio = item.type === "audio";
-//   return (
-//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-//       <div className="bg-white p-4 rounded-md max-w-xl w-full relative">
-//         <button className="absolute top-2 right-2" onClick={onClose}>
-//           ✕
-//         </button>
-//         {isAudio ? (
-//           <div className="flex flex-col items-center p-4">
-//             <div className="relative w-40 h-40 mb-4">
-//               <div
-//                 className={`absolute inset-0 rounded-full border-4 border-gray-200 ${
-//                   isPlaying ? "animate-spin-slow" : ""
-//                 }`}
-//               />
-//               <img
-//                 src={item.image}
-//                 alt="album cover"
-//                 className="w-40 h-40 rounded-full object-cover"
-//               />
-//             </div>
-//             <div className="w-full flex flex-col items-center mb-4">
-//               <audio
-//                 ref={audioRef}
-//                 src={item.audioUrl}
-//                 className="hidden"
-//                 onEnded={() => setIsPlaying(false)}
-//               />
-//               <Button onClick={handleTogglePlay} className="mb-2">
-//                 {isPlaying ? "Pause" : "Play"}
-//               </Button>
-//               <Button variant="outline" onClick={handleDownload}>
-//                 Download
-//               </Button>
-//             </div>
-//           </div>
-//         ) : (
-//           <iframe
-//             src={item.videoUrl || item.audioUrl}
-//             className="w-full h-64"
-//             allowFullScreen
-//           />
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
 
 function VideoModal({
   isOpen,
@@ -120,8 +40,12 @@ function VideoModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
-      <div className="bg-black rounded-lg overflow-hidden max-w-4xl w-full shadow-xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center ">
+      <div
+        onClick={onClose}
+        className="inset-0 absolute top-0 w-full h-full bg-blue-600/20 cursor-pointer"
+      ></div>
+      <div className="bg-black rounded-lg overflow-hidden max-w-4xl w-full shadow-xl z-[60]">
         <div className="p-4 flex justify-between items-center bg-gray-900">
           <h3 className="text-white font-bold truncate">{title}</h3>
           <button onClick={onClose} className="text-white hover:text-gray-300">
@@ -161,6 +85,7 @@ function SermonsSection({
   } | null>(null);
   const [trackList, setTrackList] = useState<SermonT[]>([]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [downloadingUrl, setDownloadingUrl] = useState<string | null>(null);
 
   const handleOpenMedia = (
     item: {
@@ -193,6 +118,45 @@ function SermonsSection({
         audioSrc: item.audioUrl,
         videoSrc: item.videoUrl,
       });
+    }
+  };
+
+  const handleDownload = async (audioUrl?: string) => {
+    if (!audioUrl) {
+      console.error("Download error: No audio URL provided");
+      return;
+    }
+
+    // Set loading state for this specific URL
+    setDownloadingUrl(audioUrl);
+    console.log("Starting download process for:", audioUrl);
+
+    try {
+      // Send request to your backend, which fetches the S3 file and forces download headers
+      const proxyUrl = `/api/download?url=${encodeURIComponent(audioUrl)}`;
+      console.log("Proxy URL created:", proxyUrl);
+
+      console.log("Creating anchor element for download");
+      const link = document.createElement("a");
+      link.href = proxyUrl;
+      link.download = audioUrl.split("/").pop() || "track.mp3";
+      console.log("Download filename:", link.download);
+
+      console.log("Appending link to document body");
+      document.body.appendChild(link);
+
+      console.log("Triggering click on download link");
+      link.click();
+
+      console.log("Removing link from document body");
+      document.body.removeChild(link);
+
+      console.log("Download process completed");
+    } catch (error) {
+      console.error("Download error:", error);
+    } finally {
+      // Clear loading state
+      setDownloadingUrl(null);
     }
   };
 
@@ -229,6 +193,8 @@ function SermonsSection({
     audioUrl?: string;
     videoUrl?: string;
   }) {
+    const isDownloading = downloadingUrl === audioUrl;
+
     return (
       <Card className="overflow-hidden hover:shadow-lg transition-all duration-300">
         <div className="relative h-48">
@@ -272,6 +238,26 @@ function SermonsSection({
               ? "Listen Live"
               : "Listen Sermon"}
           </Button>
+          {type === "audio" && (
+            <Button
+              variant="outline"
+              className="mt-2 w-full border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white"
+              onClick={() => handleDownload(audioUrl as string)}
+              disabled={isDownloading}
+            >
+              {isDownloading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Downloading...
+                </>
+              ) : (
+                <>
+                  Download
+                  <Download className="ml-2 h-4 w-4" />
+                </>
+              )}
+            </Button>
+          )}
         </CardContent>
       </Card>
     );

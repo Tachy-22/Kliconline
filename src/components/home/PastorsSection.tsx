@@ -17,7 +17,7 @@ const PastorsSection = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10 items-center justify-center">
-          <div className="flex-1 lg:max-w-md">
+          <div className="flex-1 max-w-lg lg:max-w-lg">
             <div className="relative">
               <div className="absolute -left-4 -top-4 w-24 h-24 bg-church-yellow rounded-tl-lg"></div>
               <img

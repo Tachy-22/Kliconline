@@ -6,6 +6,8 @@ import {
   // ArrowRight,
   Search,
   Calendar as CalendarIcon,
+  Loader2,
+  Download,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -105,6 +107,7 @@ function Sermons({
   const [searchTerm, setSearchTerm] = useState("");
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
   const [activeTab, setActiveTab] = useState<"audio" | "media">("audio");
+  const [downloadingUrl, setDownloadingUrl] = useState<string | null>(null);
 
   const handleOpenMedia = (
     item: {
@@ -191,6 +194,45 @@ function Sermons({
     return matchesSearch && matchesDateRange;
   });
 
+  const handleDownload = async (audioUrl?: string) => {
+    if (!audioUrl) {
+      console.error("Download error: No audio URL provided");
+      return;
+    }
+
+    // Set loading state for this specific URL
+    setDownloadingUrl(audioUrl);
+    console.log("Starting download process for:", audioUrl);
+
+    try {
+      // Send request to your backend, which fetches the S3 file and forces download headers
+      const proxyUrl = `/api/download?url=${encodeURIComponent(audioUrl)}`;
+      console.log("Proxy URL created:", proxyUrl);
+
+      console.log("Creating anchor element for download");
+      const link = document.createElement("a");
+      link.href = proxyUrl;
+      link.download = audioUrl.split("/").pop() || "track.mp3";
+      console.log("Download filename:", link.download);
+
+      console.log("Appending link to document body");
+      document.body.appendChild(link);
+
+      console.log("Triggering click on download link");
+      link.click();
+
+      console.log("Removing link from document body");
+      document.body.removeChild(link);
+
+      console.log("Download process completed");
+    } catch (error) {
+      console.error("Download error:", error);
+    } finally {
+      // Clear loading state
+      setDownloadingUrl(null);
+    }
+  };
+
   function SermonCard({
     title,
     pastor,
@@ -208,6 +250,7 @@ function Sermons({
     audioUrl?: string;
     videoUrl?: string;
   }) {
+    const isDownloading = downloadingUrl === audioUrl;
     return (
       <Card className="overflow-hidden hover:shadow-lg transition-all duration-300">
         <div className="relative h-48">
@@ -251,6 +294,26 @@ function Sermons({
               ? "Listen Live"
               : "Listen Sermon"}
           </Button>
+          {type === "audio" && (
+            <Button
+              variant="outline"
+              className="mt-2 w-full border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white"
+              onClick={() => handleDownload(audioUrl as string)}
+              disabled={isDownloading}
+            >
+              {isDownloading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Downloading...
+                </>
+              ) : (
+                <>
+                  Download
+                  <Download className="ml-2 h-4 w-4" />
+                </>
+              )}
+            </Button>
+          )}
         </CardContent>
       </Card>
     );

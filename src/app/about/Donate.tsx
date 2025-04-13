@@ -59,14 +59,14 @@ const Donate = () => {
                 </div>
 
                 <Tabs defaultValue="online" className="w-full">
-                  <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="online" className="py-1">
+                  <TabsList className="grid w-full grid-cols-3 gap-2 sm:gap-0 overflow-x-auto">
+                    <TabsTrigger value="online" className="py-1 text-xs sm:text-sm md:text-base min-w-fit">
                       KLIC Tithe{" "}
                     </TabsTrigger>
-                    <TabsTrigger value="bank" className="py-1">
+                    <TabsTrigger value="bank" className="py-1 text-xs sm:text-sm md:text-base min-w-fit">
                       KLIC Offerings{" "}
                     </TabsTrigger>
-                    <TabsTrigger value="partner" className="py-1">
+                    <TabsTrigger value="partner" className="py-1 text-xs sm:text-sm md:text-base whitespace-normal text-nowrap text-start min-w-fit">
                       Sam Excelson Teaching Ministry{" "}
                     </TabsTrigger>
                   </TabsList>
@@ -78,7 +78,7 @@ const Donate = () => {
                           <BanknoteIcon className="h-6 w-6 text-gray-900" />
                         </div>
                         <h3 className="text-2xl font-serif font-bold">
-                          KLIC Tithe{" "}
+                          KLIC TITHE{" "}
                         </h3>
                       </div>
 
@@ -129,7 +129,7 @@ const Donate = () => {
                           <BanknoteIcon className="h-6 w-6 text-gray-900" />
                         </div>
                         <h3 className="text-2xl font-serif font-bold">
-                          KLIC Offering{" "}
+                          KLIC OFFERINGS{" "}
                         </h3>
                       </div>
 

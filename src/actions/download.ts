@@ -50,3 +50,30 @@ export async function downloadSermon(audioUrl: string): Promise<string | null> {
     return null;
   }
 }
+
+export const handleDownload = async (audioUrl?: string) => {
+  if (!audioUrl) return;
+  try {
+    const response = await fetch(audioUrl);
+    const blob = await response.blob();
+    const blobUrl = window.URL.createObjectURL(blob);
+    console.log({ audioUrl });
+    const link = document.createElement("a");
+    link.style.display = "none";
+    link.href = blobUrl;
+    link.download = audioUrl.split("/").pop() || "track.mp3";
+    // This is important for cross-origin downloads
+    link.setAttribute("download", link.download);
+    document.body.appendChild(link);
+    link.click();
+    // Clean up
+    setTimeout(() => {
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    }, 100);
+  } catch (error) {
+    console.log({ audioUrl });
+
+    console.error("Failed to download file", error);
+  }
+};

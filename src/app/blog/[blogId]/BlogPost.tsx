@@ -114,7 +114,7 @@ const BlogPost = ({
         >
           {/* Featured Image */}
           <div
-            className="w-full h-[40vh] bg-cover bg-center"
+            className="w-full lg:h-[40vh] h-[20rem] bg-cover bg-center"
             style={{
               backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url(${
                 blog.imageUrls?.[0] || blog.images?.[0] || "/placeholder.jpg"
