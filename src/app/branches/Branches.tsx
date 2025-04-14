@@ -44,7 +44,7 @@ export const BranchesData: Branch[] = [
     phone: "+234 8039373989",
     email: "kliconline@gmail.com",
     serviceTimes:
-      "Sunday: 8:00 AM - 10:30 AM & 11:00 AM - 1:30 PM | Tuesday: 6:30 PM - 8:30 PM | Friday: 6:00 PM - 8:00 PM",
+      "Sunday: 9:00 AM - 11:30 AM | Thursday: 5:30 PM - 7:30 PM",
     pastorName: "Pastor Paul",
     description:
       "Our Lagos branch serves the vibrant city with multiple Sunday services to accommodate our growing congregation. This branch has a strong focus on youth ministry and community outreach programs throughout Lagos.",
