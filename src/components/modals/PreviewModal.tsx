@@ -30,7 +30,7 @@ export function PreviewModal({
       <AlertDialogContent className="max-w-2xl z-50 rounded bg-white">
         <AlertDialogHeader className="w-full !flex justify-between">
           <AlertDialogTitle className="w-full flex justify-between items-center">
-            Testimony by {author}
+           By {author}
             <AlertDialogCancel className="w-fit aspect-square rounded-full">
               <X />
             </AlertDialogCancel>

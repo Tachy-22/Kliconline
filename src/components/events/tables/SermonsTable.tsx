@@ -18,8 +18,27 @@ import AddSermonForm from "../../forms/AddSermonForm";
 import formatToMonthDayYear from "@/lib/formatToMonthDayYear";
 import { useTableOperations } from "@/hooks/useTableOperations";
 import { SearchControls, PaginationControls } from "../../TableControls";
+import { SortableTableHeader } from "../../ui/SortableTableHeader";
+import { useMemo } from "react";
 
 const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
+  // Extract unique categories and preachers for filters
+  const categories = useMemo(() => {
+    const uniqueCategories = new Set<string>();
+    sermons.forEach((sermon) => {
+      if (sermon.category) uniqueCategories.add(sermon.category);
+    });
+    return Array.from(uniqueCategories);
+  }, [sermons]);
+
+  const preachers = useMemo(() => {
+    const uniquePreachers = new Set<string>();
+    sermons.forEach((sermon) => {
+      if (sermon.preacher) uniquePreachers.add(sermon.preacher);
+    });
+    return Array.from(uniquePreachers);
+  }, [sermons]);
+
   const {
     paginatedData: displayedSermons,
     totalPages,
@@ -29,11 +48,36 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
     setSearchQuery,
     pageSize,
     setPageSize,
+    sortField,
+    sortDirection,
+    toggleSort,
+    categoryFilter,
+    setCategoryFilter,
+    customFilters,
+    setCustomFilters,
   } = useTableOperations({
     data: sermons,
-    searchFields: ["title", "preacher", "category"],
+    searchFields: ["title", "preacher", "category", "description"],
     itemsPerPage: 10,
+    defaultSortField: "date", // Sort by date by default
+    defaultSortDirection: "desc", // Most recent first
   });
+
+  // Create filter options object
+  const filterOptions = useMemo(
+    () => ({
+      preacher: preachers,
+    }),
+    [preachers]
+  );
+
+  // Handle custom filter changes
+  const handleCustomFilterChange = (field: string, value: string) => {
+    setCustomFilters((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   const success = Array.isArray(sermons);
   const error = !success ? "Failed to load sermons" : null;
@@ -77,12 +121,18 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
             <span className="ml-2 text-sm text-gray-600 font-normal">
               (Total: {sermons.length})
             </span>
-          </CardTitle>
+          </CardTitle>{" "}
         </CardHeader>
         <CardContent>
           <SearchControls
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
+            categories={categories}
+            categoryFilter={categoryFilter || "all"}
+            onCategoryFilterChange={setCategoryFilter}
+            customFilters={customFilters}
+            onCustomFilterChange={handleCustomFilterChange}
+            filterOptions={filterOptions}
           />
 
           <Table>
@@ -91,10 +141,42 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
                 <TableHead className="text-black font-bold">
                   Thumbnail
                 </TableHead>
-                <TableHead className="text-black font-bold">Title</TableHead>
-                <TableHead className="text-black font-bold">Preacher</TableHead>
-                <TableHead className="text-black font-bold">Date</TableHead>
-                <TableHead className="text-black font-bold">Category</TableHead>
+                <SortableTableHeader
+                  field="title"
+                  sortField={sortField as string}
+                  sortDirection={sortDirection}
+                  onSort={toggleSort}
+                  className="text-black font-bold"
+                >
+                  Title
+                </SortableTableHeader>
+                <SortableTableHeader
+                  field="preacher"
+                  sortField={sortField as string}
+                  sortDirection={sortDirection}
+                  onSort={toggleSort}
+                  className="text-black font-bold"
+                >
+                  Preacher
+                </SortableTableHeader>
+                <SortableTableHeader
+                  field="date"
+                  sortField={sortField as string}
+                  sortDirection={sortDirection}
+                  onSort={toggleSort}
+                  className="text-black font-bold"
+                >
+                  Date
+                </SortableTableHeader>
+                <SortableTableHeader
+                  field="category"
+                  sortField={sortField as string}
+                  sortDirection={sortDirection}
+                  onSort={toggleSort}
+                  className="text-black font-bold"
+                >
+                  Category
+                </SortableTableHeader>
                 <TableHead className="text-black font-bold text-right">
                   Actions
                 </TableHead>
@@ -128,7 +210,7 @@ const SermonsTable = ({ sermons }: { sermons: SermonT[] }) => {
                       {sermon.preacher}
                     </TableCell>
                     <TableCell className="text-black">
-                      {formatToMonthDayYear(sermon.date)}
+                      {formatToMonthDayYear(sermon.date as string)}
                     </TableCell>
                     <TableCell className="text-black">
                       {sermon.category}

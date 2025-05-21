@@ -75,20 +75,33 @@ function VideoModal({
 }
 
 function Sermons({
-  sermons,
-  events,
+  sermons: unsortedSermons,
+  events: unsortedEvents,
 }: {
   sermons: SermonT[];
   events: EventT[];
 }) {
+  // Sort sermons and events by date, most recent first
+  const sermons = useMemo(() => {
+    return [...unsortedSermons].sort((a, b) => {
+      const dateA = new Date(a.date as string);
+      const dateB = new Date(b.date as string);
+      return dateB.getTime() - dateA.getTime();
+    });
+  }, [unsortedSermons]);
+
+  const events = useMemo(() => {
+    return [...unsortedEvents].sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
+  }, [unsortedEvents]);
+
   const latestEvent = useMemo(() => {
     if (events.length === 0) return null;
 
-    return events.reduce((latest, current) => {
-      const latestDate = new Date(latest.date);
-      const currentDate = new Date(current.date);
-      return currentDate > latestDate ? current : latest;
-    }, events[0]);
+    return events[0]; // Now that events are sorted, the first one is the latest
   }, [events]);
 
   const [selectedMedia, setSelectedMedia] = useState<{
@@ -149,50 +162,62 @@ function Sermons({
     if (sermon.audioUrl) return "audio";
     return "mixlr";
   };
-
   const getEventType = (event: EventT) => {
     if (event.mediaUrl?.includes("youtube")) return "youtube";
     if (event.mediaUrl?.includes("mixlr")) return "mixlr";
     return "audio";
   };
 
-  const filteredSermons = sermons.filter((sermon) => {
-    const matchesSearch =
-      searchTerm === "" ||
-      sermon.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      sermon.preacher.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredSermons = sermons
+    .filter((sermon) => {
+      const matchesSearch =
+        searchTerm === "" ||
+        sermon?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        sermon?.preacher?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    let matchesDateRange = true;
-    if (dateRange?.from) {
-      const sermonDate = new Date(sermon.date);
-      matchesDateRange = sermonDate >= dateRange.from;
+      let matchesDateRange = true;
+      if (dateRange?.from) {
+        const sermonDate = new Date(sermon.date as string);
+        matchesDateRange = sermonDate >= dateRange.from;
 
-      if (dateRange.to && matchesDateRange) {
-        matchesDateRange = sermonDate <= dateRange.to;
+        if (dateRange.to && matchesDateRange) {
+          matchesDateRange = sermonDate <= dateRange.to;
+        }
       }
-    }
 
-    return matchesSearch && matchesDateRange;
-  });
+      return matchesSearch && matchesDateRange;
+    })
+    // Sort by date (most recent first)
+    .sort((a, b) => {
+      const dateA = new Date(a.date as string);
+      const dateB = new Date(b.date as string);
+      return dateB.getTime() - dateA.getTime();
+    });
+  const filteredEvents = events
+    .filter((event) => {
+      const matchesSearch =
+        searchTerm === "" ||
+        event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        event.description.toLowerCase().includes(searchTerm.toLowerCase());
 
-  const filteredEvents = events.filter((event) => {
-    const matchesSearch =
-      searchTerm === "" ||
-      event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      event.description.toLowerCase().includes(searchTerm.toLowerCase());
+      let matchesDateRange = true;
+      if (dateRange?.from) {
+        const eventDate = new Date(event.date);
+        matchesDateRange = eventDate >= dateRange.from;
 
-    let matchesDateRange = true;
-    if (dateRange?.from) {
-      const eventDate = new Date(event.date);
-      matchesDateRange = eventDate >= dateRange.from;
-
-      if (dateRange.to && matchesDateRange) {
-        matchesDateRange = eventDate <= dateRange.to;
+        if (dateRange.to && matchesDateRange) {
+          matchesDateRange = eventDate <= dateRange.to;
+        }
       }
-    }
 
-    return matchesSearch && matchesDateRange;
-  });
+      return matchesSearch && matchesDateRange;
+    })
+    // Sort by date (most recent first)
+    .sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
 
   const handleDownload = async (audioUrl?: string) => {
     if (!audioUrl) {
@@ -470,11 +495,11 @@ function Sermons({
                   {filteredSermons.map((sermon, index) => (
                     <SermonCard
                       key={index}
-                      title={sermon.title}
-                      pastor={sermon.preacher}
-                      date={sermon.date}
+                      title={sermon.title as string}
+                      pastor={sermon.preacher as string}
+                      date={sermon.date as string}
                       type={getSermonType(sermon)}
-                      image={sermon.thumbnailUrl}
+                      image={sermon.thumbnailUrl as string}
                       audioUrl={sermon.audioUrl}
                       videoUrl={sermon.videoUrl}
                     />

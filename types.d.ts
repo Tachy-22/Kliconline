@@ -29,23 +29,23 @@ interface Sermon {
 interface SermonT {
   id?: string;
 
-  title: string;
+  title?: string;
 
-  description: string;
+  description?: string;
 
-  date: string;
+  date?: string;
 
-  preacher: string;
+  preacher?: string;
 
-  videoUrl: string;
+  videoUrl?: string;
 
-  audioUrl: string;
+  audioUrl?: string;
 
-  category: string;
+  category?: string;
 
-  isPublished: boolean;
+  isPublished?: boolean;
 
-  thumbnailUrl: string;
+  thumbnailUrl?: string;
 
   [key: string]: unknown;
 }
