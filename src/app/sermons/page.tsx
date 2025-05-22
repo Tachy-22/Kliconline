@@ -9,7 +9,7 @@ export default async function SermonPage() {
   // Sort sermons by date (newest first)
   const sortedSermons = "items" in sermons
     ? [...sermons.items].sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        (a, b) => new Date(b.date as string).getTime() - new Date(a.date as string).getTime()
       )
     : [];
 
