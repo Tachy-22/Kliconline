@@ -308,11 +308,11 @@ function SermonsSection({
               {sermons.map((sermon, index) => (
                 <SermonCard
                   key={index}
-                  title={sermon.title}
-                  pastor={sermon.preacher}
-                  date={sermon.date}
+                  title={sermon.title || "Untitled Sermon"}
+                  pastor={sermon.preacher || "Unknown Preacher"}
+                  date={sermon.date || "Unknown Date"}
                   type={getSermonType(sermon)}
-                  image={sermon.thumbnailUrl}
+                  image={sermon.thumbnailUrl || "/placeholder.svg"}
                   audioUrl={sermon.audioUrl}
                   videoUrl={sermon.videoUrl}
                 />
